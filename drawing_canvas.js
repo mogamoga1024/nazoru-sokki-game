@@ -3,6 +3,10 @@
 class DrawingCanvas {
     #context; #lastPosition; #canDraw;
 
+    get canDraw() {
+        return this.#canDraw;
+    }
+
     constructor(canvas) {
         this.#context = canvas.getContext("2d");
         this.#context.lineCap = "round";
