@@ -1,5 +1,5 @@
 
-function changeLineColor(canvas, red, green, blue) {
+function changeLineColor(canvas, {r: red, g: green, b: blue}) {
     const context = canvas.getContext("2d", {willReadFrequently: true});
     const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
     for (let y = 0; y < canvas.height; y++) {

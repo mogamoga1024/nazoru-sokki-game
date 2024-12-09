@@ -7,18 +7,20 @@ class DrawingCanvas {
         return this.#canDraw;
     }
 
-    constructor(canvas, lineWidth = 5) {
+    constructor(canvas, color = "black") {
         this.#context = canvas.getContext("2d", {willReadFrequently: true});
         this.#context.lineCap = "round";
         this.#context.lineJoin = "round";
-        this.#context.lineWidth = lineWidth;
-        this.#context.strokeStyle = "black";
+        this.#context.lineWidth = 4;
+        this.#context.strokeStyle = color;
 
         this.#lastPosition = {x: null, y: null};
         this.#canDraw = false;
     }
 
-    draw(x, y) {
+    draw(x, y, color = "black") {
+        this.#context.strokeStyle = color;
+
         if(this.#canDraw === false) {
             return;
         }
@@ -40,8 +42,8 @@ class DrawingCanvas {
         this.#canDraw = true;
     }
     
-    drawEnd(x, y) {
-        this.draw(x, y); // クリックのみでドラッグされなかった場合、点を描画するために呼び出す。
+    drawEnd(x, y, color = "black") {
+        this.draw(x, y, color); // クリックのみでドラッグされなかった場合、点を描画するために呼び出す。
         this.#context.closePath();
         this.#canDraw = false;
         this.#lastPosition.x = null;
