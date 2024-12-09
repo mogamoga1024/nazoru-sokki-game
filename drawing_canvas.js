@@ -8,7 +8,7 @@ class DrawingCanvas {
     }
 
     constructor(canvas, lineWidth = 5) {
-        this.#context = canvas.getContext("2d");
+        this.#context = canvas.getContext("2d", {willReadFrequently: true});
         this.#context.lineCap = "round";
         this.#context.lineJoin = "round";
         this.#context.lineWidth = lineWidth;
