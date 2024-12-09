@@ -7,11 +7,11 @@ class DrawingCanvas {
         return this.#canDraw;
     }
 
-    constructor(canvas) {
+    constructor(canvas, lineWidth = 5) {
         this.#context = canvas.getContext("2d");
         this.#context.lineCap = "round";
         this.#context.lineJoin = "round";
-        this.#context.lineWidth = 5;
+        this.#context.lineWidth = lineWidth;
         this.#context.strokeStyle = "black";
 
         this.#lastPosition = {x: null, y: null};
