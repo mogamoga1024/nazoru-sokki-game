@@ -111,30 +111,31 @@ class Sokki {
         if (actualList.length === expectedList.length) {
             for (let i = 0; i < actualList.length; i++) {
                 const aDif = actualList[i];
-                let eDif = expectedList[i];
+                const expected = expectedList[i];
+                let eDif = expected;
     
-                if (eDif === "4mm") {
+                if (expected === "4mm") {
                     eDif = this.#line4Len;
                 }
-                else if (eDif === "8mm") {
+                else if (expected === "8mm") {
                     eDif = this.#line8Len;
                 }
-                else if (eDif === "16mm") {
+                else if (expected === "16mm") {
                     eDif = this.#line16Len;
                 }
-                else if (eDif === "-1/2") {
+                else if (expected === "-1/2") {
                     eDif = actualList[i - 1] * -1 / 2;
                 }
     
-                if (eDif === "+") {
+                if (expected === "+") {
                     isOK = Math.sign(aDif) > 0;
                 }
-                else if (eDif === "-") {
+                else if (expected === "-") {
                     isOK = Math.sign(aDif) < 0;
                 }
                 else if (
                     Math.sign(aDif) === Math.sign(eDif) &&
-                    Math.abs(aDif) >= Math.abs(eDif) * 0.7 &&
+                    (expected === "4mm" || Math.abs(aDif) >= Math.abs(eDif) * 0.7) &&
                     Math.abs(aDif) <= Math.abs(eDif) * 1.3
                 ) {
                     isOK = true;
