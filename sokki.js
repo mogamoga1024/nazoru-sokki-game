@@ -109,7 +109,10 @@ class Sokki {
     #testPart(actualList, expectedList) {
         let isOK = false;
         if (actualList.length === expectedList.length) {
-            for (let i = 0; i < actualList.length; i++) {
+            if (actualList.length === 0) {
+                isOK = true;
+            }
+            else for (let i = 0; i < actualList.length; i++) {
                 const aDif = actualList[i];
                 const expected = expectedList[i];
                 let eDif = expected;
