@@ -94,7 +94,16 @@ class Sokki {
                 const aDif = actualList[i];
                 let eDif = expectedList[i];
     
-                if (eDif === "-1/2") {
+                if (eDif === "4mm") {
+                    eDif = this.line4Len;
+                }
+                else if (eDif === "8mm") {
+                    eDif = this.line8Len;
+                }
+                else if (eDif === "16mm") {
+                    eDif = this.line16Len;
+                }
+                else if (eDif === "-1/2") {
                     eDif = actualList[i - 1] * -1 / 2;
                 }
     
