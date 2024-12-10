@@ -102,8 +102,8 @@ class Sokki {
         console.log(this.#dxList, this.#dyList);
     }
 
-    test(expectedDxList, expectedDyList) {
-        return this.#testPart(this.#dxList, expectedDxList) && this.#testPart(this.#dyList, expectedDyList);
+    test(hira) {
+        return this.#testPart(this.#dxList, sokkiData[hira].dxList) && this.#testPart(this.#dyList, sokkiData[hira].dyList);
     }
 
     #testPart(actualList, expectedList) {
