@@ -1,37 +1,125 @@
 
-function sokkiTest(actualList, expectedList) {
-    let isOK = false;
-    if (actualList.length === expectedList.length) {
-        for (let i = 0; i < actualList.length; i++) {
-            const aDif = actualList[i];
-            let eDif = expectedList[i];
+class Sokki {
+    dxList = [];
+    dyList = [];
+    prevX = -1;
+    prevY = -1;
+    prevVertexX = -1;
+    prevVertexY = -1;
+    currentDxSign = 0;
+    currentDySign = 0;
+    lineColor = color.line4;
 
-            if (eDif === "-1/2") {
-                eDif = actualList[i - 1] * -1 / 2;
-            }
+    // 4mm,8mm,16mmのpx
+    line4Len = 50;
+    line8Len = 100;
+    line16Len = 200;
 
-            if (eDif === "+") {
-                isOK = Math.sign(aDif) > 0;
-            }
-            else if (eDif === "-") {
-                isOK = Math.sign(aDif) < 0;
-            }
-            else if (
-                Math.sign(aDif) === Math.sign(eDif) &&
-                Math.abs(aDif) >= Math.abs(eDif) * 0.7 &&
-                Math.abs(aDif) <= Math.abs(eDif) * 1.3
-            ) {
-                isOK = true;
-            }
-            else {
-                isOK = false;
-            }
+    constructor(x, y) {
+        this.prevX = x;
+        this.prevY = y;
+        this.prevVertexX = x;
+        this.prevVertexY = y;
+    }
 
-            if (!isOK) {
-                break;
-            }
+    changeLineColorIfNeed(canvas, x, y) {
+        const len = chebyshevDistance(this.prevVertexX, this.prevVertexY, x, y);
+        if (
+            this.lineColor === color.line4 &&
+            len > this.line4Len * 1.3 && len <= this.line8Len * 1.3
+        ) {
+            this.lineColor = color.line8;
+            changeLineColor(canvas, this.lineColor);
+        }
+        else if (
+            this.lineColor === color.line8 &&
+            len > this.line8Len * 1.3
+        ) {
+            this.lineColor = color.line16;
+            changeLineColor(canvas, this.lineColor);
         }
     }
-    return isOK;
-}
 
+    update(x, y) {
+        if (this.dxList.length === 0 && this.currentDxSign === 0) {
+            this.currentDxSign = Math.sign(x - this.prevVertexX);
+        }
+        else {
+            const dxSign = Math.sign(x - this.prevX);
+            if (dxSign != 0 && this.currentDxSign != dxSign) {
+                this.currentDxSign = dxSign;
+                this.dxList.push(this.prevX - this.prevVertexX);
+                this.prevVertexX = this.prevX;
+            }
+        }
+        
+        if (this.dyList.length === 0 && this.currentDySign === 0) {
+            this.currentDySign = Math.sign(y - this.prevVertexY);
+        }
+        else {
+            const dySign = Math.sign(y - this.prevY);
+            if (dySign != 0 && this.currentDySign != dySign) {
+                this.currentDySign = dySign;
+                this.dyList.push(this.prevY - this.prevVertexY);
+                this.prevVertexY = this.prevY;
+            }
+        }
+
+        this.prevX = x;
+        this.prevY = y;
+    }
+
+    lastUpdate(x, y) {
+        const dx = x - this.prevVertexX;
+        if (dx != 0) {
+            this.dxList.push(dx);
+        }
+        
+        const dy = y - this.prevVertexY;
+        if (dy != 0) {
+            this.dyList.push(dy);
+        }
+
+        console.log(this.dxList, this.dyList);
+    }
+
+    test(expectedDxList, expectedDyList) {
+        return this.#testPart(this.dxList, expectedDxList) && this.#testPart(this.dyList, expectedDyList);
+    }
+
+    #testPart(actualList, expectedList) {
+        let isOK = false;
+        if (actualList.length === expectedList.length) {
+            for (let i = 0; i < actualList.length; i++) {
+                const aDif = actualList[i];
+                let eDif = expectedList[i];
+    
+                if (eDif === "-1/2") {
+                    eDif = actualList[i - 1] * -1 / 2;
+                }
+    
+                if (eDif === "+") {
+                    isOK = Math.sign(aDif) > 0;
+                }
+                else if (eDif === "-") {
+                    isOK = Math.sign(aDif) < 0;
+                }
+                else if (
+                    Math.sign(aDif) === Math.sign(eDif) &&
+                    Math.abs(aDif) >= Math.abs(eDif) * 0.7 &&
+                    Math.abs(aDif) <= Math.abs(eDif) * 1.3
+                ) {
+                    isOK = true;
+                }
+                else {
+                    isOK = false;
+                }
+    
+                if (!isOK) {
+                    break;
+                }
+            }
+        }
+        return isOK;
+    }
+}
