@@ -64,11 +64,14 @@ class Sokki {
             this.#currentDxSign = Math.sign(this.#antiShake(x - this.#prevVertexX));
         }
         else {
-            const dxSign = Math.sign(this.#antiShake(x - this.#prevX));
+            const dxSign = Math.sign(x - this.#prevX);
             if (dxSign != 0 && this.#currentDxSign != dxSign) {
-                this.#currentDxSign = dxSign;
-                this.#dxList.push(this.#prevX - this.#prevVertexX);
-                this.#prevVertexX = this.#prevX;
+                const dx = this.#prevX - this.#prevVertexX;
+                if (this.#antiShake(dx) !== 0) {
+                    this.#currentDxSign = dxSign;
+                    this.#dxList.push(dx);
+                    this.#prevVertexX = this.#prevX;
+                }
             }
         }
         
@@ -76,11 +79,14 @@ class Sokki {
             this.#currentDySign = Math.sign(this.#antiShake(y - this.#prevVertexY));
         }
         else {
-            const dySign = Math.sign(this.#antiShake(y - this.#prevY));
+            const dySign = Math.sign(y - this.#prevY);
             if (dySign != 0 && this.#currentDySign != dySign) {
-                this.#currentDySign = dySign;
-                this.#dyList.push(this.#prevY - this.#prevVertexY);
-                this.#prevVertexY = this.#prevY;
+                const dy = this.#prevY - this.#prevVertexY;
+                if (this.#antiShake(dy) !== 0) {
+                    this.#currentDySign = dySign;
+                    this.#dyList.push(dy);
+                    this.#prevVertexY = this.#prevY;
+                }
             }
         }
 
