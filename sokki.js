@@ -61,10 +61,10 @@ class Sokki {
 
     update(x, y) {
         if (this.#dxList.length === 0 && this.#currentDxSign === 0) {
-            this.#currentDxSign = Math.sign(x - this.#prevVertexX);
+            this.#currentDxSign = Math.sign(this.#antiShake(x - this.#prevVertexX));
         }
         else {
-            const dxSign = Math.sign(x - this.#prevX);
+            const dxSign = Math.sign(this.#antiShake(x - this.#prevX));
             if (dxSign != 0 && this.#currentDxSign != dxSign) {
                 this.#currentDxSign = dxSign;
                 this.#dxList.push(this.#prevX - this.#prevVertexX);
@@ -73,10 +73,10 @@ class Sokki {
         }
         
         if (this.#dyList.length === 0 && this.#currentDySign === 0) {
-            this.#currentDySign = Math.sign(y - this.#prevVertexY);
+            this.#currentDySign = Math.sign(this.#antiShake(y - this.#prevVertexY));
         }
         else {
-            const dySign = Math.sign(y - this.#prevY);
+            const dySign = Math.sign(this.#antiShake(y - this.#prevY));
             if (dySign != 0 && this.#currentDySign != dySign) {
                 this.#currentDySign = dySign;
                 this.#dyList.push(this.#prevY - this.#prevVertexY);
@@ -89,12 +89,12 @@ class Sokki {
     }
 
     lastUpdate(x, y) {
-        const dx = x - this.#prevVertexX;
+        const dx = this.#antiShake(x - this.#prevVertexX);
         if (dx != 0) {
             this.#dxList.push(dx);
         }
         
-        const dy = y - this.#prevVertexY;
+        const dy = this.#antiShake(y - this.#prevVertexY);
         if (dy != 0) {
             this.#dyList.push(dy);
         }
@@ -104,6 +104,15 @@ class Sokki {
 
     test(hira) {
         return this.#testPart(this.#dxList, sokkiData[hira].dxList) && this.#testPart(this.#dyList, sokkiData[hira].dyList);
+    }
+
+    #antiShake(value) {
+        if (Math.abs(value) <= 5) {
+            return 0;
+        }
+        else {
+            return value;
+        }
     }
 
     #testPart(actualList, expectedList) {
