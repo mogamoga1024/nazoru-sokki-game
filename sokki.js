@@ -18,8 +18,8 @@ function sokkiTest(actualList, expectedList) {
             }
             else if (
                 Math.sign(aDif) === Math.sign(eDif) &&
-                Math.abs(aDif) >= Math.abs(eDif) * 0.5 &&
-                Math.abs(aDif) <= Math.abs(eDif) * 1.5
+                Math.abs(aDif) >= Math.abs(eDif) * 0.7 &&
+                Math.abs(aDif) <= Math.abs(eDif) * 1.3
             ) {
                 isOK = true;
             }
