@@ -13,12 +13,12 @@ const sokkiData = {
         dyList: ["4mm"]
     },
     "え": {
-        dxList: [],
-        dyList: []
+        dxList: ["4mm"],
+        dyList: ["4mm"]
     },
     "お": {
-        dxList: [],
-        dyList: []
+        dxList: ["-4mm"],
+        dyList: ["4mm"]
     },
     "か": {
         dxList: [],

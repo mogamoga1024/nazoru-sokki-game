@@ -141,6 +141,15 @@ class Sokki {
                 else if (expected === "16mm") {
                     eDif = this.#line16Len;
                 }
+                else if (expected === "-4mm") {
+                    eDif = -this.#line4Len;
+                }
+                else if (expected === "-8mm") {
+                    eDif = -this.#line8Len;
+                }
+                else if (expected === "-16mm") {
+                    eDif = -this.#line16Len;
+                }
                 else if (expected === "-1/2") {
                     eDif = actualList[i - 1] * -1 / 2;
                 }
@@ -153,7 +162,7 @@ class Sokki {
                 }
                 else if (
                     Math.sign(aDif) === Math.sign(eDif) &&
-                    (expected === "4mm" || Math.abs(aDif) >= Math.abs(eDif) * 0.7) &&
+                    (expected === "4mm" || expected === "-4mm" || Math.abs(aDif) >= Math.abs(eDif) * 0.7) &&
                     Math.abs(aDif) <= Math.abs(eDif) * 1.3
                 ) {
                     isOK = true;
