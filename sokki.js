@@ -7,7 +7,7 @@ function sokkiTest(actualList, expectedList) {
             let eDif = expectedList[i];
 
             if (eDif === "-1/2") {
-                eDif = expectedList[i - 1] * -1 / 2;
+                eDif = actualList[i - 1] * -1 / 2;
             }
 
             if (eDif === "+") {
