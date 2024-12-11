@@ -129,8 +129,12 @@ const sokkiData = {
     "そ": {
         patternList: [
             {
-                dxList: [],
-                dyList: []
+                dxList: ["16mm"],
+                dyList: ["-"]
+            },
+            {
+                dxList: ["+"],
+                dyList: ["-16mm"]
             }
         ]
     },
