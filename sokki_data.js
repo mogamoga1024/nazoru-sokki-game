@@ -111,244 +111,480 @@ const sokkiData = {
         ]
     },
     "せ": {
-        dxList: [],
-        dyList: []
+        patternList: [
+            {
+                dxList: [],
+                dyList: []
+            }
+        ]
     },
     "そ": {
-        dxList: [],
-        dyList: []
+        patternList: [
+            {
+                dxList: [],
+                dyList: []
+            }
+        ]
     },
     "た": {
-        dxList: [],
-        dyList: []
+        patternList: [
+            {
+                dxList: [],
+                dyList: []
+            }
+        ]
     },
     "ち": {
-        dxList: [],
-        dyList: []
+        patternList: [
+            {
+                dxList: [],
+                dyList: []
+            }
+        ]
     },
     "つ": {
-        dxList: [],
-        dyList: []
+        patternList: [
+            {
+                dxList: [],
+                dyList: []
+            }
+        ]
     },
     "て": {
-        dxList: [],
-        dyList: []
+        patternList: [
+            {
+                dxList: [],
+                dyList: []
+            }
+        ]
     },
     "と": {
-        dxList: [],
-        dyList: []
+        patternList: [
+            {
+                dxList: [],
+                dyList: []
+            }
+        ]
     },
     "な": {
-        dxList: [],
-        dyList: []
+        patternList: [
+            {
+                dxList: [],
+                dyList: []
+            }
+        ]
     },
     "に": {
-        dxList: [],
-        dyList: []
+        patternList: [
+            {
+                dxList: [],
+                dyList: []
+            }
+        ]
     },
     "ぬ": {
         dxList: ["8mm", "-1/2"],
         dyList: ["+", "-", "+"]
     },
     "ね": {
-        dxList: [],
-        dyList: []
+        patternList: [
+            {
+                dxList: [],
+                dyList: []
+            }
+        ]
     },
     "の": {
-        dxList: [],
-        dyList: []
+        patternList: [
+            {
+                dxList: [],
+                dyList: []
+            }
+        ]
     },
     "は": {
-        dxList: [],
-        dyList: []
+        patternList: [
+            {
+                dxList: [],
+                dyList: []
+            }
+        ]
     },
     "ひ": {
-        dxList: [],
-        dyList: []
+        patternList: [
+            {
+                dxList: [],
+                dyList: []
+            }
+        ]
     },
     "ふ": {
-        dxList: [],
-        dyList: []
+        patternList: [
+            {
+                dxList: [],
+                dyList: []
+            }
+        ]
     },
     "へ": {
-        dxList: [],
-        dyList: []
+        patternList: [
+            {
+                dxList: [],
+                dyList: []
+            }
+        ]
     },
     "ほ": {
-        dxList: [],
-        dyList: []
+        patternList: [
+            {
+                dxList: [],
+                dyList: []
+            }
+        ]
     },
     "ま": {
-        dxList: [],
-        dyList: []
+        patternList: [
+            {
+                dxList: [],
+                dyList: []
+            }
+        ]
     },
     "み": {
-        dxList: [],
-        dyList: []
+        patternList: [
+            {
+                dxList: [],
+                dyList: []
+            }
+        ]
     },
     "む": {
-        dxList: [],
-        dyList: []
+        patternList: [
+            {
+                dxList: [],
+                dyList: []
+            }
+        ]
     },
     "め": {
-        dxList: [],
-        dyList: []
+        patternList: [
+            {
+                dxList: [],
+                dyList: []
+            }
+        ]
     },
     "も": {
-        dxList: [],
-        dyList: []
+        patternList: [
+            {
+                dxList: [],
+                dyList: []
+            }
+        ]
     },
     "や": {
-        dxList: [],
-        dyList: []
+        patternList: [
+            {
+                dxList: [],
+                dyList: []
+            }
+        ]
     },
     "ゆ": {
-        dxList: [],
-        dyList: []
+        patternList: [
+            {
+                dxList: [],
+                dyList: []
+            }
+        ]
     },
     "よ": {
-        dxList: [],
-        dyList: []
+        patternList: [
+            {
+                dxList: [],
+                dyList: []
+            }
+        ]
     },
     "ら": {
-        dxList: [],
-        dyList: []
+        patternList: [
+            {
+                dxList: [],
+                dyList: []
+            }
+        ]
     },
     "り": {
-        dxList: [],
-        dyList: []
+        patternList: [
+            {
+                dxList: [],
+                dyList: []
+            }
+        ]
     },
     "る": {
-        dxList: [],
-        dyList: []
+        patternList: [
+            {
+                dxList: [],
+                dyList: []
+            }
+        ]
     },
     "れ": {
-        dxList: [],
-        dyList: []
+        patternList: [
+            {
+                dxList: [],
+                dyList: []
+            }
+        ]
     },
     "ろ": {
-        dxList: [],
-        dyList: []
+        patternList: [
+            {
+                dxList: [],
+                dyList: []
+            }
+        ]
     },
     "わ": {
-        dxList: [],
-        dyList: []
+        patternList: [
+            {
+                dxList: [],
+                dyList: []
+            }
+        ]
     },
     "ぱ": {
-        dxList: [],
-        dyList: []
+        patternList: [
+            {
+                dxList: [],
+                dyList: []
+            }
+        ]
     },
     "ぴ": {
-        dxList: [],
-        dyList: []
+        patternList: [
+            {
+                dxList: [],
+                dyList: []
+            }
+        ]
     },
     "ぷ": {
-        dxList: [],
-        dyList: []
+        patternList: [
+            {
+                dxList: [],
+                dyList: []
+            }
+        ]
     },
     "ぺ": {
-        dxList: [],
-        dyList: []
+        patternList: [
+            {
+                dxList: [],
+                dyList: []
+            }
+        ]
     },
     "ぽ": {
-        dxList: [],
-        dyList: []
+        patternList: [
+            {
+                dxList: [],
+                dyList: []
+            }
+        ]
     },
     "きゃ": {
-        dxList: [],
-        dyList: []
+        patternList: [
+            {
+                dxList: [],
+                dyList: []
+            }
+        ]
     },
     "きゅ": {
-        dxList: [],
-        dyList: []
+        patternList: [
+            {
+                dxList: [],
+                dyList: []
+            }
+        ]
     },
     "きょ": {
-        dxList: [],
-        dyList: []
+        patternList: [
+            {
+                dxList: [],
+                dyList: []
+            }
+        ]
     },
     "しゃ": {
-        dxList: [],
-        dyList: []
+        patternList: [
+            {
+                dxList: [],
+                dyList: []
+            }
+        ]
     },
     "しゅ": {
-        dxList: [],
-        dyList: []
+        patternList: [
+            {
+                dxList: [],
+                dyList: []
+            }
+        ]
     },
     "しょ": {
-        dxList: [],
-        dyList: []
+        patternList: [
+            {
+                dxList: [],
+                dyList: []
+            }
+        ]
     },
     "ちゃ": {
-        dxList: [],
-        dyList: []
+        patternList: [
+            {
+                dxList: [],
+                dyList: []
+            }
+        ]
     },
     "ちゅ": {
-        dxList: [],
-        dyList: []
+        patternList: [
+            {
+                dxList: [],
+                dyList: []
+            }
+        ]
     },
     "ちょ": {
-        dxList: [],
-        dyList: []
+        patternList: [
+            {
+                dxList: [],
+                dyList: []
+            }
+        ]
     },
     "にゃ": {
-        dxList: [],
-        dyList: []
+        patternList: [
+            {
+                dxList: [],
+                dyList: []
+            }
+        ]
     },
     "にゅ": {
-        dxList: [],
-        dyList: []
+        patternList: [
+            {
+                dxList: [],
+                dyList: []
+            }
+        ]
     },
     "にょ": {
-        dxList: [],
-        dyList: []
+        patternList: [
+            {
+                dxList: [],
+                dyList: []
+            }
+        ]
     },
     "ひゃ": {
-        dxList: [],
-        dyList: []
+        patternList: [
+            {
+                dxList: [],
+                dyList: []
+            }
+        ]
     },
     "ひゅ": {
-        dxList: [],
-        dyList: []
+        patternList: [
+            {
+                dxList: [],
+                dyList: []
+            }
+        ]
     },
     "ひょ": {
-        dxList: [],
-        dyList: []
+        patternList: [
+            {
+                dxList: [],
+                dyList: []
+            }
+        ]
     },
     "みゃ": {
-        dxList: [],
-        dyList: []
+        patternList: [
+            {
+                dxList: [],
+                dyList: []
+            }
+        ]
     },
     "みゅ": {
-        dxList: [],
-        dyList: []
+        patternList: [
+            {
+                dxList: [],
+                dyList: []
+            }
+        ]
     },
     "みょ": {
-        dxList: [],
-        dyList: []
+        patternList: [
+            {
+                dxList: [],
+                dyList: []
+            }
+        ]
     },
     "りゃ": {
-        dxList: [],
-        dyList: []
+        patternList: [
+            {
+                dxList: [],
+                dyList: []
+            }
+        ]
     },
     "りゅ": {
-        dxList: [],
-        dyList: []
+        patternList: [
+            {
+                dxList: [],
+                dyList: []
+            }
+        ]
     },
     "りょ": {
-        dxList: [],
-        dyList: []
+        patternList: [
+            {
+                dxList: [],
+                dyList: []
+            }
+        ]
     },
     "ぴゃ": {
-        dxList: [],
-        dyList: []
+        patternList: [
+            {
+                dxList: [],
+                dyList: []
+            }
+        ]
     },
     "ぴゅ": {
-        dxList: [],
-        dyList: []
+        patternList: [
+            {
+                dxList: [],
+                dyList: []
+            }
+        ]
     },
     "ぴょ": {
-        dxList: [],
-        dyList: []
+        patternList: [
+            {
+                dxList: [],
+                dyList: []
+            }
+        ]
     }
 };
 
