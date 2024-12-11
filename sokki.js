@@ -104,11 +104,13 @@ class Sokki {
         if (dy != 0) {
             this.#dyList.push(dy);
         }
-
-        console.log(this.#dxList, this.#dyList);
     }
 
     test(hira) {
+        console.log("-----------------");
+        console.log("実際値");
+        console.log(this.#dxList, this.#dyList);
+
         if (/^[か|き|く|け|こ]$/.test(hira)) {
             if (this.#dyList.length > 2 && Math.abs(this.#dyList[0]) < 20) {
                 this.#dyList = this.#dyList.slice(-2);
@@ -116,6 +118,9 @@ class Sokki {
         }
 
         for (const pattern of sokkiData[hira].patternList) {
+            console.log("期待値");
+            console.log(pattern.dxList, pattern.dyList);
+
             const isOK = this.#testPart(this.#dxList, pattern.dxList) && this.#testPart(this.#dyList, pattern.dyList);
             if (isOK) {
                 return true;
@@ -183,6 +188,14 @@ class Sokki {
                     eDif = -this.#line8Len;
                     low = 1;
                 }
+                else if (expected === "16mm>=") {
+                    eDif = this.#line16Len;
+                    low = 1;
+                }
+                else if (expected === "-16mm>=") {
+                    eDif = -this.#line16Len;
+                    low = 1;
+                }
                 else if (expected === "-1/4") {
                     eDif = actualList[i - 1] * -1 / 4;
                     low = Math.abs(eDif) * lowAdj;
@@ -205,9 +218,15 @@ class Sokki {
                 }
                 else if (expected === "+") {
                     isOK = Math.sign(aDif) > 0;
+                    if (!isOK) {
+                        console.log("Math.sign(aDif) > 0", Math.sign(aDif));
+                    }
                 }
                 else if (expected === "-") {
                     isOK = Math.sign(aDif) < 0;
+                    if (!isOK) {
+                        console.log("Math.sign(aDif) < 0", Math.sign(aDif));
+                    }
                 }
                 else if (
                     Math.sign(aDif) === Math.sign(eDif) &&
@@ -218,6 +237,15 @@ class Sokki {
                 }
                 else {
                     isOK = false;
+                    if (!(Math.sign(aDif) === Math.sign(eDif))) {
+                        console.log("Math.sign(aDif) === Math.sign(eDif)", Math.sign(aDif), Math.sign(eDif));
+                    }
+                    else if (!(Math.abs(aDif) > low)) {
+                        console.log("Math.abs(aDif) > low", Math.abs(aDif), low);
+                    }
+                    else if (!(Math.abs(aDif) <= Math.abs(eDif))) {
+                        console.log("Math.abs(aDif) <= Math.abs(eDif)", Math.abs(aDif), Math.abs(eDif));
+                    }
                 }
     
                 if (!isOK) {
