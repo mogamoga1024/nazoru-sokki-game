@@ -109,11 +109,17 @@ class Sokki {
     }
 
     test(hira) {
+        if (/^[か|き|く|け|こ]$/.test(hira)) {
+            if (this.#dyList.length > 2 && Math.abs(this.#dyList[0]) < 20) {
+                this.#dyList = this.#dyList.slice(-2);
+            }
+        }
+
         return this.#testPart(this.#dxList, sokkiData[hira].dxList) && this.#testPart(this.#dyList, sokkiData[hira].dyList);
     }
 
     #antiShake(value) {
-        if (Math.abs(value) <= 5) {
+        if (Math.abs(value) <= 4) {
             return 0;
         }
         else {
@@ -131,27 +137,43 @@ class Sokki {
                 const aDif = actualList[i];
                 const expected = expectedList[i];
                 let eDif = expected;
+                let low = 0;
+                const lowAdj = 0.7;
+                const highAdj = 1.3;
     
                 if (expected === "4mm") {
                     eDif = this.#line4Len;
                 }
                 else if (expected === "8mm") {
                     eDif = this.#line8Len;
+                    low = Math.abs(eDif) * lowAdj;
                 }
                 else if (expected === "16mm") {
                     eDif = this.#line16Len;
+                    low = this.#line8Len * highAdj;
                 }
                 else if (expected === "-4mm") {
                     eDif = -this.#line4Len;
                 }
                 else if (expected === "-8mm") {
                     eDif = -this.#line8Len;
+                    low = Math.abs(eDif) * lowAdj;
                 }
                 else if (expected === "-16mm") {
                     eDif = -this.#line16Len;
+                    low = this.#line8Len * highAdj;
+                }
+                else if (expected === "-1/4") {
+                    eDif = actualList[i - 1] * -1 / 4;
+                    low = Math.abs(eDif) * lowAdj;
                 }
                 else if (expected === "-1/2") {
                     eDif = actualList[i - 1] * -1 / 2;
+                    low = Math.abs(eDif) * lowAdj;
+                }
+                else if (expected === "-1/4>=") {
+                    eDif = actualList[i - 1] * -1 / 4;
+                    low = 1;
                 }
     
                 if (expected === "+") {
@@ -162,8 +184,8 @@ class Sokki {
                 }
                 else if (
                     Math.sign(aDif) === Math.sign(eDif) &&
-                    (expected === "4mm" || expected === "-4mm" || Math.abs(aDif) >= Math.abs(eDif) * 0.7) &&
-                    Math.abs(aDif) <= Math.abs(eDif) * 1.3
+                    Math.abs(aDif) >= low &&
+                    Math.abs(aDif) <= Math.abs(eDif) * highAdj
                 ) {
                     isOK = true;
                 }

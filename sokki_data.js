@@ -21,20 +21,20 @@ const sokkiData = {
         dyList: ["4mm"]
     },
     "か": {
-        dxList: [],
+        dxList: ["8mm"],
         dyList: []
     },
     "き": {
-        dxList: [],
-        dyList: []
+        dxList: ["8mm", "-1/4"],
+        dyList: ["-", "+"]
     },
     "く": {
-        dxList: [],
-        dyList: []
+        dxList: ["8mm", "-1/2"],
+        dyList: ["-", "+"]
     },
     "け": {
-        dxList: [],
-        dyList: []
+        dxList: ["16mm", "-1/4>="],
+        dyList: ["-", "+"]
     },
     "こ": {
         dxList: [],
