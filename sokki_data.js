@@ -1,4 +1,6 @@
 
+// anyは末尾のみOK
+
 const sokkiData = {    
     "あ": {
         dxList: ["4mm"],
@@ -25,7 +27,7 @@ const sokkiData = {
         dyList: []
     },
     "き": {
-        dxList: ["8mm", "-1/4"],
+        dxList: ["8mm", "-1/4>="],
         dyList: ["-", "+"]
     },
     "く": {
@@ -45,8 +47,8 @@ const sokkiData = {
         dyList: ["-"]
     },
     "し": {
-        dxList: [],
-        dyList: []
+        dxList: ["8mm", "-1/4>=", "any"],
+        dyList: ["-", "-1/4>="]
     },
     "す": {
         dxList: [],

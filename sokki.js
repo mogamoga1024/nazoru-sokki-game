@@ -129,7 +129,13 @@ class Sokki {
 
     #testPart(actualList, expectedList) {
         let isOK = false;
-        if (actualList.length === expectedList.length) {
+        if (
+            expectedList.at(-1) !== "any" && actualList.length === expectedList.length ||
+            expectedList.at(-1) === "any" && (
+                actualList.length === expectedList.length ||
+                actualList.length === expectedList.length - 1
+            )
+        ) {
             if (actualList.length === 0) {
                 isOK = true;
             }
@@ -176,7 +182,10 @@ class Sokki {
                     low = 1;
                 }
     
-                if (expected === "+") {
+                if (expected === "any") {
+                    isOK = true;
+                }
+                else if (expected === "+") {
                     isOK = Math.sign(aDif) > 0;
                 }
                 else if (expected === "-") {
