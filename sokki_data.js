@@ -3,56 +3,112 @@
 
 const sokkiData = {    
     "あ": {
-        dxList: ["4mm"],
-        dyList: ["+", "-"]
+        patternList: [
+            {
+                dxList: ["4mm"],
+                dyList: ["+", "-"]
+            }
+        ]
     },
     "い": {
-        dxList: ["4mm"],
-        dyList: ["-", "+"]
+        patternList: [
+            {
+                dxList: ["4mm"],
+                dyList: ["-", "+"]
+            }
+        ]
     },
     "う": {
-        dxList: [],
-        dyList: ["4mm"]
+        patternList: [
+            {
+                dxList: [],
+                dyList: ["4mm"]
+            }
+        ]
     },
     "え": {
-        dxList: ["4mm"],
-        dyList: ["4mm"]
+        patternList: [
+            {
+                dxList: ["4mm"],
+                dyList: ["4mm"]
+            }
+        ]
     },
     "お": {
-        dxList: ["-4mm"],
-        dyList: ["4mm"]
+        patternList: [
+            {
+                dxList: ["-4mm"],
+                dyList: ["4mm"]
+            }
+        ]
     },
     "か": {
-        dxList: ["8mm"],
-        dyList: []
+        patternList: [
+            {
+                dxList: ["8mm"],
+                dyList: []
+            }
+        ]
     },
     "き": {
-        dxList: ["8mm", "-1/4>="],
-        dyList: ["-", "+"]
+        patternList: [
+            {
+                dxList: ["8mm", "-1/4>="],
+                dyList: ["-", "+"]
+            }
+        ]
     },
     "く": {
-        dxList: ["8mm", "-1/2"],
-        dyList: ["-", "+"]
+        patternList: [
+            {
+                dxList: ["8mm", "-1/2"],
+                dyList: ["-", "+"]
+            }
+        ]
     },
     "け": {
-        dxList: ["16mm", "-1/4>="],
-        dyList: ["-", "+"]
+        patternList: [
+            {
+                dxList: ["16mm", "-1/4>="],
+                dyList: ["-", "+"]
+            }
+        ]
     },
     "こ": {
-        dxList: ["16mm"],
-        dyList: []
+        patternList: [
+            {
+                dxList: ["16mm"],
+                dyList: []
+            }
+        ]
     },
     "さ": {
-        dxList: ["8mm"],
-        dyList: ["-"]
+        patternList: [
+            {
+                dxList: ["8mm"],
+                dyList: ["-"]
+            }
+        ]
     },
     "し": {
-        dxList: ["8mm", "-1/4>=", "any"],
-        dyList: ["-", "-1/4>="]
+        patternList: [
+            {
+                dxList: ["8mm", "-1/4>=", "any"],
+                dyList: ["-8mm>=", "-1/2>="]
+            },
+            {
+                dxList: ["8mm>=", "-1/2>=", "any"],
+                dyList: ["-8mm", "-1/4>="]
+            }
+        ]
     },
     "す": {
-        dxList: [],
-        dyList: []
+        patternList: [
+            {
+                dxList: [],
+                dyList: []
+            }
+        ]
     },
     "せ": {
         dxList: [],

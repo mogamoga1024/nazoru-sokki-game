@@ -115,7 +115,13 @@ class Sokki {
             }
         }
 
-        return this.#testPart(this.#dxList, sokkiData[hira].dxList) && this.#testPart(this.#dyList, sokkiData[hira].dyList);
+        for (const pattern of sokkiData[hira].patternList) {
+            const isOK = this.#testPart(this.#dxList, pattern.dxList) && this.#testPart(this.#dyList, pattern.dyList);
+            if (isOK) {
+                return true;
+            }
+        }
+        return false;
     }
 
     #antiShake(value) {
@@ -169,6 +175,14 @@ class Sokki {
                     eDif = -this.#line16Len;
                     low = this.#line8Len * highAdj;
                 }
+                else if (expected === "8mm>=") {
+                    eDif = this.#line8Len;
+                    low = 1;
+                }
+                else if (expected === "-8mm>=") {
+                    eDif = -this.#line8Len;
+                    low = 1;
+                }
                 else if (expected === "-1/4") {
                     eDif = actualList[i - 1] * -1 / 4;
                     low = Math.abs(eDif) * lowAdj;
@@ -179,6 +193,10 @@ class Sokki {
                 }
                 else if (expected === "-1/4>=") {
                     eDif = actualList[i - 1] * -1 / 4;
+                    low = 1;
+                }
+                else if (expected === "-1/2>=") {
+                    eDif = actualList[i - 1] * -1 / 2;
                     low = 1;
                 }
     
