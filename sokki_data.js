@@ -149,8 +149,8 @@ const sokkiData = {
     "ち": {
         patternList: [
             {
-                dxList: [],
-                dyList: []
+                dxList: ["-", "+"],
+                dyList: ["8mm", "-1/4>=", "any"]
             }
         ]
     },
