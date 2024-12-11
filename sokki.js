@@ -208,6 +208,10 @@ class Sokki {
                     eDif = actualList[i - 1] * -1 / 4;
                     low = 1;
                 }
+                else if (expected === "-1/3>=") {
+                    eDif = actualList[i - 1] * -1 / 3;
+                    low = 1;
+                }
                 else if (expected === "-1/2>=") {
                     eDif = actualList[i - 1] * -1 / 2;
                     low = 1;
