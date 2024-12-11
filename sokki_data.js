@@ -165,16 +165,24 @@ const sokkiData = {
     "て": {
         patternList: [
             {
-                dxList: [],
-                dyList: []
+                dxList: ["16mm", "-1/4>=", "any"],
+                dyList: ["-16mm>=", "+", "any"]
+            },
+            {
+                dxList: ["16mm>=", "-", "any"],
+                dyList: ["-16mm", "-1/4>=", "any"]
             }
         ]
     },
     "と": {
         patternList: [
             {
-                dxList: [],
-                dyList: []
+                dxList: ["16mm"],
+                dyList: ["-"]
+            },
+            {
+                dxList: ["+"],
+                dyList: ["-16mm"]
             }
         ]
     },
