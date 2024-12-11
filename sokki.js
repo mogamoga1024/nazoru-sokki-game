@@ -146,7 +146,7 @@ class Sokki {
                 }
                 else if (expected === "8mm") {
                     eDif = this.#line8Len;
-                    low = Math.abs(eDif) * lowAdj;
+                    low = this.#line4Len * highAdj;
                 }
                 else if (expected === "16mm") {
                     eDif = this.#line16Len;
@@ -157,7 +157,7 @@ class Sokki {
                 }
                 else if (expected === "-8mm") {
                     eDif = -this.#line8Len;
-                    low = Math.abs(eDif) * lowAdj;
+                    low = this.#line4Len * highAdj;
                 }
                 else if (expected === "-16mm") {
                     eDif = -this.#line16Len;
@@ -184,7 +184,7 @@ class Sokki {
                 }
                 else if (
                     Math.sign(aDif) === Math.sign(eDif) &&
-                    Math.abs(aDif) >= low &&
+                    Math.abs(aDif) > low &&
                     Math.abs(aDif) <= Math.abs(eDif) * highAdj
                 ) {
                     isOK = true;
