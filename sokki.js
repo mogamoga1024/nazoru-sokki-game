@@ -257,6 +257,14 @@ class Sokki {
                 }
             }
         }
+        else {
+            if (expectedList.at(-1) !== "any") {
+                console.log("not any && actualList.length === expectedList.length", actualList.length, expectedList.length);
+            }
+            else {
+                console.log("any && actualList.length === expectedList.length || actualList.length === expectedList.length - 1", actualList.length, expectedList.length);
+            }
+        }
         return isOK;
     }
 
