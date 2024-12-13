@@ -197,27 +197,27 @@ class Sokki {
                     eDif = -this.#line16Len;
                     low = 1;
                 }
-                else if (expected === "-1/4") {
+                else if (expected === "*-1/4") {
                     eDif = actualList[i - 1] * -1 / 4;
                     low = Math.abs(eDif) * lowAdj;
                 }
-                else if (expected === "-1/2") {
+                else if (expected === "*-1/2") {
                     eDif = actualList[i - 1] * -1 / 2;
                     low = Math.abs(eDif) * lowAdj;
                 }
-                else if (expected === "-1/4>=") {
+                else if (expected === "*-1/4>=") {
                     eDif = actualList[i - 1] * -1 / 4;
                     low = 1;
                 }
-                else if (expected === "-1/3>=") {
+                else if (expected === "*-1/3>=") {
                     eDif = actualList[i - 1] * -1 / 3;
                     low = 1;
                 }
-                else if (expected === "-1/2>=") {
+                else if (expected === "*-1/2>=") {
                     eDif = actualList[i - 1] * -1 / 2;
                     low = 1;
                 }
-                else if (expected === "-1/2<=") {
+                else if (expected === "*-1/2<=") {
                     eDif = actualList[i - 1] * -1 / 2;
                     highAdj = Number.POSITIVE_INFINITY;
                 }
