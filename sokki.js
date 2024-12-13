@@ -154,10 +154,11 @@ class Sokki {
                 const aDif = actualList[i];
                 const expected = expectedList[i];
                 let eDif = expected;
-                let low = 0;
+                
                 const lowAdj = 0.7;
-                const highAdj = 1.3;
-    
+                let highAdj = 1.3;
+                let low = 0;
+                
                 if (expected === "4mm") {
                     eDif = this.#line4Len;
                 }
@@ -216,7 +217,11 @@ class Sokki {
                     eDif = actualList[i - 1] * -1 / 2;
                     low = 1;
                 }
-    
+                else if (expected === "-1/2<=") {
+                    eDif = actualList[i - 1] * -1 / 2;
+                    highAdj = Number.POSITIVE_INFINITY;
+                }
+
                 if (expected === "any") {
                     isOK = true;
                 }
@@ -247,8 +252,8 @@ class Sokki {
                     else if (!(Math.abs(aDif) > low)) {
                         console.log("Math.abs(aDif) > low", Math.abs(aDif), low);
                     }
-                    else if (!(Math.abs(aDif) <= Math.abs(eDif))) {
-                        console.log("Math.abs(aDif) <= Math.abs(eDif)", Math.abs(aDif), Math.abs(eDif));
+                    else if (!(Math.abs(aDif) <= Math.abs(eDif) * highAdj)) {
+                        console.log("Math.abs(aDif) <= Math.abs(eDif) * highAdj", Math.abs(aDif), Math.abs(eDif) * highAdj);
                     }
                 }
     

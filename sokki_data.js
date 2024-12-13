@@ -61,7 +61,7 @@ const sokkiData = {
     "く": {
         patternList: [
             {
-                dxList: ["8mm", "-1/2", "any"],
+                dxList: ["8mm", "-1/2<=", "any"],
                 dyList: ["-", "+"]
             }
         ]
@@ -109,12 +109,12 @@ const sokkiData = {
     "す": {
         patternList: [
             {
-                dxList: ["8mm", "-1/2", "any"],
+                dxList: ["8mm", "-1/2<=", "any"],
                 dyList: ["-8mm>=", "+", "any"]
             },
             {
                 dxList: ["8mm>=", "-", "any"],
-                dyList: ["-8mm", "-1/2", "any"]
+                dyList: ["-8mm", "-1/2<=", "any"]
             }
         ]
     },
@@ -209,7 +209,7 @@ const sokkiData = {
     "ぬ": {
         patternList: [
             {
-                dxList: ["8mm", "-1/2", "any"],
+                dxList: ["8mm", "-1/2<=", "any"],
                 dyList: ["+", "-", "+"]
             }
         ]
@@ -257,24 +257,36 @@ const sokkiData = {
     "ふ": {
         patternList: [
             {
-                dxList: [],
-                dyList: []
+                dxList: ["8mm", "-1/2<=", "any"],
+                dyList: ["8mm>=", "+", "any"]
+            },
+            {
+                dxList: ["8mm>=", "-", "any"],
+                dyList: ["8mm", "-1/2<=", "any"]
             }
         ]
     },
     "へ": {
         patternList: [
             {
-                dxList: [],
-                dyList: []
+                dxList: ["16mm", "-1/4>=", "any"],
+                dyList: ["16mm>=", "-", "any"]
+            },
+            {
+                dxList: ["16mm>=", "-", "any"],
+                dyList: ["16mm", "-1/4>=", "any"]
             }
         ]
     },
     "ほ": {
         patternList: [
             {
-                dxList: [],
-                dyList: []
+                dxList: ["16mm"],
+                dyList: ["+"]
+            },
+            {
+                dxList: ["+"],
+                dyList: ["16mm"]
             }
         ]
     },
