@@ -23,6 +23,7 @@ class Sokki {
     #prevVertexY = -1;
     #currentDxSign = 0;
     #currentDySign = 0;
+    #lineLength = "4mm";
     #lineColor = this.#color.line4;
 
     // 4mm,8mm,16mmのpx
@@ -30,6 +31,9 @@ class Sokki {
     #line8Len = 100;
     #line16Len = 200;
 
+    get lineLength() {
+        return this.#lineLength;
+    }
     get lineColor() {
         return this.#lineColor;
     }
@@ -42,11 +46,15 @@ class Sokki {
     }
 
     changeLineColorIfNeed(canvas, x, y) {
+        if (this.#lineColor === this.#color.line16) {
+            return;
+        }
         const len = this.#chebyshevDistance(this.#prevVertexX, this.#prevVertexY, x, y);
         if (
             this.#lineColor === this.#color.line4 &&
             len > this.#line4Len * 1.3 && len <= this.#line8Len * 1.3
         ) {
+            this.#lineLength = "8mm";
             this.#lineColor = this.#color.line8;
             changeLineColor(canvas, this.#lineColor);
         }
@@ -54,6 +62,7 @@ class Sokki {
             this.#lineColor === this.#color.line8 &&
             len > this.#line8Len * 1.3
         ) {
+            this.#lineLength = "16mm";
             this.#lineColor = this.#color.line16;
             changeLineColor(canvas, this.#lineColor);
         }
