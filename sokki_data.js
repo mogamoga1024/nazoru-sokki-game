@@ -258,7 +258,7 @@ const sokkiData = {
         patternList: [
             {
                 dxList: ["8mm", "*-1/2<=", "any"],
-                dyList: ["8mm>=", "+", "any"]
+                dyList: ["8mm>=", "-", "any"]
             },
             {
                 dxList: ["8mm>=", "-", "any"],
@@ -369,40 +369,60 @@ const sokkiData = {
     "ら": {
         patternList: [
             {
-                dxList: [],
-                dyList: []
+                dxList: ["8mm"],
+                dyList: ["8mm>="]
+            },
+            {
+                dxList: ["8mm>="],
+                dyList: ["8mm"]
             }
         ]
     },
     "り": {
         patternList: [
             {
-                dxList: [],
-                dyList: []
+                dxList: ["8mm", "*-1/4>=", "any"],
+                dyList: ["8mm>=", "*-1/2>=", "any"]
+            },
+            {
+                dxList: ["8mm>=", "*-1/2>=", "any"],
+                dyList: ["8mm", "*-1/4>=", "any"]
             }
         ]
     },
     "る": {
         patternList: [
             {
-                dxList: [],
-                dyList: []
+                dxList: ["8mm", "*-1/2<=", "any"],
+                dyList: ["8mm>=", "-", "any"]
+            },
+            {
+                dxList: ["8mm>=", "-", "any"],
+                dyList: ["8mm", "*-1/2<=", "any"]
             }
         ]
     },
     "れ": {
         patternList: [
             {
-                dxList: [],
-                dyList: []
+                dxList: ["16mm", "*-1/4>=", "any"],
+                dyList: ["16mm>=", "-", "any"]
+            },
+            {
+                dxList: ["16mm>=", "-", "any"],
+                dyList: ["16mm", "*-1/4>=", "any"]
             }
         ]
     },
     "ろ": {
         patternList: [
             {
-                dxList: [],
-                dyList: []
+                dxList: ["16mm"],
+                dyList: ["+"]
+            },
+            {
+                dxList: ["+"],
+                dyList: ["16mm"]
             }
         ]
     },
