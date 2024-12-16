@@ -170,6 +170,7 @@ class Sokki {
                 
                 if (expected === "4mm") {
                     eDif = this.#line4Len;
+                    low = 0;
                 }
                 else if (expected === "8mm") {
                     eDif = this.#line8Len;
@@ -181,6 +182,7 @@ class Sokki {
                 }
                 else if (expected === "-4mm") {
                     eDif = -this.#line4Len;
+                    low = 0;
                 }
                 else if (expected === "-8mm") {
                     eDif = -this.#line8Len;
@@ -228,6 +230,7 @@ class Sokki {
                 }
                 else if (expected === "*-1/2<=") {
                     eDif = actualList[i - 1] * -1 / 2;
+                    low = Math.abs(eDif) * lowAdj;
                     highAdj = Number.POSITIVE_INFINITY;
                 }
 
