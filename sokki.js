@@ -208,26 +208,26 @@ class Sokki {
                     eDif = -this.#line16Len;
                     low = 1;
                 }
-                else if (expected === "4mm<=") {
-                    eDif = this.#line4Len;
-                    low = Math.abs(eDif) * lowAdj;
-                    highAdj = Number.POSITIVE_INFINITY;
-                }
-                else if (expected === "8mm<=") {
-                    eDif = this.#line8Len;
-                    low = Math.abs(eDif) * lowAdj;
-                    highAdj = Number.POSITIVE_INFINITY;
-                }
-                else if (expected === "-4mm<=") {
-                    eDif = -this.#line4Len;
-                    low = Math.abs(eDif) * lowAdj;
-                    highAdj = Number.POSITIVE_INFINITY;
-                }
-                else if (expected === "-8mm<=") {
-                    eDif = -this.#line8Len;
-                    low = Math.abs(eDif) * lowAdj;
-                    highAdj = Number.POSITIVE_INFINITY;
-                }
+                // else if (expected === "4mm<=") {
+                //     eDif = this.#line4Len;
+                //     low = Math.abs(eDif) * lowAdj;
+                //     highAdj = Number.POSITIVE_INFINITY;
+                // }
+                // else if (expected === "8mm<=") {
+                //     eDif = this.#line8Len;
+                //     low = Math.abs(eDif) * lowAdj;
+                //     highAdj = Number.POSITIVE_INFINITY;
+                // }
+                // else if (expected === "-4mm<=") {
+                //     eDif = -this.#line4Len;
+                //     low = Math.abs(eDif) * lowAdj;
+                //     highAdj = Number.POSITIVE_INFINITY;
+                // }
+                // else if (expected === "-8mm<=") {
+                //     eDif = -this.#line8Len;
+                //     low = Math.abs(eDif) * lowAdj;
+                //     highAdj = Number.POSITIVE_INFINITY;
+                // }
                 else if (expected === "*-1/4") {
                     eDif = actualList[i - 1] * -1 / 4;
                     low = Math.abs(eDif) * lowAdj;
