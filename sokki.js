@@ -248,6 +248,11 @@ class Sokki {
                     eDif = actualList[i - 1] * -1 / 2;
                     low = 1;
                 }
+                else if (expected === "*-2/3<=") {
+                    eDif = actualList[i - 1] * -2 / 3;
+                    low = Math.abs(eDif) * lowAdj;
+                    highAdj = Number.POSITIVE_INFINITY;
+                }
                 else if (expected === "*-1/2<=") {
                     eDif = actualList[i - 1] * -1 / 2;
                     low = Math.abs(eDif) * lowAdj;
