@@ -228,6 +228,12 @@ class Sokki {
                 //     low = Math.abs(eDif) * lowAdj;
                 //     highAdj = Number.POSITIVE_INFINITY;
                 // }
+                else if (expected === "-6mm<=") {
+                    const line6Len = (this.#line4Len + this.#line8Len) / 2;
+                    eDif = -line6Len;
+                    low = Math.abs(eDif) * lowAdj;
+                    highAdj = Number.POSITIVE_INFINITY;
+                }
                 else if (expected === "*-1/4") {
                     eDif = actualList[i - 1] * -1 / 4;
                     low = Math.abs(eDif) * lowAdj;
