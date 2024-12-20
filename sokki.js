@@ -228,6 +228,12 @@ class Sokki {
                 //     low = Math.abs(eDif) * lowAdj;
                 //     highAdj = Number.POSITIVE_INFINITY;
                 // }
+                else if (expected === "6mm<=") {
+                    const line6Len = (this.#line4Len + this.#line8Len) / 2;
+                    eDif = line6Len;
+                    low = Math.abs(eDif) * lowAdj;
+                    highAdj = Number.POSITIVE_INFINITY;
+                }
                 else if (expected === "-6mm<=") {
                     const line6Len = (this.#line4Len + this.#line8Len) / 2;
                     eDif = -line6Len;
@@ -253,6 +259,11 @@ class Sokki {
                 else if (expected === "*-1/2>=") {
                     eDif = actualList[i - 1] * -1 / 2;
                     low = 1;
+                }
+                else if (expected === "*-1/3<=") {
+                    eDif = actualList[i - 1] * -1 / 3;
+                    low = Math.abs(eDif) * lowAdj;
+                    highAdj = Number.POSITIVE_INFINITY;
                 }
                 else if (expected === "*-2/3<=") {
                     eDif = actualList[i - 1] * -2 / 3;
