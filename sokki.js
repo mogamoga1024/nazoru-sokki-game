@@ -176,6 +176,11 @@ class Sokki {
                     eDif = this.#line8Len;
                     low = this.#line4Len * highAdj;
                 }
+                else if (expected === "10mm") {
+                    const line10Len = this.#line8Len + this.#line4Len / 2
+                    eDif = line10Len;
+                    low = this.#line8Len * highAdj;
+                }
                 else if (expected === "16mm") {
                     eDif = this.#line16Len;
                     low = this.#line8Len * highAdj;
@@ -194,6 +199,11 @@ class Sokki {
                 }
                 else if (expected === "8mm>=") {
                     eDif = this.#line8Len;
+                    low = 1;
+                }
+                else if (expected === "10mm>=") {
+                    const line10Len = this.#line8Len + this.#line4Len / 2
+                    eDif = line10Len;
                     low = 1;
                 }
                 else if (expected === "16mm>=") {
