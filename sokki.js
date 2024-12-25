@@ -116,15 +116,11 @@ class Sokki {
     }
 
     test(hira) {
+        this.#removeNoise(hira);
+
         console.log("-----------------");
         console.log("実際値");
         console.log(this.#dxList, this.#dyList);
-
-        if (/^[か|き|く|け|こ]$/.test(hira)) {
-            if (this.#dyList.length > 2 && Math.abs(this.#dyList[0]) < 20) {
-                this.#dyList = this.#dyList.slice(-2);
-            }
-        }
 
         for (const pattern of sokkiData[hira].patternList) {
             console.log("期待値");
@@ -136,6 +132,41 @@ class Sokki {
             }
         }
         return false;
+    }
+
+    #removeNoise(hira) {
+        if (/^[か|き|く|け|こ]$/.test(hira)) {
+            if (this.#dyList.length > 2 && Math.abs(this.#dyList[0]) < 20) {
+                this.#dyList = this.#dyList.slice(-2);
+            }
+        }
+
+        // 同じ符号が連続するなら加算する
+        // なおlistには0が含まれていないように事前に処理されている
+        // 例：[1, 2, -1, -5, 3, -4] → [3, -6, 3, -4]
+        const f = list => {
+            const newList = [];
+            let val = 0;
+            for (let i = 0; i < list.length; i++) {
+                if (i === 0) {
+                    val = list[i];
+                }
+                else if (Math.sign(val) === Math.sign(list[i])) {
+                    val += list[i];
+                }
+                else {
+                    newList.push(val);
+                    val = list[i];
+                }
+                if (i === list.length - 1) {
+                    newList.push(val);
+                }
+            }
+            return newList;
+        };
+
+        this.#dxList = f(this.#dxList);
+        this.#dyList = f(this.#dyList);
     }
 
     #antiShake(value) {
