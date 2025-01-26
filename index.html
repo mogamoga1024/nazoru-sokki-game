@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>なぞって覚える早稲田式速記アプリ</title>
+  <link rel="stylesheet" href="loading.css">
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="mobile.css">
   <link rel="stylesheet" href="game.css">
@@ -12,7 +13,8 @@
   <script src="https://cdn.jsdelivr.net/npm/vue@3.5.13/dist/vue.global.min.js"></script>
 </head>
 <body>
-  <div id="app" v-cloak>
+  <div id="loading">ロード中…</div>
+  <div id="app" v-cloak style="display: none;">
     <template v-if="scene === 'top'">
       <!-- todo -->
     </template>
@@ -47,6 +49,7 @@
     </template>
   </div>
 
+  <script src="loading.js"></script>
   <script src="drawing_canvas.js"></script>
   <script src="canvas_utils.js"></script>
   <script src="sokki.js"></script>
