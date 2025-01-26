@@ -14,7 +14,7 @@
 <body>
   <div id="app" v-cloak>
     <template v-if="scene === 'top'">
-
+      <!-- todo -->
     </template>
 
     <template v-else-if="scene === 'game'">
@@ -35,10 +35,23 @@
       <div id="kaitou" v-html="kaitou.join('')"></div>
       <div id="message">{{message}}</div>
 
-      <!-- todo -->
+      <canvas
+        id="sokki-canvas"
+        ref="canvas"
+        @mousedown="canvasDrawStart"
+        @mouseover="canvasDrawStart"
+        @mouseup="canvasDrawEnd"
+        @mouseout="canvasDrawEnd"
+        @mousemove="canvasDraw">
+      </canvas>
     </template>
   </div>
 
+  <script src="drawing_canvas.js"></script>
+  <script src="canvas_utils.js"></script>
+  <script src="sokki.js"></script>
+  <script src="sokki_data.js"></script>
+  <script src="sokki_utils.js"></script>
   <script src="main.js"></script>
 </body>
 </html>

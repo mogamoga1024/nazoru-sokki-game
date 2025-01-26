@@ -41,4 +41,12 @@
   margin: 0.5rem auto 0;
 }
 
+#sokki-canvas {
+  display: block;
+  width: 400px;
+  height: 250px;
+  margin: 4px auto 0;
+  border: solid 2px black;
+  border-radius: 8px;
+}
 
