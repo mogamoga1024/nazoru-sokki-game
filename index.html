@@ -5,13 +5,38 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>なぞって覚える早稲田式速記アプリ</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="mobile.css">
+  <link rel="stylesheet" href="game.css">
   <script src="https://cdn.jsdelivr.net/npm/viewport-extra@1.0.3/dist/viewport-extra.min.js"></script>
   <script>new ViewportExtra(375)</script>
   <script src="https://cdn.jsdelivr.net/npm/vue@3.5.13/dist/vue.global.min.js"></script>
 </head>
 <body>
   <div id="app" v-cloak>
-    <h1>aaa</h1>
+    <template v-if="scene === 'top'">
+
+    </template>
+
+    <template v-else-if="scene === 'game'">
+      <div id="game-header">
+        <div id="retire-btn" @click="onClickRetire">
+          🔙終わる
+        </div>
+        <div id="sintyoku">
+          {{sintyoku}}
+        </div>
+      </div>
+      <div id="mondai">
+        <span v-for="(moji, index) in mondai"
+              :class="{seikai: index < kaitou.length}">
+          {{moji}}
+        </span>
+      </div>
+      <div id="kaitou" v-html="kaitou.join('')"></div>
+      <div id="message">{{message}}</div>
+
+      <!-- todo -->
+    </template>
   </div>
 
   <script src="main.js"></script>

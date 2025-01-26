@@ -19,3 +19,8 @@
   touch-action: manipulation;
 }
 
+#app {
+  padding-bottom: 1rem;
+}
+
+
