@@ -1,0 +1,21 @@
+
+@font-face {
+	font-family: "Xim-Sans";
+	src: url(./Xim-Sans-Handwritten.ttf);
+  font-display: block; /* フォントが読み込まれるまで代替フォントを出さない */
+}
+
+[v-cloak] {
+  display: none !important;
+}
+
+:root {
+  margin: 0;
+  padding: 0;
+  font-family: Xim-Sans;
+  font-size: 36px;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
