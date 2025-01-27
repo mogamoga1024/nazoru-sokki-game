@@ -74,7 +74,14 @@ const app = {
             sokki.lastUpdate(e.offsetX, e.offsetY);
 
             const isOK = sokki.test(this.hira);
-            // this.result = isOK ? "正解" : "不正解"; // todo
+            if (isOK) {
+                this.message = "正解！😆";
+                this.kaitou.push(速記文字一覧[this.hira]);
+                // todo
+            }
+            else {
+                this.message = "違う…😢";
+            }
         },
         canvasDraw(e) {
             if (!drawingCanvas.canDraw) {
