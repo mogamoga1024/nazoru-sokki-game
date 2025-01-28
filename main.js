@@ -27,10 +27,7 @@ const app = {
 
         // debug
         this.mondai = ["ち", "く", "わ"];
-        this.kaitou = [
-            速記文字一覧["ち"], 
-        ];
-        this.hira = "く";
+        this.hira = "ち";
     },
     mounted() {
         if (isPC) {
@@ -77,11 +74,18 @@ const app = {
             if (isOK) {
                 this.message = "正解！😆";
                 this.kaitou.push(速記文字一覧[this.hira]);
-                // todo
+                if (this.mondai.length === this.kaitou.length) {
+                    // todo
+                }
+                else {
+                    this.hira = this.mondai[this.kaitou.length];
+                }
             }
             else {
                 this.message = "違う…😢";
             }
+
+            drawingCanvas.clear();
         },
         canvasDraw(e) {
             if (!drawingCanvas.canDraw) {
