@@ -37,15 +37,18 @@
       <div id="kaitou" v-html="kaitou.join('')"></div>
       <div id="message">{{message}}</div>
 
-      <canvas
-        id="sokki-canvas"
-        ref="canvas"
-        @mousedown="canvasDrawStart"
-        @mouseover="canvasDrawStart"
-        @mouseup="canvasDrawEnd"
-        @mouseout="canvasDrawEnd"
-        @mousemove="canvasDraw">
-      </canvas>
+      <div id="canvas-container">
+        <canvas id="otehon-canvas" ref="otehonCanvas"></canvas>
+        <canvas
+          id="sokki-canvas"
+          ref="sokkiCanvas"
+          @mousedown="canvasDrawStart"
+          @mouseover="canvasDrawStart"
+          @mouseup="canvasDrawEnd"
+          @mouseout="canvasDrawEnd"
+          @mousemove="canvasDraw">
+        </canvas>
+      </div>
     </template>
   </div>
 

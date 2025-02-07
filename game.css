@@ -41,12 +41,21 @@
   margin: 0.5rem auto 0;
 }
 
-#sokki-canvas {
-  display: block;
+#canvas-container {
+  position: relative;
   width: 400px;
   height: 250px;
   margin: 4px auto 0;
   border: solid 2px black;
   border-radius: 8px;
+}
+
+#otehon-canvas, #sokki-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 400px;
+  height: 250px;
 }
 

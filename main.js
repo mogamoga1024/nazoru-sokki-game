@@ -30,13 +30,16 @@ const app = {
     mounted() {
         if (isPC) {
             // width, heightはcssと合わせる
-            this.$refs.canvas.width = 400;
-            this.$refs.canvas.height = 250;
+            this.$refs.otehonCanvas.width = 400;
+            this.$refs.otehonCanvas.height = 250;
+            this.$refs.sokkiCanvas.width = 400;
+            this.$refs.sokkiCanvas.height = 250;
         }
         else {
             // todo
+            // todo #canvas-containerのwidth, heightも変えたほうがよい
         }
-        drawingCanvas = new DrawingCanvas(this.$refs.canvas);
+        drawingCanvas = new DrawingCanvas(this.$refs.sokkiCanvas);
 
         // debug
         this.startGame();
@@ -66,7 +69,7 @@ const app = {
                 return;
             }
 
-            sokki.changeLineColorIfNeed(this.$refs.canvas, e.offsetX, e.offsetY);
+            sokki.changeLineColorIfNeed(this.$refs.sokkiCanvas, e.offsetX, e.offsetY);
             this.sokkiLength = sokki.lineLength;
             
             drawingCanvas.drawEnd(e.offsetX, e.offsetY, sokki.lineColor.hex);
@@ -92,6 +95,7 @@ const app = {
                 }
                 else {
                     this.hira = this.mondai[this.kaitou.length];
+                    this.clearOtehon();
                     drawingCanvas.clear();
                     this.addOtehon();
                 }
@@ -99,7 +103,6 @@ const app = {
             else {
                 this.message = "違う…😢";
                 drawingCanvas.clear();
-                this.addOtehon();
             }
         },
 
@@ -108,7 +111,7 @@ const app = {
                 return;
             }
 
-            sokki.changeLineColorIfNeed(this.$refs.canvas, e.offsetX, e.offsetY);
+            sokki.changeLineColorIfNeed(this.$refs.sokkiCanvas, e.offsetX, e.offsetY);
             this.sokkiLength = sokki.lineLength;
 
             drawingCanvas.draw(e.offsetX, e.offsetY, sokki.lineColor.hex);
@@ -119,13 +122,19 @@ const app = {
         addOtehon() {
             const strSokkiCode = 速記文字一覧[this.hira].slice(3, 7);
             const sokkiCode = parseInt(strSokkiCode, 16);
-            const canvas = this.$refs.canvas;
+            const canvas = this.$refs.otehonCanvas;
             const context = canvas.getContext("2d");
             context.font = "200px Xim-Sans";
             context.fillStyle = "rgba(0, 0, 0, 0.5)";
             context.textAlign = "center";
             context.textBaseline = "middle";
             context.fillText(String.fromCodePoint(sokkiCode), canvas.width / 2, canvas.height / 2);
+        },
+
+        clearOtehon() {
+            const canvas = this.$refs.otehonCanvas;
+            const context = canvas.getContext("2d");
+            context.clearRect(0, 0, canvas.width, canvas.height);
         },
 
         startGame() {
@@ -146,6 +155,7 @@ const app = {
             this.hira = this.mondai[0];
 
             // debug
+            this.clearOtehon();
             drawingCanvas.clear();
             this.addOtehon();
         },
