@@ -11,7 +11,7 @@ class DrawingCanvas {
         this.#context = canvas.getContext("2d", {willReadFrequently: true});
         this.#context.lineCap = "round";
         this.#context.lineJoin = "round";
-        this.#context.lineWidth = 4;
+        this.#context.lineWidth = 10;
         this.#context.strokeStyle = color;
 
         this.#lastPosition = {x: null, y: null};
