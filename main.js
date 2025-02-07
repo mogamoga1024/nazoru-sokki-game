@@ -5,6 +5,8 @@ let sokki = null;
 
 let mondaiList = [];
 
+const nextMondaiInterval = 400;
+
 const app = {
     data() {
         return {
@@ -26,8 +28,7 @@ const app = {
         isPC = !isMobileByUa && !isMobileByClientHint;
 
         // debug
-        this.mondai = ["ち", "く", "わ"];
-        this.hira = "ち";
+        this.startGame();
     },
     mounted() {
         if (isPC) {
@@ -75,7 +76,17 @@ const app = {
                 this.message = "正解！😆";
                 this.kaitou.push(速記文字一覧[this.hira]);
                 if (this.mondai.length === this.kaitou.length) {
-                    // todo
+                    this.mondaiListIndex++;
+                    const isClear = this.mondaiListIndex >= mondaiList.length;
+                    // todo clearTime
+                    setTimeout(() => {
+                        if (isClear) {
+                            // todo
+                        }
+                        else {
+                            this.initMondai();
+                        }
+                    }, nextMondaiInterval);
                 }
                 else {
                     this.hira = this.mondai[this.kaitou.length];
@@ -98,6 +109,24 @@ const app = {
             drawingCanvas.draw(e.offsetX, e.offsetY, sokki.lineColor.hex);
 
             sokki.update(e.offsetX, e.offsetY);
+        },
+
+        startGame() {
+            // todo
+            mondaiList = [
+                ["ち", "く", "わ"],
+                ["あ"],
+                ["あ", "い"]
+            ];
+            this.mondaiListIndex = 0;
+            this.initMondai();
+        },
+
+        initMondai() {
+            this.message = "書いてね🤔";
+            this.kaitou = [];
+            this.mondai = mondaiList[this.mondaiListIndex];
+            this.hira = this.mondai[0];
         },
     }
 };
