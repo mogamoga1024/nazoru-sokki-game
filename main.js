@@ -10,9 +10,10 @@ const nextMondaiInterval = 400;
 const app = {
     data() {
         return {
-            scene: "game", // top, countdown, game, result
+            scene: "top", // top, countdown, game, result
+            sokkiTable: [],
 
-            mondaiListIndex: 0,
+            mondaiListIndex: -1,
             mondai: [],
             kaitou: [],
             message: "書いてね🤔",
@@ -26,23 +27,11 @@ const app = {
         const isMobileByUa = mobileRegex.test(navigator.userAgent);;
         const isMobileByClientHint = navigator.userAgentData && navigator.userAgentData.mobile;
         isPC = !isMobileByUa && !isMobileByClientHint;
+
+        this.initSokkiTable();
     },
     mounted() {
-        if (isPC) {
-            // width, heightはcssと合わせる
-            this.$refs.otehonCanvas.width = 400;
-            this.$refs.otehonCanvas.height = 250;
-            this.$refs.sokkiCanvas.width = 400;
-            this.$refs.sokkiCanvas.height = 250;
-        }
-        else {
-            // todo
-            // todo #canvas-containerのwidth, heightも変えたほうがよい
-        }
-        drawingCanvas = new DrawingCanvas(this.$refs.sokkiCanvas);
-
-        // debug
-        this.startGame();
+        this.initCanvas();
     },
     computed: {
         sintyoku() {
@@ -50,8 +39,55 @@ const app = {
         },
     },
     methods: {
+        onClickPlay() {
+            this.startGame();
+        },
+
         onClickRetire() {
             // todo
+        },
+
+        initSokkiTable() {
+            const hiraTable = [
+                ["あ", "い", "う", "え", "お"],
+                ["か", "き", "く", "け", "こ"],
+                ["さ", "し", "す", "せ", "そ"],
+                ["た", "ち", "つ", "て", "と"],
+                ["な", "に", "ぬ", "ね", "の"],
+                ["は", "ひ", "ふ", "へ", "ほ"],
+                ["ま", "み", "む", "め", "も"],
+                ["や", "", "ゆ", "", "よ"],
+                ["ら", "り", "る", "れ", "ろ"],
+                ["わ", "", "", "", ""],
+                ["ぱ", "ぴ", "ぷ", "ぺ", "ぽ"],
+                ["きゃ", "", "きゅ", "", "きょ"],
+                ["しゃ", "", "しゅ", "", "しょ"],
+                ["ちゃ", "", "ちゅ", "", "ちょ"],
+                ["にゃ", "", "にゅ", "", "にょ"],
+                ["ひゃ", "", "ひゅ", "", "ひょ"],
+                ["みゃ", "", "みゅ", "", "みょ"],
+                ["りゃ", "", "りゅ", "", "りょ"],
+                ["ぴゃ", "", "ぴゅ", "", "ぴょ"],
+            ];
+    
+            for (const hiraRow of hiraTable) {
+                const sokkiRow = [];
+                let pad = "";
+                if (["さ", "た", "や", "しゃ"].includes(hiraRow[0])) {
+                    pad = "top";
+                }
+                else if (["は", "ら", "ぱ", "ぴゃ"].includes(hiraRow[0])) {
+                    pad = "bottom";
+                }
+                for (const hira of hiraRow) {
+                    let sokki = "";
+                    if (hira !== "") {
+                        sokki = 速記文字一覧[hira];
+                    }
+                    sokkiRow.push({hira, sokki, pad});
+                }
+                this.sokkiTable.push(sokkiRow);
+            }
         },
 
         canvasDrawStart(e) {
@@ -138,6 +174,7 @@ const app = {
         },
 
         startGame() {
+            this.scene = "game";
             // todo
             mondaiList = [
                 ["ち", "く", "わ"],
@@ -146,6 +183,21 @@ const app = {
             ];
             this.mondaiListIndex = 0;
             this.initMondai();
+        },
+
+        initCanvas() {
+            if (isPC) {
+                // width, heightはcssと合わせる
+                this.$refs.otehonCanvas.width = 400;
+                this.$refs.otehonCanvas.height = 250;
+                this.$refs.sokkiCanvas.width = 400;
+                this.$refs.sokkiCanvas.height = 250;
+            }
+            else {
+                // todo
+                // todo #canvas-containerのwidth, heightも変えたほうがよい
+            }
+            drawingCanvas = new DrawingCanvas(this.$refs.sokkiCanvas);
         },
 
         initMondai() {

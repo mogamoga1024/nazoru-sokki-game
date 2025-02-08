@@ -16,10 +16,71 @@
   <div id="loading">ロード中…</div>
   <div id="app" v-cloak style="display: none;">
     <template v-if="scene === 'top'">
-      <!-- todo -->
+      <h1>なぞって覚える早稲田式速記アプリ</h1>
+      <div class="description">
+        清音は「あ」から「ん」のこと☺<br>
+        特殊は「ぱ」や「きゃ」のこと😵
+      </div>
+      <div id="play-btn-container">
+        <fieldset id="kiso">
+          <legend>基礎</legend>
+          <fieldset class="kiso-fieldset">
+            <legend>五十音順</legend>
+            <div class="play-btn easy" @click="onClickPlay('基礎', '五十音順', '清音')">清音🥳</div>
+            <div class="play-btn hard" @click="onClickPlay('基礎', '五十音順', '特殊')">特殊🥴</div>
+          </fieldset>
+          <fieldset class="kiso-fieldset">
+            <legend>ランダム</legend>
+            <div class="play-btn easy" @click="onClickPlay('基礎', 'ランダム', '清音')">清音😀</div>
+            <div class="play-btn hard" @click="onClickPlay('基礎', 'ランダム', '特殊')">特殊😖</div>
+          </fieldset>
+        </fieldset>
+
+        <fieldset id="jissen">
+          <legend>実践</legend>
+          <div class="play-btn easy" @click="onClickPlay('実践', '', '清音')">清音😆</div>
+          <div class="play-btn hard" @click="onClickPlay('実践', '', '全部')">全部😱</div>
+        </fieldset>
+      </div>
+      
+      <table id="sokki-table">
+        <tr v-for="sokkiRow in sokkiTable">
+          <td v-for="sokki in sokkiRow">
+            <div class="hira">{{sokki.hira}}</div>
+            <div class="sokki"
+                :class="{
+                  'pad-top': sokki.pad === 'top',
+                  'pad-bottom': sokki.pad === 'bottom'
+                }"
+                v-html="sokki.sokki"></div>
+          </td>
+        </tr>
+      </table>
+
+      <div id="poem">
+        <h2>注意書き</h2>
+        <p>
+          濁音、を、ん、っ、ぁぃぅぇぉ、などは対応していません😇
+        </p>
+        <p>
+          実践で見たことがない速記文字が出てきたら、それは<a href="https://sokki.okoshi-yasu.net/sb-syouryakuhou.html" target="_blank" rel="noopener noreferrer">省略文字</a>です🤔
+          難易度が高いため、覚える必要はありません😵‍💫
+        </p>
+        <p>
+          あと、実践の繋がっている速記文字はあくまでイメージです😥 鵜呑みにしないように😰
+        </p>
+  
+        <h2>ポエム(ﾖﾏﾅｸﾃｲｲﾖ)</h2>
+        <p>
+          前作はボタンを押しているだけで、あまり実践的ではありませんでした。そこで実際に手を動かして覚えられるようなゲームが作りたいな～という思惑から本サイトの作成に至りました。
+        </p>
+        <p>
+          本当はOCRで文字を判定したかったのですが、難しそうだったので諦めました。そのため大体形が似ていていたらOKみたいなガバガバ判定となっております。
+        </p>
+      </div>
     </template>
 
-    <template v-else-if="scene === 'game'">
+    <div v-show="scene === 'game'">
       <div id="game-header">
         <div id="retire-btn" @click="onClickRetire">
           🔙終わる
@@ -49,7 +110,7 @@
           @mousemove="canvasDraw">
         </canvas>
       </div>
-    </template>
+    </div>
   </div>
 
   <script src="loading.js"></script>

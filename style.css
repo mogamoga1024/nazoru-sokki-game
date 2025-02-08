@@ -23,4 +23,117 @@
   padding-bottom: 1rem;
 }
 
+h1 {
+  margin-top: 1.5rem;
+  text-align: center;
+  font-size: 1.3rem;
+}
+
+h2 {
+  margin-top: 1.5rem;
+  text-align: center;
+  font-size: 1.2rem;
+}
+
+.description, #poem {
+  font-size: 0.9rem;
+}
+
+.description {
+  width: fit-content;
+  margin: 1rem auto 0;
+}
+
+#play-btn-container {
+  max-width: 500px;
+  margin: 1rem auto 0;
+}
+
+#jissen {
+  margin-top: 0.5rem;
+}
+
+#kiso {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  row-gap: 0.5rem;
+}
+
+.kiso-fieldset {
+  width: 100%;
+  max-width: 150px;
+}
+
+.play-btn {
+  width: fit-content;
+  margin: 0 auto;
+  padding: 8px 16px;
+  color: #fff;
+  border-radius: 8px;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.play-btn.easy {
+  background-color: #268bde;
+}
+.play-btn.hard {
+  background-color: #d9534f;
+}
+
+.play-btn:not(:first-of-type) {
+  margin-top: 12px;
+}
+
+@media (any-hover: hover) {
+  .play-btn.easy:hover {
+    background-color: #005bb5;
+  }
+  .play-btn.hard:hover {
+    background-color: #c9302c;
+  }
+}
+@media (any-hover: none) {
+  .play-btn.easy:active {
+    background-color: #005bb5;
+  }
+  .play-btn.hard:active {
+    background-color: #c9302c;
+  }
+}
+
+#sokki-table {
+  margin: 1rem auto 0;
+  border-collapse: collapse;
+  text-align: center;
+}
+
+#sokki-table td {
+  width: 80px;
+  border: 1px solid #666;
+}
+
+#sokki-table td .hira {
+  margin-top: 8px;
+}
+
+#sokki-table td .sokki {
+  font-size: 2rem;
+}
+
+.pad-top {
+  padding-top: 26px;
+}
+
+.pad-bottom {
+  padding-bottom: 26px;
+}
+
+#poem {
+  max-width: 820px;
+  margin: 1.5rem auto 0;
+}
+
 
