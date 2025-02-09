@@ -13,7 +13,7 @@ const app = {
             scene: "top", // top, countdown, game, result
             sokkiTable: [],
 
-            mondaiListIndex: -1,
+            mondaiListIndex: 0,
             mondai: [],
             kaitou: [],
             message: "書いてね🤔",
