@@ -31,7 +31,7 @@ const app = {
         this.initSokkiTable();
     },
     mounted() {
-        this.initCanvas();
+        // noop
     },
     computed: {
         sintyoku() {
@@ -173,7 +173,7 @@ const app = {
             context.clearRect(0, 0, canvas.width, canvas.height);
         },
 
-        startGame() {
+        async startGame() {
             this.scene = "game";
             // todo
             mondaiList = [
@@ -182,6 +182,11 @@ const app = {
                 ["あ", "い"]
             ];
             this.mondaiListIndex = 0;
+
+            // DOMのCanvasが存在しないとinitCanvasがエラーになるため待つ
+            await this.$nextTick();
+
+            this.initCanvas();
             this.initMondai();
         },
 

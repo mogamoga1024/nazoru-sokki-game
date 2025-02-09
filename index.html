@@ -80,7 +80,7 @@
       </div>
     </template>
 
-    <div v-show="scene === 'game'">
+    <template v-if="scene === 'game'">
       <div id="game-header">
         <div id="retire-btn" @click="onClickRetire">
           🔙終わる
@@ -110,7 +110,7 @@
           @mousemove="canvasDraw">
         </canvas>
       </div>
-    </div>
+    </template>
   </div>
 
   <script src="loading.js"></script>
