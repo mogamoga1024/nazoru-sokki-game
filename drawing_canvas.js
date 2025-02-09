@@ -1,5 +1,4 @@
 
-
 class DrawingCanvas {
     #context; #lastPosition; #canDraw;
 
