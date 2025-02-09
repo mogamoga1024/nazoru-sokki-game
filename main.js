@@ -54,6 +54,8 @@ const app = {
     },
     mounted() {
         // noop
+        // debug
+        this.onClickPlay();
     },
     watch: {
         scene(_, oldScene) {
@@ -210,9 +212,10 @@ const app = {
             this.scene = "game";
             // todo
             mondaiList = [
+                ["ぺ", "と"],
                 ["ち", "く", "わ"],
                 ["な"],
-                ["あ", "い"]
+                ["あ", "い"],
             ];
             this.mondaiListIndex = 0;
 
