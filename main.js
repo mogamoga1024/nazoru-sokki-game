@@ -1,4 +1,6 @@
 
+let prevScene = "";
+
 let isPC = true;
 let drawingCanvas = null;
 let sokki = null;
@@ -29,9 +31,34 @@ const app = {
         isPC = !isMobileByUa && !isMobileByClientHint;
 
         this.initSokkiTable();
+
+        window.addEventListener("popstate", () => {
+            // 進むボタンが押されたとき
+            if (this.scene === "top") {
+                if (prevScene === "countdown" || prevScene === "game") {
+                    this.startCountdown();
+                }
+                else if (prevScene === "result") {
+                    this.scene = "result";
+                }
+            }
+            // 戻るボタンが押されたとき
+            else if (
+                this.scene === "countdown" ||
+                this.scene === "game" ||
+                this.scene === "result"
+            ) {
+                this.scene = "top";
+            }
+        });
     },
     mounted() {
         // noop
+    },
+    watch: {
+        scene(_, oldScene) {
+            prevScene = oldScene;
+        }
     },
     computed: {
         sintyoku() {
@@ -41,11 +68,12 @@ const app = {
     methods: {
         onClickPlay() {
             // todo
+            history.pushState(null, "", "");
             this.startGame();
         },
 
         onClickRetire() {
-            // todo
+            history.back();
         },
 
         initSokkiTable() {
@@ -172,6 +200,10 @@ const app = {
             const canvas = this.$refs.otehonCanvas;
             const context = canvas.getContext("2d");
             context.clearRect(0, 0, canvas.width, canvas.height);
+        },
+
+        startCountdown() {
+            // todo
         },
 
         async startGame() {
