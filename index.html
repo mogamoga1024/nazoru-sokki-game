@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="mobile.css">
   <link rel="stylesheet" href="game.css">
+  <link rel="stylesheet" href="result.css">
   <script src="https://cdn.jsdelivr.net/npm/viewport-extra@1.0.3/dist/viewport-extra.min.js"></script>
   <script>new ViewportExtra(375)</script>
   <script src="https://cdn.jsdelivr.net/npm/vue@3.5.13/dist/vue.global.min.js"></script>
@@ -111,6 +112,38 @@
         </canvas>
       </div>
     </template>
+
+    <!-- <template v-else-if="scene === 'result'">
+      <div id="result-title">{{resultTitle}}</div>
+      <div id="rank">{{rank}}</div>
+      <table id="result-table">
+        <tr>
+          <td>スコア</td>
+          <td>{{score}}</td>
+        </tr>
+        <tr>
+          <td>タイム</td>
+          <td>{{displayClearTime}}秒</td>
+        </tr>
+        <tr>
+          <td>１文字</td>
+          <td>{{hitomoji}}秒</td>
+        </tr>
+        <tr>
+          <td>正確率</td>
+          <td>{{seikakuritu}}%</td>
+        </tr>
+        <tr>
+          <td>苦手</td>
+          <td>{{nigate}}</td>
+        </tr>
+      </table>
+      <div id="result-footer">
+        <div @click="onClickResultEnd">終わる</div>
+        <div @click="onClickResultTudukeru">続ける</div>
+        <div @click="onClickTweet">つぶやく</div>
+      </div>
+    </template> -->
   </div>
 
   <script src="loading.js"></script>

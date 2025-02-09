@@ -40,6 +40,7 @@ const app = {
     },
     methods: {
         onClickPlay() {
+            // todo
             this.startGame();
         },
 
