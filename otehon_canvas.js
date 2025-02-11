@@ -9,12 +9,25 @@ class OtehonCanvas {
     draw(hira) {
         const strSokkiCode = 速記文字一覧[hira].slice(3, 7);
         const sokkiCode = parseInt(strSokkiCode, 16);
+        
+        const tmpCanvas = new OffscreenCanvas(400, 400);
+        const tmpContext = tmpCanvas.getContext("2d", {willReadFrequently: true});
+        tmpContext.font = "200px Xim-Sans";
+        tmpContext.fillStyle = "rgba(0, 0, 0, 0.5)";
+        tmpContext.textAlign = "center";
+        tmpContext.textBaseline = "middle";
+        tmpContext.fillText(String.fromCodePoint(sokkiCode), tmpCanvas.width / 2, tmpCanvas.height / 2);
+        
+        const tmpImageData = tmpContext.getImageData(0, 0, tmpCanvas.width, tmpCanvas.height);
+        const trimmed = trimming(tmpImageData);
+
+        const sokkiImageData = tmpContext.getImageData(trimmed.x, trimmed.y, trimmed.width, trimmed.height);
+        
         const canvas = this.#context.canvas;
-        this.#context.font = "200px Xim-Sans";
-        this.#context.fillStyle = "rgba(0, 0, 0, 0.5)";
-        this.#context.textAlign = "center";
-        this.#context.textBaseline = "middle";
-        this.#context.fillText(String.fromCodePoint(sokkiCode), canvas.width / 2, canvas.height / 2);
+        const dstX = (canvas.width - trimmed.width) / 2;
+        const dstY = (canvas.height - trimmed.height) / 2;
+
+        this.#context.putImageData(sokkiImageData, dstX, dstY);
     }
 
     clear() {
