@@ -2,6 +2,7 @@
 let prevScene = "";
 
 let isPC = true;
+let otehonCanvas = null;
 let drawingCanvas = null;
 let sokki = null;
 
@@ -162,9 +163,9 @@ const app = {
                 }
                 else {
                     this.hira = this.mondai[this.kaitou.length];
-                    this.clearOtehon();
+                    otehonCanvas.clear();
                     drawingCanvas.clear();
-                    this.addOtehon();
+                    otehonCanvas.draw(this.hira);
                 }
             }
             else {
@@ -184,24 +185,6 @@ const app = {
             drawingCanvas.draw(e.offsetX, e.offsetY, sokki.lineColor.hex);
 
             sokki.update(e.offsetX, e.offsetY);
-        },
-
-        addOtehon() {
-            const strSokkiCode = 速記文字一覧[this.hira].slice(3, 7);
-            const sokkiCode = parseInt(strSokkiCode, 16);
-            const canvas = this.$refs.otehonCanvas;
-            const context = canvas.getContext("2d");
-            context.font = "200px Xim-Sans";
-            context.fillStyle = "rgba(0, 0, 0, 0.5)";
-            context.textAlign = "center";
-            context.textBaseline = "middle";
-            context.fillText(String.fromCodePoint(sokkiCode), canvas.width / 2, canvas.height / 2);
-        },
-
-        clearOtehon() {
-            const canvas = this.$refs.otehonCanvas;
-            const context = canvas.getContext("2d");
-            context.clearRect(0, 0, canvas.width, canvas.height);
         },
 
         startCountdown() {
@@ -238,6 +221,7 @@ const app = {
                 // todo
                 // todo #canvas-containerのwidth, heightも変えたほうがよい
             }
+            otehonCanvas = new OtehonCanvas(this.$refs.otehonCanvas);
             drawingCanvas = new DrawingCanvas(this.$refs.sokkiCanvas);
         },
 
@@ -247,10 +231,9 @@ const app = {
             this.mondai = mondaiList[this.mondaiListIndex];
             this.hira = this.mondai[0];
 
-            // debug
-            this.clearOtehon();
+            otehonCanvas.clear();
             drawingCanvas.clear();
-            this.addOtehon();
+            otehonCanvas.draw(this.hira);
         },
     }
 };
