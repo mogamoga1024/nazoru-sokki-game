@@ -99,7 +99,7 @@
       <div id="kaitou" v-html="kaitou.join('')"></div>
       <div id="message">{{message}}</div>
 
-      <div id="canvas-container">
+      <div id="canvas-container" ref="canvasContainer">
         <canvas id="otehon-canvas" ref="otehonCanvas"></canvas>
         <canvas
           id="sokki-canvas"

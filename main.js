@@ -65,8 +65,10 @@ const app = {
         });
     },
     mounted() {
-        // noop
         // debug
+        
+        isPC = false;
+        
         this.onClickPlay();
     },
     watch: {
@@ -357,6 +359,15 @@ const app = {
             else {
                 // todo
                 // todo #canvas-containerのwidth, heightも変えたほうがよい
+                const clientWidth = document.body.clientWidth;
+                const canvasWidth = Math.floor(clientWidth * 0.9);
+                this.$refs.canvasContainer.style.width = `${canvasWidth}px`;
+                this.$refs.otehonCanvas.style.width = `${canvasWidth}px`;
+                this.$refs.sokkiCanvas.style.width = `${canvasWidth}px`;
+                this.$refs.otehonCanvas.width = canvasWidth;
+                this.$refs.otehonCanvas.height = 250;
+                this.$refs.sokkiCanvas.width = canvasWidth;
+                this.$refs.sokkiCanvas.height = 250;
             }
             otehonCanvas = new OtehonCanvas(this.$refs.otehonCanvas);
             drawingCanvas = new DrawingCanvas(this.$refs.sokkiCanvas);

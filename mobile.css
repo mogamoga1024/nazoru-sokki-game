@@ -58,6 +58,16 @@
     font-size: 1.4rem;
   }
 
+  /* #canvas-container {
+    width: auto;
+    height: 250px;
+  }
+  
+  #otehon-canvas, #sokki-canvas {
+    width: auto;
+    height: 250px;
+  } */
+
   #result-title {
     font-size: 0.85rem;
   }
