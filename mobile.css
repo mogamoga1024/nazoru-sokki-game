@@ -1,4 +1,16 @@
 
+/* TODO 見直し */
+@media screen and (max-width: 510px) {
+  .kiso-fieldset {
+    max-width: none;
+  }
+
+  .play-btn {
+    width: 100%;
+    max-width: 190px;
+  }
+}
+
 @media screen and (max-width: 400px) {
   #app {
     padding-bottom: 1rem;
