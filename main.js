@@ -10,6 +10,11 @@ let mondaiList = [];
 
 const nextMondaiInterval = 400;
 
+let startTime = 0;
+let nigateCountMap = null;
+
+let canClickResultBtn = false;
+
 const app = {
     data() {
         return {
@@ -23,6 +28,12 @@ const app = {
 
             hira: "",
             sokkiLength: "4mm", // todo
+
+            resultTitle: "",
+            clearTime: 0,
+            correctCount: 0,
+            missCount: 0,
+            nigate: "",
         };
     },
     created() {
@@ -66,6 +77,56 @@ const app = {
     computed: {
         sintyoku() {
             return `${this.mondaiListIndex}/${mondaiList.length}`;
+        },
+        score() {
+            const bunbo1 = this.clearTime / 1000 / 60;
+            const bunbo2 = this.correctCount + this.missCount;
+            if (bunbo1 === 0 || bunbo2 === 0) {
+                return 0;
+            }
+            const s = this.correctCount / bunbo1 * Math.pow(this.correctCount / bunbo2, 3);
+            return Math.floor(s * 100);
+        },
+        rank() {
+            // todo
+            if (this.score >= 8000) {
+                return "S";
+            }
+            else if (this.score >= 7000) {
+                return "A+";
+            }
+            else if (this.score >= 6000) {
+                return "A";
+            }
+            else if (this.score >= 5000) {
+                return "B+";
+            }
+            else if (this.score >= 4000) {
+                return "B";
+            }
+            else if (this.score >= 3000) {
+                return "C+";
+            }
+            return "C";
+        },
+        displayClearTime() {
+            const tmp = Math.round(this.clearTime / 1000 * 10);
+            return tmp / 10;
+        },
+        hitomoji() {
+            if (this.correctCount === 0) {
+                return 0;
+            }
+            const tmp = Math.round(this.clearTime / 1000 / this.correctCount * 10);
+            return tmp / 10;
+        },
+        seikakuritu() {
+            const bunbo = this.correctCount + this.missCount;
+            if (bunbo === 0) {
+                return 0;
+            }
+            const tmp = Math.round(this.correctCount / bunbo * 100 * 10);
+            return tmp / 10;
         },
     },
     methods: {
@@ -133,6 +194,11 @@ const app = {
         },
 
         canvasDrawEnd(e) {
+            // 既にクリアしているなら何もしない
+            if (this.mondaiListIndex >= mondaiList.length) {
+                return;
+            }
+
             if (!drawingCanvas.canDraw) {
                 return;
             }
@@ -146,15 +212,39 @@ const app = {
 
             const isOK = sokki.test(this.hira);
             if (isOK) {
+                this.correctCount++;
                 this.message = "正解！😆";
                 this.kaitou.push(速記文字一覧[this.hira]);
                 if (this.mondai.length === this.kaitou.length) {
                     this.mondaiListIndex++;
                     const isClear = this.mondaiListIndex >= mondaiList.length;
-                    // todo clearTime
+                    if (isClear) {
+                        this.clearTime = performance.now() - startTime - nextMondaiInterval * (mondaiList.length - 1);
+                    }
                     setTimeout(() => {
                         if (isClear) {
+                            this.scene = "result";
+
                             // todo
+                            // let resultTitle = `${gameConfig.type}${gameConfig.course}`;
+                            // if (gameConfig.order !== "") {
+                            //     resultTitle += `（${gameConfig.order}）`;
+                            // }
+                            // this.resultTitle = resultTitle;
+                            this.resultTitle = "ほげほげ";
+
+                            const nigateList = Array.from(nigateCountMap).sort((a, b) => b[1] - a[1]).map(a => a[0]);
+                            if (nigateList.length === 0) {
+                                this.nigate = "ない！";
+                            }
+                            else {
+                                this.nigate = nigateList.slice(0, 3).join(" ");
+                            }
+
+                            // リザルト画面のボタンを思わぬ形で押してほしくないため
+                            setTimeout(() => {
+                                canClickResultBtn = true;
+                            }, 800);
                         }
                         else {
                             this.initMondai();
@@ -169,8 +259,17 @@ const app = {
                 }
             }
             else {
+                this.missCount++;
                 this.message = "違う…😢";
                 drawingCanvas.clear();
+
+                if (nigateCountMap.has(this.hira)) {
+                    const missCount = nigateCountMap.get(this.hira);
+                    nigateCountMap.set(this.hira, missCount + 1);
+                }
+                else {
+                    nigateCountMap.set(this.hira, 1);
+                }
             }
         },
 
@@ -185,6 +284,36 @@ const app = {
             drawingCanvas.draw(e.offsetX, e.offsetY, sokki.lineColor.hex);
 
             sokki.update(e.offsetX, e.offsetY);
+        },
+
+        onClickResultEnd() {
+            if (!canClickResultBtn) {
+                return;
+            }
+            history.back();
+        },
+
+        onClickResultTudukeru() {
+            if (!canClickResultBtn) {
+                return;
+            }
+            this.startCountdown();
+        },
+
+        onClickTweet() {
+            if (!canClickResultBtn) {
+                return;
+            }
+
+            // todo
+
+            // const text = `四択で覚える早稲田式速記アプリの${this.resultTitle}でランクは「${this.rank}」、スコアは「${this.score}」でした。`;
+
+            // const link = document.createElement("a");
+            // link.href = `https://twitter.com/intent/tweet?url=https://mogamoga1024.github.io/nazoru-sokki-game/&text=${encodeURIComponent(text)}&hashtags=${encodeURIComponent("早稲田式速記")}`;
+            // link.target = "_blank";
+            // link.rel = "noopener noreferrer";
+            // link.click();
         },
 
         startCountdown() {
@@ -207,6 +336,14 @@ const app = {
 
             this.initCanvas();
             this.initMondai();
+
+            canClickResultBtn = false;
+            this.correctCount = 0;
+            this.missCount = 0;
+            this.clearTime = 0;
+            startTime = performance.now();
+            this.nigate = "";
+            nigateCountMap = new Map();
         },
 
         initCanvas() {
