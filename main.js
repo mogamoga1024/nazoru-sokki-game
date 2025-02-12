@@ -357,8 +357,6 @@ const app = {
                 this.$refs.sokkiCanvas.height = 250;
             }
             else {
-                // todo
-                // todo #canvas-containerのwidth, heightも変えたほうがよい
                 const clientWidth = document.body.clientWidth;
                 const canvasWidth = Math.floor(clientWidth * 0.9);
                 this.$refs.canvasContainer.style.width = `${canvasWidth}px`;
