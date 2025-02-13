@@ -142,6 +142,18 @@ const app = {
             history.back();
         },
 
+        onTouchStart() {
+            console.log("touch start");
+        },
+
+        onTouchEnd() {
+            console.log("touch end");
+        },
+
+        onTouchMove() {
+            console.log("touch move");
+        },
+
         initSokkiTable() {
             const hiraTable = [
                 ["あ", "い", "う", "え", "お"],
