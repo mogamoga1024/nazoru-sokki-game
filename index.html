@@ -22,13 +22,21 @@
         清音は「あ」から「ん」のこと☺<br>
         特殊は「ぱ」や「きゃ」のこと😵
       </div>
-      <div id="config-container">
-        <div>お手本</div>
+      
+      <fieldset id="config-container">
+        <legend>お手本</legend>
         <div class="radio">
-          <div class="radio-btn selected">あり</div>
-          <div class="radio-btn">なし</div>
+          <label class="radio-btn">
+            <input type="radio" name="sample" value="あり" checked>
+            <span>あり</span>
+          </label>
+          <label class="radio-btn">
+            <input type="radio" name="sample" value="なし">
+            <span>なし</span>
+          </label>
         </div>
-      </div>
+      </fieldset>      
+      
       <div id="play-btn-container">
         <fieldset id="kiso">
           <legend>基礎</legend>

@@ -46,60 +46,70 @@ h2 {
 
 #config-container {
   display: flex;
-  width: fit-content;
-  margin: 1rem auto 0;
-  font-size: 0.9rem;
   align-items: center;
-  column-gap: 10px;
+  gap: 12px;
+  padding: 1rem;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #333;
+  background: #f8f9fa;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: fit-content;
+  margin: 1rem auto;
 }
 
 .radio {
   display: flex;
+  gap: 6px;
 }
 
 .radio-btn {
   display: flex;
-  min-width: 30px;
-  padding: 2px 4px;
-  border: 1px solid #00008b;
-  border-right-width: 0;
   align-items: center;
   justify-content: center;
-  text-align: center;
-  color: #000;
-  background-color: #add8e6;
+  gap: 6px;
+  padding: 10px 16px;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  background: #e0f7fa;
+  color: #00796b;
+  font-weight: bold;
   cursor: pointer;
-  transition: background-color 0.3s, color 0.3s;
+  transition: all 0.3s ease;
   user-select: none;
-  -webkit-user-select: none;
+  position: relative;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
 
-  &:first-of-type {
-    border-radius: 2px 0 0 2px;
-  }
+.radio-btn .icon {
+  font-size: 1.2rem;
+}
 
-  &:last-of-type {
-    border-radius: 0 2px 2px 0;
-    border-right-width: 1px;
-  }
+.radio-btn:hover {
+  background: linear-gradient(135deg, #00bcd4, #00796b);
+  color: white;
+  border-color: #00796b;
+  transform: scale(1.05);
+}
 
-  @media (any-hover: hover) {
-    &:hover {
-      background-color: #00008b;
-      color: #fff;
-    }
-  }
-  @media (any-hover: none) {
-    &:active {
-      background-color: #00008b;
-      color: #fff;
-    }
-  }
+.radio-btn:active {
+  transform: scale(0.95);
+}
 
-  &.selected {
-    background-color: #00008b;
-    opacity: 1;
-    color: #fff;
-  }
+input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+}
+
+.radio-btn:has(input[type="radio"]:checked) {
+  background: linear-gradient(135deg, #00bcd4, #00796b);
+  color: white;
+  border-color: #00796b;
+}
+
+input[type="radio"]:checked + .icon {
+  filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.8));
 }
 
 #play-btn-container {
