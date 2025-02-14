@@ -53,8 +53,7 @@ h2 {
   font-weight: bold;
   color: #333;
   background: #f8f9fa;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
   width: fit-content;
   margin: 1rem auto;
 }
@@ -70,16 +69,15 @@ h2 {
   justify-content: center;
   gap: 6px;
   padding: 10px 16px;
-  border: 2px solid #ccc;
+  border: 2px solid #00796b;
   border-radius: 8px;
-  background: #e0f7fa;
+  background: #e0f2f1;
   color: #00796b;
   font-weight: bold;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: background 0.2s, transform 0.1s;
   user-select: none;
   position: relative;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .radio-btn .icon {
@@ -87,10 +85,7 @@ h2 {
 }
 
 .radio-btn:hover {
-  background: linear-gradient(135deg, #00bcd4, #00796b);
-  color: white;
-  border-color: #00796b;
-  transform: scale(1.05);
+  background: #b2dfdb;
 }
 
 .radio-btn:active {
@@ -103,13 +98,9 @@ input[type="radio"] {
 }
 
 .radio-btn:has(input[type="radio"]:checked) {
-  background: linear-gradient(135deg, #00bcd4, #00796b);
+  background: #00796b;
   color: white;
   border-color: #00796b;
-}
-
-input[type="radio"]:checked + .icon {
-  filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.8));
 }
 
 #play-btn-container {
