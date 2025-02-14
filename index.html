@@ -104,18 +104,16 @@
         <canvas
           id="sokki-canvas"
           ref="sokkiCanvas"
+          @mousedown="onMouseDown"
+          @mouseover="onMouseDown"
+          @mouseup="onMouseUp"
+          @mouseout="onMouseUp"
+          @mousemove="onMouseMove"
           @touchstart="onTouchStart"
           @touchend="onTouchEnd"
           @touchmove="onTouchMove"
           >
         </canvas>
-        <!-- 
-          @mousedown="canvasDrawStart"
-          @mouseover="canvasDrawStart"
-          @mouseup="canvasDrawEnd"
-          @mouseout="canvasDrawEnd"
-          @mousemove="canvasDraw"
-        -->
       </div>
     </template>
 

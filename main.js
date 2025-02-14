@@ -67,9 +67,9 @@ const app = {
     mounted() {
         // debug
         
-        isPC = false;
+        // isPC = false;
         
-        this.onClickPlay();
+        // this.onClickPlay();
     },
     watch: {
         scene(_, oldScene) {
@@ -142,16 +142,38 @@ const app = {
             history.back();
         },
 
-        onTouchStart() {
-            console.log("touch start");
+        onMouseDown(e) {
+            // 左クリック以外描画不可
+            if (e.buttons !== 1) {
+                return;
+            }
+            this.canvasDrawStart(e.offsetX, e.offsetY);
+        },
+        onMouseUp(e) {
+            this.canvasDrawEnd(e.offsetX, e.offsetY);
+        },
+        onMouseMove(e) {
+            this.canvasDraw(e.offsetX, e.offsetY);
         },
 
-        onTouchEnd() {
-            console.log("touch end");
+        onTouchStart(e) {
+            const {x, y} = this.getTouchXY(e);
+            this.canvasDrawStart(x, y);
+        },
+        onTouchEnd(e) {
+            const {x, y} = this.getTouchXY(e);
+            this.canvasDrawEnd(x, y);
+        },
+        onTouchMove(e) {
+            const {x, y} = this.getTouchXY(e);
+            this.canvasDraw(x, y);
         },
 
-        onTouchMove() {
-            console.log("touch move");
+        getTouchXY(e) {
+            const rect = e.target.getBoundingClientRect();
+            const x = e.changedTouches[0].clientX - rect.left;
+            const y = e.changedTouches[0].clientY - rect.top;
+            return {x, y};
         },
 
         initSokkiTable() {
@@ -197,17 +219,12 @@ const app = {
             }
         },
 
-        canvasDrawStart(e) {
-            // 左クリック以外描画不可
-            if (e.buttons !== 1) {
-                return;
-            }
+        canvasDrawStart(x, y) {
             drawingCanvas.drawStart();
-
-            sokki = new Sokki(e.offsetX, e.offsetY);
+            sokki = new Sokki(x, y);
         },
 
-        canvasDrawEnd(e) {
+        canvasDrawEnd(x, y) {
             // 既にクリアしているなら何もしない
             if (this.mondaiListIndex >= mondaiList.length) {
                 return;
@@ -217,12 +234,12 @@ const app = {
                 return;
             }
 
-            sokki.changeLineColorIfNeed(this.$refs.sokkiCanvas, e.offsetX, e.offsetY);
+            sokki.changeLineColorIfNeed(this.$refs.sokkiCanvas, x, y);
             this.sokkiLength = sokki.lineLength;
             
-            drawingCanvas.drawEnd(e.offsetX, e.offsetY, sokki.lineColor.hex);
+            drawingCanvas.drawEnd(x, y, sokki.lineColor.hex);
 
-            sokki.lastUpdate(e.offsetX, e.offsetY);
+            sokki.lastUpdate(x, y);
 
             const isOK = sokki.test(this.hira);
             if (isOK) {
@@ -287,17 +304,17 @@ const app = {
             }
         },
 
-        canvasDraw(e) {
+        canvasDraw(x, y) {
             if (!drawingCanvas.canDraw) {
                 return;
             }
 
-            sokki.changeLineColorIfNeed(this.$refs.sokkiCanvas, e.offsetX, e.offsetY);
+            sokki.changeLineColorIfNeed(this.$refs.sokkiCanvas, x, y);
             this.sokkiLength = sokki.lineLength;
 
-            drawingCanvas.draw(e.offsetX, e.offsetY, sokki.lineColor.hex);
+            drawingCanvas.draw(x, y, sokki.lineColor.hex);
 
-            sokki.update(e.offsetX, e.offsetY);
+            sokki.update(x, y);
         },
 
         onClickResultEnd() {
