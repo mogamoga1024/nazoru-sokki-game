@@ -51,14 +51,10 @@ fieldset {
 
 #config-container {
   display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 1rem;
-  font-size: 1rem;
-  font-weight: bold;
-  color: #333;
   width: fit-content;
-  margin: 1rem auto;
+  margin: 1rem auto 0;
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 
 .radio {
@@ -70,8 +66,7 @@ fieldset {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 6px;
-  padding: 10px 16px;
+  padding: 8px 16px;
   border: 2px solid #00796b;
   border-radius: 8px;
   background: #e0f2f1;
@@ -79,12 +74,7 @@ fieldset {
   font-weight: bold;
   cursor: pointer;
   transition: background 0.2s, transform 0.1s;
-  user-select: none;
   position: relative;
-}
-
-.radio-btn .icon {
-  font-size: 1.2rem;
 }
 
 .radio-btn:hover {
@@ -108,7 +98,7 @@ input[type="radio"] {
 
 #play-btn-container {
   max-width: 500px;
-  margin: 0.5rem auto 0;
+  margin: 1rem auto 0;
 }
 
 #jissen {
