@@ -30,6 +30,11 @@
     font-size: 0.7rem;
   }
 
+  #config-container {
+    /* todo */
+    /* font-size: 0.7rem; */
+  }
+
   #countdown {
     margin-top: 2rem;
     font-size: 6rem;
@@ -57,16 +62,6 @@
     line-height: 180px;
     font-size: 1.4rem;
   }
-
-  /* #canvas-container {
-    width: auto;
-    height: 250px;
-  }
-  
-  #otehon-canvas, #sokki-canvas {
-    width: auto;
-    height: 250px;
-  } */
 
   #result-title {
     font-size: 0.85rem;

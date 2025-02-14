@@ -44,9 +44,67 @@ h2 {
   margin: 1rem auto 0;
 }
 
+#config-container {
+  display: flex;
+  width: fit-content;
+  margin: 1rem auto 0;
+  font-size: 0.9rem;
+  align-items: center;
+  column-gap: 10px;
+}
+
+.radio {
+  display: flex;
+}
+
+.radio-btn {
+  display: flex;
+  min-width: 30px;
+  padding: 2px 4px;
+  border: 1px solid #00008b;
+  border-right-width: 0;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #000;
+  background-color: #add8e6;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+  user-select: none;
+  -webkit-user-select: none;
+
+  &:first-of-type {
+    border-radius: 2px 0 0 2px;
+  }
+
+  &:last-of-type {
+    border-radius: 0 2px 2px 0;
+    border-right-width: 1px;
+  }
+
+  @media (any-hover: hover) {
+    &:hover {
+      background-color: #00008b;
+      color: #fff;
+    }
+  }
+  @media (any-hover: none) {
+    &:active {
+      background-color: #00008b;
+      color: #fff;
+    }
+  }
+
+  &.selected {
+    background-color: #00008b;
+    opacity: 1;
+    color: #fff;
+  }
+}
+
 #play-btn-container {
   max-width: 500px;
-  margin: 1rem auto 0;
+  margin: 0.5rem auto 0;
 }
 
 #jissen {
