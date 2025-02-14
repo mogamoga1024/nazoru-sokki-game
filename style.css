@@ -14,6 +14,7 @@
   padding: 0;
   font-family: Xim-Sans;
   font-size: 36px;
+  background: #f8f9fa;
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
@@ -44,6 +45,10 @@ h2 {
   margin: 1rem auto 0;
 }
 
+fieldset {
+  border-radius: 8px;
+}
+
 #config-container {
   display: flex;
   align-items: center;
@@ -52,8 +57,6 @@ h2 {
   font-size: 1rem;
   font-weight: bold;
   color: #333;
-  background: #f8f9fa;
-  border-radius: 8px;
   width: fit-content;
   margin: 1rem auto;
 }
@@ -144,6 +147,10 @@ input[type="radio"] {
 
 .play-btn:not(:first-of-type) {
   margin-top: 12px;
+}
+
+.play-btn:active {
+  transform: scale(0.95);
 }
 
 @media (any-hover: hover) {
