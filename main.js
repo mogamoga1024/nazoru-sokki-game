@@ -264,13 +264,12 @@ const app = {
                         if (isClear) {
                             this.scene = "result";
 
-                            // todo
-                            // let resultTitle = `${gameConfig.type}${gameConfig.course}`;
-                            // if (gameConfig.order !== "") {
-                            //     resultTitle += `（${gameConfig.order}）`;
-                            // }
-                            // this.resultTitle = resultTitle;
-                            this.resultTitle = "ほげほげ";
+                            let resultTitle = `${gameConfig.type}${gameConfig.course}`;
+                            if (gameConfig.order !== "") {
+                                resultTitle += `（${gameConfig.order}）`;
+                            }
+                            resultTitle += `<br>お手本${this.otehon}`;
+                            this.resultTitle = resultTitle;
 
                             const nigateList = Array.from(nigateCountMap).sort((a, b) => b[1] - a[1]).map(a => a[0]);
                             if (nigateList.length === 0) {
