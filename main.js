@@ -1,6 +1,10 @@
 
 let prevScene = "";
 
+let gameConfig = {
+    course: "", order: "", type: ""
+};
+
 let isPC = true;
 let otehonCanvas = null;
 let drawingCanvas = null;
@@ -21,6 +25,8 @@ const app = {
             scene: "top", // top, countdown, game, result
             otehon: "あり",
             sokkiTable: [],
+
+            countdownText: "3",
 
             mondaiListIndex: 0,
             mondai: [],
@@ -133,10 +139,11 @@ const app = {
         },
     },
     methods: {
-        onClickPlay() {
-            // todo
+        onClickPlay(course, order, type) {
+            console.log(course, order, type);
             history.pushState(null, "", "");
-            this.startGame();
+            gameConfig = {course, order, type};
+            this.startCountdown();
         },
 
         onClickRetire() {
@@ -348,12 +355,30 @@ const app = {
             // link.click();
         },
 
-        startCountdown() {
-            // todo
+        async startCountdown() {
+            this.scene = "countdown";
+
+            const p = func => new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    if (this.scene !== "countdown") {
+                        reject("countdown中にsceneが変化した");
+                        return;
+                    }
+                    func();
+                    resolve();
+                }, 600);
+            });
+
+            this.countdownText = "3"
+            await p(() => this.countdownText = "2");
+            await p(() => this.countdownText = "1");
+            await p(() => this.countdownText = "GO!");
+            await p(() => this.startGame());
         },
 
         async startGame() {
             this.scene = "game";
+            const {course, order, type} = gameConfig;
             // todo
             mondaiList = [
                 ["ぺ", "と"],

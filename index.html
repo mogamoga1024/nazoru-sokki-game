@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="loading.css">
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="mobile.css">
+  <link rel="stylesheet" href="countdown.css">
   <link rel="stylesheet" href="game.css">
   <link rel="stylesheet" href="result.css">
   <script src="https://cdn.jsdelivr.net/npm/viewport-extra@1.0.3/dist/viewport-extra.min.js"></script>
@@ -94,6 +95,10 @@
           本当はOCRで文字を判定したかったのですが、難しそうだったので諦めました。そのため大体形が似ていたらOKみたいなガバガバ判定となっております。
         </p>
       </div>
+    </template>
+
+    <template v-else-if="scene === 'countdown'">
+      <div id="countdown">{{countdownText}}</div>
     </template>
 
     <template v-if="scene === 'game'">
