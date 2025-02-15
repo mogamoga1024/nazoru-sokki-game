@@ -19,6 +19,7 @@ const app = {
     data() {
         return {
             scene: "top", // top, countdown, game, result
+            otehon: "あり",
             sokkiTable: [],
 
             mondaiListIndex: 0,
