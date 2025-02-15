@@ -378,14 +378,24 @@ const app = {
         async startGame() {
             this.scene = "game";
             const {course, order, type} = gameConfig;
-            // todo
-            mondaiList = [
-                ["ぺ", "と"],
-                ["ち", "く", "わ"],
-                ["な"],
-                ["あ", "い"],
-            ];
+            
             this.mondaiListIndex = 0;
+            if (course === "基礎") {
+                const hiraList = 平仮名一覧(type);
+                mondaiList = hiraList.map(hira => [hira]);
+                if (order === "ランダム") {
+                    shuffle(mondaiList);
+                }
+            }
+            else if (course === "実践") {
+                mondaiList = 実践問題リスト生成(type === "全部");
+            }
+            // mondaiList = [
+            //     ["ぺ", "と"],
+            //     ["ち", "く", "わ"],
+            //     ["な"],
+            //     ["あ", "い"],
+            // ];
 
             // DOMのCanvasが存在しないとinitCanvasがエラーになるため待つ
             await this.$nextTick();
