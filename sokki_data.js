@@ -511,7 +511,7 @@ const sokkiData = {
         patternList: [
             {
                 dxList: ["+", "-", "any"],
-                dyList: ["8mm", "*-1/2>=", "+"]
+                dyList: ["8mm", "*-1/2>=", "any"]
             }
         ]
     },

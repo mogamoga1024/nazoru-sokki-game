@@ -16,6 +16,7 @@ const nextMondaiInterval = 400;
 
 let startTime = 0;
 let nigateCountMap = null;
+let renzokuMizzCount = 0;
 
 let canClickResultBtn = false;
 
@@ -291,13 +292,16 @@ const app = {
                 }
                 else {
                     this.hira = this.mondai[this.kaitou.length];
-                    otehonCanvas.clear();
                     drawingCanvas.clear();
-                    otehonCanvas.draw(this.hira);
+                    otehonCanvas.clear();
+                    if (this.otehon === "あり") {
+                        otehonCanvas.draw(this.hira);
+                    }
                 }
             }
             else {
                 this.missCount++;
+                renzokuMizzCount++;
                 this.message = "違う…😢";
                 drawingCanvas.clear();
 
@@ -307,6 +311,10 @@ const app = {
                 }
                 else {
                     nigateCountMap.set(this.hira, 1);
+                }
+
+                if (this.otehon === "なし" && renzokuMizzCount === 3) {
+                    otehonCanvas.draw(this.hira);
                 }
             }
         },
@@ -438,12 +446,15 @@ const app = {
         initMondai() {
             this.message = "書いてね🤔";
             this.kaitou = [];
+            renzokuMizzCount = 0;
             this.mondai = mondaiList[this.mondaiListIndex];
             this.hira = this.mondai[0];
 
-            otehonCanvas.clear();
             drawingCanvas.clear();
-            otehonCanvas.draw(this.hira);
+            otehonCanvas.clear();
+            if (this.otehon === "あり") {
+                otehonCanvas.draw(this.hira);
+            }
         },
     }
 };
