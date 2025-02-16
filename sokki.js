@@ -68,15 +68,15 @@ class Sokki {
         }
     }
 
-    update(x, y) {
+    update(x, y, hira) {
         if (this.#dxList.length === 0 && this.#currentDxSign === 0) {
-            this.#currentDxSign = Math.sign(this.#antiShake(x - this.#prevVertexX));
+            this.#currentDxSign = Math.sign(this.#antiShake(x - this.#prevVertexX, hira));
         }
         else {
             const dxSign = Math.sign(x - this.#prevX);
             if (dxSign != 0 && this.#currentDxSign != dxSign) {
                 const dx = this.#prevX - this.#prevVertexX;
-                if (this.#antiShake(dx) !== 0) {
+                if (this.#antiShake(dx, hira) !== 0) {
                     this.#currentDxSign = dxSign;
                     this.#dxList.push(dx);
                     this.#prevVertexX = this.#prevX;
@@ -85,13 +85,13 @@ class Sokki {
         }
         
         if (this.#dyList.length === 0 && this.#currentDySign === 0) {
-            this.#currentDySign = Math.sign(this.#antiShake(y - this.#prevVertexY));
+            this.#currentDySign = Math.sign(this.#antiShake(y - this.#prevVertexY, hira));
         }
         else {
             const dySign = Math.sign(y - this.#prevY);
             if (dySign != 0 && this.#currentDySign != dySign) {
                 const dy = this.#prevY - this.#prevVertexY;
-                if (this.#antiShake(dy) !== 0) {
+                if (this.#antiShake(dy, hira) !== 0) {
                     this.#currentDySign = dySign;
                     this.#dyList.push(dy);
                     this.#prevVertexY = this.#prevY;
@@ -103,13 +103,13 @@ class Sokki {
         this.#prevY = y;
     }
 
-    lastUpdate(x, y) {
-        const dx = this.#antiShake(x - this.#prevVertexX);
+    lastUpdate(x, y, hira) {
+        const dx = this.#antiShake(x - this.#prevVertexX, hira);
         if (dx != 0) {
             this.#dxList.push(dx);
         }
         
-        const dy = this.#antiShake(y - this.#prevVertexY);
+        const dy = this.#antiShake(y - this.#prevVertexY, hira);
         if (dy != 0) {
             this.#dyList.push(dy);
         }
@@ -169,8 +169,12 @@ class Sokki {
         this.#dyList = f(this.#dyList);
     }
 
-    #antiShake(value) {
-        if (Math.abs(value) <= 4) {
+    #antiShake(value, hira) {
+        let max = 4;
+        if (/^(う|か|き|く|け|こ|つ)$/.test(hira)) {
+            max = 8;
+        }
+        if (Math.abs(value) <= max) {
             return 0;
         }
         else {

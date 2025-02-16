@@ -248,7 +248,7 @@ const app = {
             
             drawingCanvas.drawEnd(x, y, sokki.lineColor.hex);
 
-            sokki.lastUpdate(x, y);
+            sokki.lastUpdate(x, y, this.hira);
 
             const isOK = sokki.test(this.hira);
             if (isOK) {
@@ -329,7 +329,7 @@ const app = {
 
             drawingCanvas.draw(x, y, sokki.lineColor.hex);
 
-            sokki.update(x, y);
+            sokki.update(x, y, this.hira);
         },
 
         onClickResultEnd() {
@@ -400,7 +400,11 @@ const app = {
             }
 
             // mondaiList = [
-            //     ["こ", "せ", "と", "よ", "しょ"],
+            //     ["こ", "う", "つ"],
+            //     ["こ", "う", "つ"],
+            //     ["こ", "う", "つ"],
+            //     ["こ", "う", "つ"],
+            //     // ["こ", "せ", "と", "よ", "しょ"],
             //     // ["ぺ", "と"],
             //     // ["ち", "く", "わ"],
             //     // ["な"],
