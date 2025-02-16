@@ -54,7 +54,7 @@ const sokkiData = {
     "き": {
         patternList: [
             {
-                dxList: ["8mm", "*-1/4>=", "any"],
+                dxList: ["8mm", "*-1/3>=", "any"],
                 dyList: ["-", "any"] // "any"ではなく"+"のほうが正しいが、手振れ補正との調整がむずい…
             }
         ]
@@ -70,7 +70,7 @@ const sokkiData = {
     "け": {
         patternList: [
             {
-                dxList: ["16mm", "*-1/4>=", "any"],
+                dxList: ["16mm", "*-1/3>=", "any"],
                 dyList: ["-", "any"] // "any"ではなく"+"のほうが正しいが、手振れ補正との調整がむずい…
             }
         ]
@@ -98,12 +98,12 @@ const sokkiData = {
     "し": {
         patternList: [
             {
-                dxList: ["8mm", "*-1/4>=", "any"],
+                dxList: ["8mm", "*-1/3>=", "any"],
                 dyList: ["-8mm>=", "*-1/2>=", "any"]
             },
             {
                 dxList: ["8mm>=", "*-1/2>=", "any"],
-                dyList: ["-8mm", "*-1/4>=", "any"]
+                dyList: ["-8mm", "*-1/3>=", "any"]
             }
         ]
     },
@@ -122,12 +122,12 @@ const sokkiData = {
     "せ": {
         patternList: [
             {
-                dxList: ["16mm", "*-1/4>=", "any"],
+                dxList: ["16mm", "*-1/3>=", "any"],
                 dyList: ["-16mm>=", "+", "any"]
             },
             {
                 dxList: ["16mm>=", "-", "any"],
-                dyList: ["-16mm", "*-1/4>=", "any"]
+                dyList: ["-16mm", "*-1/3>=", "any"]
             }
         ]
     },
@@ -155,7 +155,7 @@ const sokkiData = {
         patternList: [
             {
                 dxList: ["-", "+"],
-                dyList: ["8mm", "*-1/4>=", "any"]
+                dyList: ["8mm", "*-1/3>=", "any"]
             }
         ]
     },
@@ -170,12 +170,12 @@ const sokkiData = {
     "て": {
         patternList: [
             {
-                dxList: ["16mm", "*-1/4>=", "any"],
+                dxList: ["16mm", "*-1/3>=", "any"],
                 dyList: ["-16mm>=", "+", "any"]
             },
             {
                 dxList: ["16mm>=", "-", "any"],
-                dyList: ["-16mm", "*-1/4>=", "any"]
+                dyList: ["-16mm", "*-1/3>=", "any"]
             }
         ]
     },
@@ -202,7 +202,7 @@ const sokkiData = {
     "に": {
         patternList: [
             {
-                dxList: ["8mm", "*-1/4>=", "any"],
+                dxList: ["8mm", "*-1/3>=", "any"],
                 dyList: ["+", "-", "+"]
             }
         ]
@@ -218,7 +218,7 @@ const sokkiData = {
     "ね": {
         patternList: [
             {
-                dxList: ["16mm", "*-1/4>=", "any"],
+                dxList: ["16mm", "*-1/3>=", "any"],
                 dyList: ["+", "-", "+"]
             }
         ]
@@ -246,12 +246,12 @@ const sokkiData = {
     "ひ": {
         patternList: [
             {
-                dxList: ["8mm", "*-1/4>=", "any"],
+                dxList: ["8mm", "*-1/3>=", "any"],
                 dyList: ["8mm>=", "*-1/2>=", "any"]
             },
             {
                 dxList: ["8mm>=", "*-1/2>=", "any"],
-                dyList: ["8mm", "*-1/4>=", "any"]
+                dyList: ["8mm", "*-1/3>=", "any"]
             }
         ]
     },
@@ -270,12 +270,12 @@ const sokkiData = {
     "へ": {
         patternList: [
             {
-                dxList: ["16mm", "*-1/4>=", "any"],
+                dxList: ["16mm", "*-1/3>=", "any"],
                 dyList: ["16mm>=", "-", "any"]
             },
             {
                 dxList: ["16mm>=", "-", "any"],
-                dyList: ["16mm", "*-1/4>=", "any"]
+                dyList: ["16mm", "*-1/3>=", "any"]
             }
         ]
     },
@@ -302,7 +302,7 @@ const sokkiData = {
     "み": {
         patternList: [
             {
-                dxList: ["8mm", "*-1/4>=", "any"],
+                dxList: ["8mm", "*-1/3>=", "any"],
                 dyList: ["-", "+", "-"]
             }
         ]
@@ -318,7 +318,7 @@ const sokkiData = {
     "め": {
         patternList: [
             {
-                dxList: ["16mm", "*-1/4>=", "any"],
+                dxList: ["16mm", "*-1/3>=", "any"],
                 dyList: ["-", "+", "-"]
             }
         ]
@@ -346,12 +346,12 @@ const sokkiData = {
     "ゆ": {
         patternList: [
             {
-                dxList: ["8mm", "*-1/4>=", "any"],
+                dxList: ["8mm", "*-1/3>=", "any"],
                 dyList: ["-8mm>=", "*-1/2>=", "any"]
             },
             {
                 dxList: ["8mm>=", "*-1/2>=", "any"],
-                dyList: ["-8mm", "*-1/4>=", "any"]
+                dyList: ["-8mm", "*-1/3>=", "any"]
             }
         ]
     },
@@ -382,12 +382,12 @@ const sokkiData = {
     "り": {
         patternList: [
             {
-                dxList: ["8mm", "*-1/4>=", "any"],
+                dxList: ["8mm", "*-1/3>=", "any"],
                 dyList: ["8mm>=", "*-1/2>=", "any"]
             },
             {
                 dxList: ["8mm>=", "*-1/2>=", "any"],
-                dyList: ["8mm", "*-1/4>=", "any"]
+                dyList: ["8mm", "*-1/3>=", "any"]
             }
         ]
     },
@@ -406,12 +406,12 @@ const sokkiData = {
     "れ": {
         patternList: [
             {
-                dxList: ["16mm", "*-1/4>=", "any"],
+                dxList: ["16mm", "*-1/3>=", "any"],
                 dyList: ["16mm>=", "-", "any"]
             },
             {
                 dxList: ["16mm>=", "-", "any"],
-                dyList: ["16mm", "*-1/4>=", "any"]
+                dyList: ["16mm", "*-1/3>=", "any"]
             }
         ]
     },
@@ -542,7 +542,7 @@ const sokkiData = {
     "ちゅ": {
         patternList: [
             {
-                dxList: ["8mm", "*-1/3>=", "any"], // "*-1/4>="だとうまくいかないことが多かった
+                dxList: ["8mm", "*-1/3>=", "any"], // "*-1/3>="だとうまくいかないことが多かった
                 dyList: ["-8mm>=", "*-1/2>=", "any"]
             },
             {
@@ -559,7 +559,7 @@ const sokkiData = {
             },
             {
                 dxList: ["8mm>=", "*-2/3<=", "any"],
-                dyList: ["-8mm", "*-1/4>=", "any"]
+                dyList: ["-8mm", "*-1/3>=", "any"]
             }
         ]
     },
@@ -574,7 +574,7 @@ const sokkiData = {
     "にゅ": {
         patternList: [
             {
-                dxList: ["8mm", "*-1/4>=", "any"],
+                dxList: ["8mm", "*-1/3>=", "any"],
                 dyList: ["+", "-6mm<=", "+"]
             }
         ]
@@ -602,12 +602,12 @@ const sokkiData = {
     "ひゅ": {
         patternList: [
             {
-                dxList: ["-8mm", "*-1/4>=", "any"],
+                dxList: ["-8mm", "*-1/3>=", "any"],
                 dyList: ["8mm>=", "*-1/2>=", "any"]
             },
             {
                 dxList: ["-8mm>=", "*-1/2>=", "any"],
-                dyList: ["8mm", "*-1/4>=", "any"]
+                dyList: ["8mm", "*-1/3>=", "any"]
             }
         ]
     },
@@ -634,11 +634,11 @@ const sokkiData = {
     "みゅ": {
         patternList: [
             {
-                dxList: ["8mm", "*-1/4>=", "any"],
+                dxList: ["8mm", "*-1/3>=", "any"],
                 dyList: ["-", "6mm<=", "-"]
             },
             {
-                dxList: ["8mm", "*-1/4>=", "any"],
+                dxList: ["8mm", "*-1/3>=", "any"],
                 dyList: ["-", "+", "-6mm<=", "+"]
             }
         ]
@@ -702,12 +702,12 @@ const sokkiData = {
     "ぴゅ": {
         patternList: [
             {
-                dxList: ["-16mm", "*-1/4>=", "any"],
+                dxList: ["-16mm", "*-1/3>=", "any"],
                 dyList: ["16mm>=", "*-1/2>=", "any"]
             },
             {
                 dxList: ["-16mm>=", "*-1/2>=", "any"],
-                dyList: ["16mm", "*-1/4>=", "any"]
+                dyList: ["16mm", "*-1/3>=", "any"]
             }
         ]
     },
