@@ -85,13 +85,13 @@ class Sokki {
         }
         
         if (this.#dyList.length === 0 && this.#currentDySign === 0) {
-            this.#currentDySign = Math.sign(this.#antiShake(y - this.#prevVertexY, hira, true));
+            this.#currentDySign = Math.sign(this.#antiShake(y - this.#prevVertexY, hira, false));
         }
         else {
             const dySign = Math.sign(y - this.#prevY);
             if (dySign != 0 && this.#currentDySign != dySign) {
                 const dy = this.#prevY - this.#prevVertexY;
-                if (this.#antiShake(dy, hira, true) !== 0) {
+                if (this.#antiShake(dy, hira, false) !== 0) {
                     this.#currentDySign = dySign;
                     this.#dyList.push(dy);
                     this.#prevVertexY = this.#prevY;
@@ -109,7 +109,7 @@ class Sokki {
             this.#dxList.push(dx);
         }
         
-        const dy = this.#antiShake(y - this.#prevVertexY, hira, true);
+        const dy = this.#antiShake(y - this.#prevVertexY, hira, false);
         if (dy != 0) {
             this.#dyList.push(dy);
         }
@@ -169,9 +169,9 @@ class Sokki {
         this.#dyList = f(this.#dyList);
     }
 
-    #antiShake(value, hira, isDy = false) {
+    #antiShake(value, hira, isDx = true) {
         let max = 4;
-        if (isDy && /^(う|つ)$/.test(hira)) {
+        if (isDx && /^(う|つ)$/.test(hira)) {
             max = 8;
         }
         else if (/^(か|き|く|け|こ)$/.test(hira)) {

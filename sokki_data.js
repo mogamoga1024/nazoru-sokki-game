@@ -162,7 +162,7 @@ const sokkiData = {
     "つ": {
         patternList: [
             {
-                dxList: ["-", "+"],
+                dxList: ["-", "any"], // "any"ではなく"+"のほうが正しいが、手振れ補正との調整がむずい…
                 dyList: ["4mm", "*-1/3>=", "any"]
             }
         ]
