@@ -55,7 +55,7 @@ const sokkiData = {
         patternList: [
             {
                 dxList: ["8mm", "*-1/4>=", "any"],
-                dyList: ["-", "+"]
+                dyList: ["-", "any"] // "any"ではなく"+"のほうが正しいが、手振れ補正との調整がむずい…
             }
         ]
     },
@@ -71,7 +71,7 @@ const sokkiData = {
         patternList: [
             {
                 dxList: ["16mm", "*-1/4>=", "any"],
-                dyList: ["-", "+"]
+                dyList: ["-", "any"] // "any"ではなく"+"のほうが正しいが、手振れ補正との調整がむずい…
             }
         ]
     },
