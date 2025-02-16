@@ -12,7 +12,14 @@ class OtehonCanvas {
         
         const tmpCanvas = new OffscreenCanvas(400, 400);
         const tmpContext = tmpCanvas.getContext("2d", {willReadFrequently: true});
-        tmpContext.font = "200px Xim-Sans";
+
+        const hira16mmReg = /^(け|こ|せ|そ|て|と|ね|の|へ|ほ|め|も|よ|れ|ろ|ぺ|ぽ|しょ|にょ|ぴゅ|ぴょ)$/;
+        if (hira16mmReg.test(hira)) {
+            tmpContext.font = "235px Xim-Sans";
+        }
+        else {
+            tmpContext.font = "200px Xim-Sans";
+        }
         tmpContext.fillStyle = "rgba(0, 0, 0, 0.5)";
         tmpContext.textAlign = "center";
         tmpContext.textBaseline = "middle";
