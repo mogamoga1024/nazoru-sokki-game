@@ -725,3 +725,16 @@ const sokkiData = {
     }
 };
 
+for (const hira of "かきくけこ") {
+    const patternList = sokkiData[hira].patternList;
+    const base = patternList[0];
+    patternList.push({
+        dxList: [...base.dxList],
+        dyList: ["-4mm", ...base.dyList]
+    });
+    patternList.push({
+        dxList: [...base.dxList],
+        dyList: ["4mm", ...base.dyList]
+    });
+}
+
