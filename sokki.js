@@ -85,13 +85,13 @@ class Sokki {
         }
         
         if (this.#dyList.length === 0 && this.#currentDySign === 0) {
-            this.#currentDySign = Math.sign(this.#antiShake(y - this.#prevVertexY, hira));
+            this.#currentDySign = Math.sign(this.#antiShake(y - this.#prevVertexY, hira, true));
         }
         else {
             const dySign = Math.sign(y - this.#prevY);
             if (dySign != 0 && this.#currentDySign != dySign) {
                 const dy = this.#prevY - this.#prevVertexY;
-                if (this.#antiShake(dy, hira) !== 0) {
+                if (this.#antiShake(dy, hira, true) !== 0) {
                     this.#currentDySign = dySign;
                     this.#dyList.push(dy);
                     this.#prevVertexY = this.#prevY;
@@ -109,7 +109,7 @@ class Sokki {
             this.#dxList.push(dx);
         }
         
-        const dy = this.#antiShake(y - this.#prevVertexY, hira);
+        const dy = this.#antiShake(y - this.#prevVertexY, hira, true);
         if (dy != 0) {
             this.#dyList.push(dy);
         }
@@ -169,10 +169,13 @@ class Sokki {
         this.#dyList = f(this.#dyList);
     }
 
-    #antiShake(value, hira) {
+    #antiShake(value, hira, isDy = false) {
         let max = 4;
-        if (/^(う|か|き|く|け|こ|つ)$/.test(hira)) {
+        if (isDy && /^(う|つ)$/.test(hira)) {
             max = 8;
+        }
+        else if (/^(か|き|く|け|こ)$/.test(hira)) {
+            max = 13;
         }
         if (Math.abs(value) <= max) {
             return 0;
