@@ -349,8 +349,7 @@ const app = {
                 return;
             }
 
-            // todo
-            const text = `なぞって覚える早稲田式速記アプリの${this.resultTitle}でランクは「${this.rank}」、スコアは「${this.score}」でした。`;
+            const text = `なぞって覚える早稲田式速記アプリの${this.resultTitle}お手本${this.otehon}でランクは「${this.rank}」、スコアは「${this.score}」でした。`;
 
             const link = document.createElement("a");
             link.href = `https://twitter.com/intent/tweet?url=https://mogamoga1024.github.io/nazoru-sokki-game/&text=${encodeURIComponent(text)}&hashtags=${encodeURIComponent("早稲田式速記")}`;
