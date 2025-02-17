@@ -248,6 +248,7 @@ const app = {
             const isOK = sokki.test(this.hira);
             if (isOK) {
                 this.correctCount++;
+                renzokuMizzCount = 0;
                 this.message = "正解！😆";
                 this.kaitou.push(速記文字一覧[this.hira]);
                 if (this.mondai.length === this.kaitou.length) {
@@ -408,6 +409,7 @@ const app = {
             canClickResultBtn = false;
             this.correctCount = 0;
             this.missCount = 0;
+            renzokuMizzCount = 0;
             this.clearTime = 0;
             startTime = performance.now();
             this.nigate = "";
@@ -440,7 +442,6 @@ const app = {
         initMondai() {
             this.message = "書いてね🤔";
             this.kaitou = [];
-            renzokuMizzCount = 0;
             this.mondai = mondaiList[this.mondaiListIndex];
             this.hira = this.mondai[0];
 
