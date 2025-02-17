@@ -29,7 +29,7 @@ class Sokki {
     // 4mm,8mm,16mmのpx
     #line4Len = 50;
     #line8Len = 100;
-    #line16Len = 200;
+    #line16Len = 200 * 1.1;
 
     get lineLength() {
         return this.#lineLength;
@@ -342,7 +342,7 @@ class Sokki {
                 else if (
                     Math.sign(aDif) === Math.sign(eDif) &&
                     Math.abs(aDif) > low &&
-                    Math.abs(aDif) <= Math.abs(eDif) * highAdj * 1.1
+                    Math.abs(aDif) <= Math.abs(eDif) * highAdj
                 ) {
                     isOK = true;
                 }
@@ -354,8 +354,8 @@ class Sokki {
                     else if (!(Math.abs(aDif) > low)) {
                         console.log("Math.abs(aDif) > low", Math.abs(aDif), low);
                     }
-                    else if (!(Math.abs(aDif) <= Math.abs(eDif) * highAdj * 1.1)) {
-                        console.log("Math.abs(aDif) <= Math.abs(eDif) * highAdj * 1.1", Math.abs(aDif), Math.abs(eDif) * highAdj * 1.1);
+                    else if (!(Math.abs(aDif) <= Math.abs(eDif) * highAdj)) {
+                        console.log("Math.abs(aDif) <= Math.abs(eDif) * highAdj", Math.abs(aDif), Math.abs(eDif) * highAdj);
                     }
                 }
     
