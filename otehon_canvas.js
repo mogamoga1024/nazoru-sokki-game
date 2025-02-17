@@ -18,6 +18,9 @@ class OtehonCanvas {
         if (hira16mmReg.test(hira)) {
             tmpContext.font = "235px Xim-Sans";
         }
+        else if (/^(ちゃ|ちゅ|ちょ)$/.test(hira)) {
+            tmpContext.font = "220px Xim-Sans";
+        }
         else {
             tmpContext.font = "200px Xim-Sans";
         }
