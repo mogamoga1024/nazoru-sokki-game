@@ -115,6 +115,10 @@ class Sokki {
         }
     }
 
+    isEmpty() {
+        return this.#dxList.length === 0 && this.#dyList.length === 0;
+    }
+
     test(hira) {
         this.#removeNoise(hira);
 

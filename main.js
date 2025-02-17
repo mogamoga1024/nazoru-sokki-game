@@ -299,6 +299,9 @@ const app = {
                     }
                 }
             }
+            else if (sokki.isEmpty()) {
+                drawingCanvas.clear();
+            }
             else {
                 this.missCount++;
                 renzokuMizzCount++;
