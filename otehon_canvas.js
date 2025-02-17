@@ -14,7 +14,7 @@ class OtehonCanvas {
         const tmpContext = tmpCanvas.getContext("2d", {willReadFrequently: true});
 
         const hira4mmReg = /^(あ|い|う|え|お|つ|わ)$/;
-        const hira16mmReg = /^(け|こ|せ|そ|て|と|ね|の|へ|ほ|め|も|よ|れ|ろ|ぺ|ぽ|しょ|にょ|ぴゅ|ぴょ)$/;
+        const hira16mmReg = /^(け|こ|せ|そ|て|と|ね|の|へ|ほ|め|も|よ|れ|ろ|ぷ|ぺ|ぽ|しょ|にょ|ぴゅ|ぴょ)$/;
         if (hira16mmReg.test(hira)) {
             tmpContext.font = "235px Xim-Sans";
         }
