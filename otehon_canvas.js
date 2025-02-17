@@ -25,13 +25,13 @@ class OtehonCanvas {
             tmpContext.font = "200px Xim-Sans";
         }
         if (hira4mmReg.test(hira)) {
-            tmpContext.fillStyle = "rgba(255, 0, 0, 0.5)";
+            tmpContext.fillStyle = "rgba(255, 0, 0, 0.2)";
         }
         else if (hira16mmReg.test(hira)) {
-            tmpContext.fillStyle = "rgba(0, 0, 255, 0.5)";
+            tmpContext.fillStyle = "rgba(0, 0, 255, 0.2)";
         }
         else {
-            tmpContext.fillStyle = "rgba(0, 255, 0, 0.5)";
+            tmpContext.fillStyle = "rgba(0, 255, 0, 0.2)";
         }
         tmpContext.textAlign = "center";
         tmpContext.textBaseline = "middle";
