@@ -35,7 +35,6 @@ const app = {
             message: "書いてね🤔",
 
             hira: "",
-            sokkiLength: "4mm", // todo
 
             resultTitle: "",
             clearTime: 0,
@@ -239,7 +238,6 @@ const app = {
             }
 
             sokki.changeLineColorIfNeed(this.$refs.sokkiCanvas, x, y);
-            this.sokkiLength = sokki.lineLength;
             
             drawingCanvas.drawEnd(x, y, sokki.lineColor.hex);
 
@@ -323,7 +321,6 @@ const app = {
             }
 
             sokki.changeLineColorIfNeed(this.$refs.sokkiCanvas, x, y);
-            this.sokkiLength = sokki.lineLength;
 
             drawingCanvas.draw(x, y, sokki.lineColor.hex);
 
