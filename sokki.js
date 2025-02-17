@@ -123,6 +123,7 @@ class Sokki {
         this.#removeNoise(hira);
 
         console.log("-----------------");
+        console.log(hira);
         console.log("実際値");
         console.log(this.#dxList, this.#dyList);
 
