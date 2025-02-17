@@ -73,11 +73,7 @@ const app = {
         });
     },
     mounted() {
-        // debug
-        
-        // isPC = false;
-        
-        // this.onClickPlay();
+        // noop
     },
     watch: {
         scene(_, oldScene) {
@@ -402,9 +398,9 @@ const app = {
                 mondaiList = 実践問題リスト生成(type === "全部");
             }
 
-            mondaiList = [
-                ["つ", "つ", "つ", "つ", "つ", "つ"],
-            ];
+            // mondaiList = [
+            //     ["つ", "つ", "つ", "つ", "つ", "つ"],
+            // ];
 
             // DOMのCanvasが存在しないとinitCanvasがエラーになるため待つ
             await this.$nextTick();

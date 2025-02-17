@@ -172,11 +172,23 @@ class Sokki {
 
         this.#dxList = f(this.#dxList);
         this.#dyList = f(this.#dyList);
+
+        if (hira === "つ") {
+            // this.#dxListを破壊しつつ、後ろの2要素を取得する
+            const tailDxList = this.#dxList.splice(-2);
+            const dxList = [];
+            for (const dx of this.#dxList) {
+                if (Math.abs(dx) > 8) {
+                    dxList.push(dx);
+                }
+            }
+            this.#dxList = dxList.concat(tailDxList);
+        }
     }
 
     #antiShake(value, hira, isDx = true) {
         let ignoreDiff = 4;
-        if (isDx && /^(う|つ)$/.test(hira)) {
+        if (isDx && hira === "う") {
             ignoreDiff = 8;
         }
         else if (/^(か|き|く|け|こ)$/.test(hira)) {
