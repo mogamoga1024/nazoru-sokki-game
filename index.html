@@ -149,7 +149,11 @@
     </template>
 
     <template v-else-if="scene === 'result'">
-      <div id="result-title" v-html="resultTitle"></div>
+      <div id="result-title">
+        {{resultTitle}}
+        <br>
+        {{"お手本" + otehon}}
+      </div>
       <div id="rank">{{rank}}</div>
       <table id="result-table">
         <tr>

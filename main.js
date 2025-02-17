@@ -264,7 +264,6 @@ const app = {
                             if (gameConfig.order !== "") {
                                 resultTitle += `（${gameConfig.order}）`;
                             }
-                            resultTitle += `<br>お手本${this.otehon}`;
                             this.resultTitle = resultTitle;
 
                             const nigateList = Array.from(nigateCountMap).sort((a, b) => b[1] - a[1]).map(a => a[0]);
@@ -350,14 +349,13 @@ const app = {
             }
 
             // todo
+            const text = `なぞって覚える早稲田式速記アプリの${this.resultTitle}でランクは「${this.rank}」、スコアは「${this.score}」でした。`;
 
-            // const text = `四択で覚える早稲田式速記アプリの${this.resultTitle}でランクは「${this.rank}」、スコアは「${this.score}」でした。`;
-
-            // const link = document.createElement("a");
-            // link.href = `https://twitter.com/intent/tweet?url=https://mogamoga1024.github.io/nazoru-sokki-game/&text=${encodeURIComponent(text)}&hashtags=${encodeURIComponent("早稲田式速記")}`;
-            // link.target = "_blank";
-            // link.rel = "noopener noreferrer";
-            // link.click();
+            const link = document.createElement("a");
+            link.href = `https://twitter.com/intent/tweet?url=https://mogamoga1024.github.io/nazoru-sokki-game/&text=${encodeURIComponent(text)}&hashtags=${encodeURIComponent("早稲田式速記")}`;
+            link.target = "_blank";
+            link.rel = "noopener noreferrer";
+            link.click();
         },
 
         async startCountdown() {
