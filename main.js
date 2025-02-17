@@ -93,22 +93,22 @@ const app = {
             return Math.floor(s * 100);
         },
         rank() {
-            if (this.score >= 7000) {
+            if (this.score >= 6000) {
                 return "S";
             }
-            else if (this.score >= 6000) {
+            else if (this.score >= 5000) {
                 return "A+";
             }
-            else if (this.score >= 5000) {
+            else if (this.score >= 4000) {
                 return "A";
             }
-            else if (this.score >= 4000) {
+            else if (this.score >= 3000) {
                 return "B+";
             }
-            else if (this.score >= 3000) {
+            else if (this.score >= 2000) {
                 return "B";
             }
-            else if (this.score >= 2000) {
+            else if (this.score >= 1000) {
                 return "C+";
             }
             return "C";
@@ -392,10 +392,11 @@ const app = {
                 mondaiList = 実践問題リスト生成(type === "全部");
             }
 
-            // mondaiList = [
-            //     ["き", "け", "き", "け", "き", "け"],
-            //     // ["つ", "つ", "つ", "つ", "つ", "つ"],
-            // ];
+            mondaiList = [
+                ["みゅ", "みょ", "にゅ"]
+                // ["き", "け", "き", "け", "き", "け"],
+                // ["つ", "つ", "つ", "つ", "つ", "つ"],
+            ];
 
             // DOMのCanvasが存在しないとinitCanvasがエラーになるため待つ
             await this.$nextTick();
