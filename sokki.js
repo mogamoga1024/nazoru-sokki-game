@@ -174,14 +174,14 @@ class Sokki {
     }
 
     #antiShake(value, hira, isDx = true) {
-        let max = 4;
+        let ignoreDiff = 4;
         if (isDx && /^(う|つ)$/.test(hira)) {
-            max = 8;
+            ignoreDiff = 8;
         }
         else if (/^(か|き|く|け|こ)$/.test(hira)) {
-            max = 13;
+            ignoreDiff = 13;
         }
-        if (Math.abs(value) <= max) {
+        if (Math.abs(value) <= ignoreDiff) {
             return 0;
         }
         else {
