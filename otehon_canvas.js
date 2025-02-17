@@ -24,14 +24,17 @@ class OtehonCanvas {
         else {
             tmpContext.font = "200px Xim-Sans";
         }
+
+        const alpha = isPC ? 0.5 : 0.2;
+
         if (hira4mmReg.test(hira)) {
-            tmpContext.fillStyle = "rgba(255, 0, 0, 0.2)";
+            tmpContext.fillStyle = `rgba(255, 0, 0, ${alpha})`;
         }
         else if (hira16mmReg.test(hira)) {
-            tmpContext.fillStyle = "rgba(0, 0, 255, 0.2)";
+            tmpContext.fillStyle = `rgba(0, 0, 255, ${alpha})`;
         }
         else {
-            tmpContext.fillStyle = "rgba(0, 255, 0, 0.2)";
+            tmpContext.fillStyle = `rgba(0, 255, 0, ${alpha})`;
         }
         tmpContext.textAlign = "center";
         tmpContext.textBaseline = "middle";
