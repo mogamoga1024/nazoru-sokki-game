@@ -184,6 +184,17 @@ class Sokki {
             }
             this.#dxList = dxList.concat(tailDxList);
         }
+        else if (hira === "き" || hira === "け") {
+            // this.#dyListを破壊しつつ、後ろの2要素を取得する
+            const tailDyList = this.#dyList.splice(-2);
+            const dyList = [];
+            for (const dy of this.#dyList) {
+                if (Math.abs(dy) > 13) {
+                    dyList.push(dy);
+                }
+            }
+            this.#dyList = dyList.concat(tailDyList);
+        }
     }
 
     #antiShake(value, hira, isDx = true) {
@@ -191,7 +202,7 @@ class Sokki {
         if (isDx && hira === "う") {
             ignoreDiff = 8;
         }
-        else if (/^(か|き|く|け|こ)$/.test(hira)) {
+        else if (!isDx && /^(か|く|こ)$/.test(hira)) {
             ignoreDiff = 13;
         }
         if (Math.abs(value) <= ignoreDiff) {
