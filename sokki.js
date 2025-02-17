@@ -304,14 +304,14 @@ class Sokki {
                 //     low = Math.abs(eDif) * lowAdj;
                 //     highAdj = Number.POSITIVE_INFINITY;
                 // }
-                else if (expected === "6mm<=") {
-                    const line6Len = (this.#line4Len + this.#line8Len) / 2;
+                else if (expected === "5mm<=") {
+                    const line6Len = this.#line4Len * 5/4;
                     eDif = line6Len;
                     low = Math.abs(eDif) * lowAdj;
                     highAdj = Number.POSITIVE_INFINITY;
                 }
-                else if (expected === "-6mm<=") {
-                    const line6Len = (this.#line4Len + this.#line8Len) / 2;
+                else if (expected === "-5mm<=") {
+                    const line6Len = this.#line4Len * 5/4;
                     eDif = -line6Len;
                     low = Math.abs(eDif) * lowAdj;
                     highAdj = Number.POSITIVE_INFINITY;
