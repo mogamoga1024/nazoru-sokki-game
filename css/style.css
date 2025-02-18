@@ -1,7 +1,7 @@
 
 @font-face {
 	font-family: "Xim-Sans";
-	src: url(./Xim-Sans-Handwritten.ttf);
+	src: url(../asset/Xim-Sans-Handwritten.ttf);
   font-display: block; /* フォントが読み込まれるまで代替フォントを出さない */
 }
 
