@@ -245,6 +245,7 @@ const app = {
 
             const isOK = sokki.test(this.hira);
             if (isOK) {
+                okSound.play();
                 this.correctCount++;
                 renzokuMizzCount = 0;
                 this.message = "正解！😆";
@@ -296,6 +297,7 @@ const app = {
                 drawingCanvas.clear();
             }
             else {
+                ngSound.play();
                 this.missCount++;
                 renzokuMizzCount++;
                 this.message = "違う…😢";
