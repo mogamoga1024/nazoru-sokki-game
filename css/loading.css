@@ -7,7 +7,7 @@
   border-top: 5px solid #3498db;
   border-radius: 50%;
   animation: spin 1s linear infinite;
-  color: white;
+  color: #f8f9fa;
 }
 
 @keyframes spin {
