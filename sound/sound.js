@@ -8,6 +8,7 @@ class Sound {
 
     static loadSound(path, volume = 1) {
         const audio = new Audio(path);
+        audio.load();
         return new Promise(resolve => {
             audio.oncanplaythrough = () => {
                 resolve(new Sound(audio, volume));
