@@ -3,30 +3,31 @@ let okSound = null;
 let ngSound = null;
 
 {
-    let completeCount = 0;
+    let isFontLoaded = false;
+    let isSoundLoaded = false;
 
     Promise.all([
-        Sound.loadSound("asset/ピコン.mp3"),
-        Sound.loadSound("asset/プホッ.mp3"),
+        loadSound("asset/ピコン.mp3"),
+        loadSound("asset/プホッ.mp3"),
     ]).then((result) => {
-        completeCount++;
+        isSoundLoaded = true;
         okSound = result[0];
         ngSound = result[1];
         endIfEnd();
     });
 
     document.fonts.onloadingdone = () => {
-        completeCount++;
+        isFontLoaded = true;
         endIfEnd();
     };
 
     document.fonts.ready.then(() => {
-        completeCount++;
+        isFontLoaded = true;
         endIfEnd();
     });
 
     function endIfEnd() {
-        if (completeCount >= 2) {
+        if (isFontLoaded && isSoundLoaded) {
             const $loading = document.querySelector("#loading");
             const $app = document.querySelector("#app");
             $loading.style.display = "none";
