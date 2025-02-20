@@ -454,7 +454,7 @@ const app = {
             const soundList = await Promise.all(promiseList);
 
             for (let i = 0; i < textList.length; i++) {
-                const mondai = text2mondai(textList[i], type === "全部");
+                const mondai = text2mondai(textList[i], type !== "清音");
                 const sound = soundList[i];
                 mondaiList.push({mondai, sound});
             }
