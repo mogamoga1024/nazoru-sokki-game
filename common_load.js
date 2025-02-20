@@ -28,9 +28,9 @@ let ngSound = null;
 
     function endIfEnd() {
         if (isFontLoaded && isSoundLoaded) {
-            const $loading = document.querySelector("#loading");
+            const $load = document.querySelector("#common-load");
             const $app = document.querySelector("#app");
-            $loading.style.display = "none";
+            $load.style.display = "none";
             $app.style.display = "";
         }
     }

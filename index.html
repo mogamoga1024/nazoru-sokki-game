@@ -26,7 +26,7 @@
   <link rel="shortcut icon" href="asset/icon.png">
   <link rel="apple-touch-icon" href="asset/icon.png">
 
-  <link rel="stylesheet" href="css/loading.css">
+  <link rel="stylesheet" href="css/common_load.css">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/mobile.css">
   <link rel="stylesheet" href="css/countdown.css">
@@ -38,7 +38,7 @@
   <script src="https://cdn.jsdelivr.net/npm/howler@2.2.4/dist/howler.min.js"></script>
 </head>
 <body>
-  <div id="loading">ロード中…</div>
+  <div id="common-load">ロード中…</div>
   <div id="app" v-cloak style="display: none;">
     <template v-if="scene === 'top'">
       <h1>なぞって覚える早稲田式速記アプリ</h1>
@@ -144,6 +144,9 @@
     </template>
 
     <template v-else-if="scene === 'countdown'">
+      <div id="game-loading">
+        <!-- todo -->
+      </div>
       <div id="countdown">{{countdownText}}</div>
     </template>
 
@@ -229,7 +232,7 @@
   <script src="sound/sound.js"></script>
   <script src="mondai.js"></script>
   <script src="utils.js"></script>
-  <script src="loading.js"></script>
+  <script src="common_load.js"></script>
   <script src="main.js"></script>
 </body>
 </html>
