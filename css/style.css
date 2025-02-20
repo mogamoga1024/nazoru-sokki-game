@@ -45,6 +45,12 @@ h2 {
   margin: 1rem auto 0;
 }
 
+.note {
+  width: fit-content;
+  margin: 0 auto;
+  color: red;
+}
+
 fieldset {
   border-radius: 8px;
 }
