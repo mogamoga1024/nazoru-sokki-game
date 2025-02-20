@@ -279,8 +279,11 @@ const app = {
                                 canClickResultBtn = true;
                             }, 800);
 
-                            // todo
                             // 音声の開放
+                            for (const mondai of mondaiList) {
+                                mondai.sound.unload();
+                                mondai.sound = null;
+                            }
                         }
                         else {
                             this.initMondai();
