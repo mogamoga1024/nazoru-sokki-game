@@ -11,6 +11,7 @@ let drawingCanvas = null;
 let sokki = null;
 
 let mondaiList = [];
+let soundDic = new Map();
 
 const nextMondaiInterval = 400;
 
@@ -278,6 +279,10 @@ const app = {
                             setTimeout(() => {
                                 canClickResultBtn = true;
                             }, 800);
+
+                            // todo
+                            // 音声の開放
+                            soundDic = null;
                         }
                         else {
                             this.initMondai();
@@ -372,6 +377,11 @@ const app = {
             });
 
             this.countdownText = "3"
+
+            // todo
+            this.initMondaiList();
+            await this.initSoundDic();
+
             await p(() => this.countdownText = "2");
             await p(() => this.countdownText = "1");
             await p(() => this.countdownText = "GO!");
@@ -380,26 +390,7 @@ const app = {
 
         async startGame() {
             this.scene = "game";
-            const {course, order, type} = gameConfig;
             
-            this.mondaiListIndex = 0;
-            if (course === "基礎") {
-                const hiraList = 平仮名一覧(type);
-                mondaiList = hiraList.map(hira => [hira]);
-                if (order === "ランダム") {
-                    shuffle(mondaiList);
-                }
-            }
-            else if (course === "実践") {
-                mondaiList = 実践問題リスト生成(type === "全部");
-            }
-
-            // mondaiList = [
-            //     ["みゅ", "みょ", "にゅ"]
-            //     // ["き", "け", "き", "け", "き", "け"],
-            //     // ["つ", "つ", "つ", "つ", "つ", "つ"],
-            // ];
-
             // DOMのCanvasが存在しないとinitCanvasがエラーになるため待つ
             await this.$nextTick();
 
@@ -439,6 +430,42 @@ const app = {
             drawingCanvas = new DrawingCanvas(this.$refs.sokkiCanvas);
         },
 
+        initMondaiList() {
+            const {course, order, type} = gameConfig;
+
+            this.mondaiListIndex = 0;
+            if (course === "基礎") {
+                const hiraList = 平仮名一覧(type);
+                mondaiList = hiraList.map(hira => [hira]);
+                if (order === "ランダム") {
+                    shuffle(mondaiList);
+                }
+            }
+            else if (course === "実践") {
+                mondaiList = 実践問題リスト生成(type === "全部");
+            }
+
+            // mondaiList = [
+            //     ["みゅ", "みょ", "にゅ"]
+            //     // ["き", "け", "き", "け", "き", "け"],
+            //     // ["つ", "つ", "つ", "つ", "つ", "つ"],
+            // ];
+        },
+
+        async initSoundDic() {
+            soundDic = new Map();
+            const promiseList = [];
+            for (const mondai of mondaiList) {
+                promiseList.push(loadSound(`asset/読み上げ/${mondai}.mp3`));
+            }
+            const soundList = await Promise.all(promiseList);
+            for (let i = 0; i < mondaiList.length; i++) {
+                const mondai = mondaiList[i];
+                const sound = soundList[i];
+                soundDic.set(mondai, sound);
+            }
+        },
+
         initMondai() {
             this.message = "書いてね🤔";
             this.kaitou = [];
@@ -450,6 +477,8 @@ const app = {
             if (this.otehon === "あり") {
                 otehonCanvas.draw(this.hira);
             }
+
+            soundDic.get(this.mondai).play();
         },
     }
 };
