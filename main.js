@@ -11,7 +11,6 @@ let drawingCanvas = null;
 let sokki = null;
 
 let mondaiList = [];
-let soundDic = new Map();
 
 const nextMondaiInterval = 400;
 
@@ -282,7 +281,6 @@ const app = {
 
                             // todo
                             // 音声の開放
-                            soundDic = null;
                         }
                         else {
                             this.initMondai();
@@ -378,9 +376,7 @@ const app = {
 
             this.countdownText = "3"
 
-            // todo
-            this.initMondaiList();
-            await this.initSoundDic();
+            await this.initMondaiList();
 
             await p(() => this.countdownText = "2");
             await p(() => this.countdownText = "1");
@@ -430,46 +426,41 @@ const app = {
             drawingCanvas = new DrawingCanvas(this.$refs.sokkiCanvas);
         },
 
-        initMondaiList() {
+        async initMondaiList() {
             const {course, order, type} = gameConfig;
 
+            let textList = [];
+            mondaiList = [];
             this.mondaiListIndex = 0;
             if (course === "基礎") {
-                const hiraList = 平仮名一覧(type);
-                mondaiList = hiraList.map(hira => [hira]);
+                textList = 平仮名一覧(type);
                 if (order === "ランダム") {
-                    shuffle(mondaiList);
+                    shuffle(textList);
                 }
             }
             else if (course === "実践") {
-                mondaiList = 実践問題リスト生成(type === "全部");
+                textList = 実践問題文リスト生成(type === "全部");
             }
 
-            // mondaiList = [
-            //     ["みゅ", "みょ", "にゅ"]
-            //     // ["き", "け", "き", "け", "き", "け"],
-            //     // ["つ", "つ", "つ", "つ", "つ", "つ"],
-            // ];
-        },
+            // memo：デバグで問題をテキトーに作りたいときは、ここでtextListをいじる
 
-        async initSoundDic() {
-            soundDic = new Map();
             const promiseList = [];
-            for (const mondai of mondaiList) {
-                promiseList.push(loadSound(`asset/読み上げ/${mondai}.mp3`));
+            for (const text of textList) {
+                promiseList.push(loadSound(`asset/読み上げ/${text}.mp3`));
             }
             const soundList = await Promise.all(promiseList);
-            for (let i = 0; i < mondaiList.length; i++) {
-                const mondai = mondaiList[i];
+
+            for (let i = 0; i < textList.length; i++) {
+                const mondai = text2mondai(textList[i], type === "全部");
                 const sound = soundList[i];
-                soundDic.set(mondai, sound);
+                mondaiList.push({mondai, sound});
             }
         },
 
         initMondai() {
             this.message = "書いてね🤔";
             this.kaitou = [];
-            this.mondai = mondaiList[this.mondaiListIndex];
+            this.mondai = mondaiList[this.mondaiListIndex].mondai;
             this.hira = this.mondai[0];
 
             drawingCanvas.clear();
@@ -478,7 +469,8 @@ const app = {
                 otehonCanvas.draw(this.hira);
             }
 
-            soundDic.get(this.mondai).play();
+            const sound = mondaiList[this.mondaiListIndex].sound;
+            sound.play();
         },
     }
 };

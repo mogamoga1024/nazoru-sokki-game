@@ -576,9 +576,8 @@ function text2mondai(text, needぱきゃ) {
     return mondai;
 }
 
-function 実践問題リスト生成(needぱきゃ, 問題数 = 20) {
+function 実践問題文リスト生成(needぱきゃ, 問題数 = 20) {
     const textList = [];
-    const mondaiList = [];
 
     for (let i = 0; i < 問題数; i++) {
         const text = 実践問題文生成(needぱきゃ);
@@ -588,9 +587,7 @@ function 実践問題リスト生成(needぱきゃ, 問題数 = 20) {
             continue;
         }
         textList.push(text);
-        const mondai = text2mondai(text, needぱきゃ);
-        mondaiList.push(mondai);
     }
 
-    return mondaiList;
+    return textList;
 }
