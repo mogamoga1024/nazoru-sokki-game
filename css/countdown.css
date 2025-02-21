@@ -2,6 +2,7 @@
 #game-load {
   width: fit-content;
   margin: 1rem auto 0;
+  line-height: 8rem;
 }
 
 #countdown {
