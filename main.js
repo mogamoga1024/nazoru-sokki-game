@@ -279,12 +279,6 @@ const app = {
                             setTimeout(() => {
                                 canClickResultBtn = true;
                             }, 800);
-
-                            // 音声の開放
-                            for (const mondai of mondaiList) {
-                                mondai.sound.unload();
-                                mondai.sound = null;
-                            }
                         }
                         else {
                             this.initMondai();
@@ -347,7 +341,7 @@ const app = {
             if (!canClickResultBtn) {
                 return;
             }
-            this.startCountdown();
+            this.startCountdown(true);
         },
 
         onClickTweet() {
@@ -364,7 +358,7 @@ const app = {
             link.click();
         },
 
-        async startCountdown() {
+        async startCountdown(isContinue = false) {
             this.scene = "countdown";
 
             const p = func => new Promise((resolve, reject) => {
@@ -391,7 +385,7 @@ const app = {
                 this.moon = moons[moonIndex];
             }, 100);
 
-            await this.initMondaiList();
+            await this.initMondaiList(isContinue);
 
             this.countdownText = "3";
             await p(() => this.countdownText = "2");
@@ -442,12 +436,26 @@ const app = {
             drawingCanvas = new DrawingCanvas(this.$refs.sokkiCanvas);
         },
 
-        async initMondaiList() {
+        async initMondaiList(isContinue = false) {
             const {course, order, type} = gameConfig;
+
+            this.mondaiListIndex = 0;
+
+            if (isContinue && course === "基礎") {
+                if (order === "ランダム") {
+                    shuffle(mondaiList);
+                }
+                return;
+            }
+
+            // 音声の開放
+            for (const mondai of mondaiList) {
+                mondai.sound.unload();
+                mondai.sound = null;
+            }
 
             let textList = [];
             mondaiList = [];
-            this.mondaiListIndex = 0;
             if (course === "基礎") {
                 textList = 平仮名一覧(type);
                 if (order === "ランダム") {
@@ -459,6 +467,14 @@ const app = {
             }
 
             // memo：デバグで問題をテキトーに作りたいときは、ここでtextListをいじる
+            // todo
+            textList = [
+                "あ",
+                "い",
+                "う",
+                "え",
+                "お"
+            ]
 
             const promiseList = [];
             for (const text of textList) {
