@@ -27,6 +27,7 @@ const app = {
             otehon: "あり",
             sokkiTable: [],
 
+            moon: "🌑",
             countdownText: "3",
 
             mondaiListIndex: 0,
@@ -378,6 +379,18 @@ const app = {
             });
 
             this.countdownText = "";
+            const moons = ["🌑", "🌘", "🌗", "🌖", "🌕", "🌔", "🌓", "🌒"];
+            let moonIndex = 0;
+            this.moon = moons[moonIndex];
+            const moonTimerId = setInterval(() => {
+                if (this.countdownText != "") {
+                    clearInterval(moonTimerId);
+                    return;
+                }
+                moonIndex = (moonIndex + 1) % moons.length;
+                this.moon = moons[moonIndex];
+            }, 100);
+
             await this.initMondaiList();
 
             this.countdownText = "3";

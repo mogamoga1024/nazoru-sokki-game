@@ -145,7 +145,7 @@
 
     <template v-else-if="scene === 'countdown'">
       <div id="game-load" v-if="countdownText === ''">
-        Now Loading...
+        Now Loading...{{moon}}
       </div>
       <div id="countdown" v-else>{{countdownText}}</div>
     </template>
