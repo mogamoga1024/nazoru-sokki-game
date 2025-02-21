@@ -27,6 +27,7 @@ const app = {
     data() {
         return {
             scene: "top", // top, countdown, game, result
+            needBgm: false,
             otehon: "あり",
             sokkiTable: [],
 
@@ -183,49 +184,6 @@ const app = {
             return {x, y};
         },
 
-        initSokkiTable() {
-            const hiraTable = [
-                ["あ", "い", "う", "え", "お"],
-                ["か", "き", "く", "け", "こ"],
-                ["さ", "し", "す", "せ", "そ"],
-                ["た", "ち", "つ", "て", "と"],
-                ["な", "に", "ぬ", "ね", "の"],
-                ["は", "ひ", "ふ", "へ", "ほ"],
-                ["ま", "み", "む", "め", "も"],
-                ["や", "", "ゆ", "", "よ"],
-                ["ら", "り", "る", "れ", "ろ"],
-                ["わ", "", "", "", ""],
-                ["ぱ", "ぴ", "ぷ", "ぺ", "ぽ"],
-                ["きゃ", "", "きゅ", "", "きょ"],
-                ["しゃ", "", "しゅ", "", "しょ"],
-                ["ちゃ", "", "ちゅ", "", "ちょ"],
-                ["にゃ", "", "にゅ", "", "にょ"],
-                ["ひゃ", "", "ひゅ", "", "ひょ"],
-                ["みゃ", "", "みゅ", "", "みょ"],
-                ["りゃ", "", "りゅ", "", "りょ"],
-                ["ぴゃ", "", "ぴゅ", "", "ぴょ"],
-            ];
-    
-            for (const hiraRow of hiraTable) {
-                const sokkiRow = [];
-                let pad = "";
-                if (["さ", "た", "や", "しゃ"].includes(hiraRow[0])) {
-                    pad = "top";
-                }
-                else if (["は", "ら", "ぱ", "ぴゃ"].includes(hiraRow[0])) {
-                    pad = "bottom";
-                }
-                for (const hira of hiraRow) {
-                    let sokki = "";
-                    if (hira !== "") {
-                        sokki = 速記文字一覧[hira];
-                    }
-                    sokkiRow.push({hira, sokki, pad});
-                }
-                this.sokkiTable.push(sokkiRow);
-            }
-        },
-
         canvasDrawStart(x, y) {
             drawingCanvas.drawStart();
             sokki = new Sokki(x, y);
@@ -359,6 +317,54 @@ const app = {
             link.target = "_blank";
             link.rel = "noopener noreferrer";
             link.click();
+        },
+
+        onClickBgm() {
+            this.needBgm = !this.needBgm;
+            // todo
+        },
+
+        initSokkiTable() {
+            const hiraTable = [
+                ["あ", "い", "う", "え", "お"],
+                ["か", "き", "く", "け", "こ"],
+                ["さ", "し", "す", "せ", "そ"],
+                ["た", "ち", "つ", "て", "と"],
+                ["な", "に", "ぬ", "ね", "の"],
+                ["は", "ひ", "ふ", "へ", "ほ"],
+                ["ま", "み", "む", "め", "も"],
+                ["や", "", "ゆ", "", "よ"],
+                ["ら", "り", "る", "れ", "ろ"],
+                ["わ", "", "", "", ""],
+                ["ぱ", "ぴ", "ぷ", "ぺ", "ぽ"],
+                ["きゃ", "", "きゅ", "", "きょ"],
+                ["しゃ", "", "しゅ", "", "しょ"],
+                ["ちゃ", "", "ちゅ", "", "ちょ"],
+                ["にゃ", "", "にゅ", "", "にょ"],
+                ["ひゃ", "", "ひゅ", "", "ひょ"],
+                ["みゃ", "", "みゅ", "", "みょ"],
+                ["りゃ", "", "りゅ", "", "りょ"],
+                ["ぴゃ", "", "ぴゅ", "", "ぴょ"],
+            ];
+    
+            for (const hiraRow of hiraTable) {
+                const sokkiRow = [];
+                let pad = "";
+                if (["さ", "た", "や", "しゃ"].includes(hiraRow[0])) {
+                    pad = "top";
+                }
+                else if (["は", "ら", "ぱ", "ぴゃ"].includes(hiraRow[0])) {
+                    pad = "bottom";
+                }
+                for (const hira of hiraRow) {
+                    let sokki = "";
+                    if (hira !== "") {
+                        sokki = 速記文字一覧[hira];
+                    }
+                    sokkiRow.push({hira, sokki, pad});
+                }
+                this.sokkiTable.push(sokkiRow);
+            }
         },
 
         async startCountdown() {

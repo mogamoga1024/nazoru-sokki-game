@@ -43,6 +43,15 @@
     <template v-if="scene === 'top'">
       <h1>なぞって覚える早稲田式速記アプリ</h1>
 
+      <div id="bgm" @click="onClickBgm">
+        <template v-if="needBgm">
+          BGM
+        </template>
+        <s v-else>
+          BGM
+        </s>
+      </div>
+
       <div class="description">
         <div class="note">⚠音が鳴ります！</div>
         <div style="margin-top: 0.25rem;">
