@@ -24,6 +24,8 @@ let renzokuMizzCount = 0;
 
 let canClickResultBtn = false;
 
+let is全文debug = false;
+
 const app = {
     data() {
         return {
@@ -77,6 +79,9 @@ const app = {
                 this.scene = "top";
             }
         });
+
+        const params = (new URL(window.location.href)).searchParams;
+        is全文debug = params.has("d");
     },
     mounted() {
         // noop
@@ -208,7 +213,7 @@ const app = {
             sokki.lastUpdate(x, y, this.hira);
 
             const isOK = sokki.test(this.hira);
-            if (isOK) {
+            if (isOK || is全文debug) {
                 okSound.play();
                 this.correctCount++;
                 renzokuMizzCount = 0;
@@ -329,7 +334,7 @@ const app = {
             if (this.needBgm) {
                 if (bgm === null) {
                     this.canClickBgmBtn = false;
-                    const volume = isPC ? 0.4 : 0.15;
+                    const volume = isPC ? 0.3 : 0.15;
                     loadSound("asset/bgm.mp3", {loop: true, volume}).then(sound => {
                         bgm = sound;
                         bgm.play();
@@ -507,6 +512,11 @@ const app = {
             //     "お"
             // ];
 
+            if (is全文debug) {
+                textList = デバグ全問();
+                this.mondaiListIndex = 0;
+            }
+
             const promiseList = [];
             for (const text of textList) {
                 promiseList.push(loadSound(`asset/読み上げ/${text}.mp3`));
@@ -514,7 +524,7 @@ const app = {
             const soundList = await Promise.all(promiseList);
 
             for (let i = 0; i < textList.length; i++) {
-                const mondai = text2mondai(textList[i], type !== "清音");
+                const mondai = text2mondai(textList[i], type !== "清音" || is全文debug);
                 const sound = soundList[i];
                 mondaiList.push({id: i + 1, mondai, sound});
             }
