@@ -4,8 +4,9 @@ let prevScene = "";
 let gameConfig = {
     course: "", order: "", type: ""
 };
-let prevCourse = "";
-let prevType = "";
+let prevGameConfig = {
+    course: "", order: "", type: ""
+};
 
 let isPC = true;
 let otehonCanvas = null;
@@ -140,8 +141,7 @@ const app = {
         onClickPlay(course, order, type) {
             console.log(course, order, type);
             history.pushState(null, "", "");
-            prevCourse = gameConfig.course;
-            prevType = gameConfig.type;
+            prevGameConfig = {...gameConfig};
             gameConfig = {course, order, type};
             this.startCountdown();
         },
@@ -442,12 +442,16 @@ const app = {
 
         async initMondaiList() {
             const {course, order, type} = gameConfig;
+            const {prevCourse, prevOrder, prevType} = prevGameConfig;
 
             this.mondaiListIndex = 0;
 
             if (prevCourse === course && prevType === type && course === "基礎") {
                 if (order === "ランダム") {
                     shuffle(mondaiList);
+                }
+                else if (prevOrder === "ランダム") {
+                    mondaiList.sort((a, b) => a.mondai[0].id - b.mondai[0].id);
                 }
                 return;
             }
@@ -462,9 +466,6 @@ const app = {
             mondaiList = [];
             if (course === "基礎") {
                 textList = 平仮名一覧(type);
-                if (order === "ランダム") {
-                    shuffle(textList);
-                }
             }
             else if (course === "実践") {
                 textList = 実践問題文リスト生成(type === "全部");
@@ -488,7 +489,11 @@ const app = {
             for (let i = 0; i < textList.length; i++) {
                 const mondai = text2mondai(textList[i], type !== "清音");
                 const sound = soundList[i];
-                mondaiList.push({mondai, sound});
+                mondaiList.push({id: i + 1, mondai, sound});
+            }
+
+            if (order === "ランダム") {
+                shuffle(mondaiList);
             }
         },
 
