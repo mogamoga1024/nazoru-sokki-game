@@ -40,17 +40,19 @@
 <body>
   <div id="common-load">ロード中…</div>
   <div id="app" v-cloak style="display: none;">
+
+    <div id="bgm" @click="onClickBgm">
+      <span v-if="needBgm"
+            :style="{opacity: canClickBgmBtn ? 1 : 0.5}">
+        BGM
+      </span>
+      <s v-else>
+        BGM
+      </s>
+    </div>
+
     <template v-if="scene === 'top'">
       <h1>なぞって覚える早稲田式速記アプリ</h1>
-
-      <div id="bgm" @click="onClickBgm">
-        <template v-if="needBgm">
-          BGM
-        </template>
-        <s v-else>
-          BGM
-        </s>
-      </div>
 
       <div class="description">
         <div class="note">⚠音が鳴ります！</div>
@@ -125,8 +127,9 @@
 
         <h2>クレジット</h2>
         <p>
-          フォント：<a href="https://github.com/XimcoYuzuriha/Xim_Sans" target="_blank" rel="noopener noreferrer">Xim Sans</a><br>
-          読み上げ：VOICEVOX:春日部つむぎ
+          フォント：Xim Sans<br>
+          読み上げ：VOICEVOX:春日部つむぎ<br>
+          BGM：【フリーBGM】 かわいい ポップ アップテンポ 明るい ライブ配信 作業用
         </p>
   
         <h2>ポエム(ﾖﾏﾅｸﾃｲｲﾖ)</h2>
@@ -139,6 +142,10 @@
           そのため判定が厳しかったりガバガバだったりします😫
           判定に不満があるかもしれませんが、厳密にやるならOCRを作るしかないです…😵
           <!-- 本格的なOCRに作ろうと思ったら200万円を優に越えるリソースが必要な気がします🤮🤮🤮 -->
+        </p>
+        <p>
+          ちなみにスマホがスリープ状態になると音声が鳴らなくなることがあります🤮
+          しゃーなしです😛
         </p>
         <p>
           前作もそうですが、リザルト画面のランクはかなりテキトーに作っています🥴

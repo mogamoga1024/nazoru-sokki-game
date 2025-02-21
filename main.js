@@ -1,4 +1,5 @@
 
+let bgm = null;
 let prevScene = "";
 
 let gameConfig = {
@@ -28,6 +29,7 @@ const app = {
         return {
             scene: "top", // top, countdown, game, result
             needBgm: false,
+            canClickBgmBtn: true,
             otehon: "あり",
             sokkiTable: [],
 
@@ -320,8 +322,26 @@ const app = {
         },
 
         onClickBgm() {
+            if (!this.canClickBgmBtn) {
+                return;
+            }
             this.needBgm = !this.needBgm;
-            // todo
+            if (this.needBgm) {
+                if (bgm === null) {
+                    this.canClickBgmBtn = false;
+                    loadSound("asset/bgm.mp3", {loop: true, volume: 0.15}).then(sound => {
+                        bgm = sound;
+                        bgm.play();
+                        this.canClickBgmBtn = true;
+                    });
+                }
+                else {
+                    bgm.play();
+                }
+            }
+            else {
+                bgm?.stop();
+            }
         },
 
         initSokkiTable() {
