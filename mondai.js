@@ -336,7 +336,7 @@ const 問題ぱ行 = [
     "ぷかぷか",
     "ぷりくら",
     "えいぷりる",
-    "ぎぷす",
+    "まちあぷ",
     
     // ぺ
     "ぺこぺこ",
@@ -591,4 +591,9 @@ function 実践問題文リスト生成(needぱきゃ, 問題数 = 20) {
     }
 
     return textList;
+}
+
+function デバグ全問() {
+    const textList = 問題あ系.concat(問題きゃ系, 問題ぱ行, 問題ぴゃ行);
+    return Array.from(new Set(textList));
 }
