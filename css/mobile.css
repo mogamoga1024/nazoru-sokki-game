@@ -1,5 +1,4 @@
 
-/* TODO 見直し */
 @media screen and (max-width: 510px) {
   .kiso-fieldset {
     max-width: none;
@@ -30,7 +29,10 @@
     font-size: 0.7rem;
   }
 
-  /* todo game-load */
+  #game-load {
+    margin-top: 2rem;
+    line-height: 6rem;
+  }
 
   #countdown {
     margin-top: 2rem;
