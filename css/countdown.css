@@ -1,4 +1,9 @@
 
+#game-load {
+  width: fit-content;
+  margin: 1rem auto 0;
+}
+
 #countdown {
   margin-top: 1rem;
   font-size: 8rem;

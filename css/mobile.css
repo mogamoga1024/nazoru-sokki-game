@@ -30,6 +30,8 @@
     font-size: 0.7rem;
   }
 
+  /* todo game-load */
+
   #countdown {
     margin-top: 2rem;
     font-size: 6rem;
@@ -44,7 +46,7 @@
     margin-left: 0.2rem;
   }
 
-  #sintyoku {
+  #mondai-sintyoku {
     margin-right: 0.2rem;
   }
 

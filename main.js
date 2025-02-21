@@ -80,7 +80,7 @@ const app = {
         }
     },
     computed: {
-        sintyoku() {
+        mondaiSintyoku() {
             return `${this.mondaiListIndex}/${mondaiList.length}`;
         },
         score() {
@@ -377,10 +377,10 @@ const app = {
                 }, 600);
             });
 
-            this.countdownText = "3"
-
+            this.countdownText = "";
             await this.initMondaiList();
 
+            this.countdownText = "3";
             await p(() => this.countdownText = "2");
             await p(() => this.countdownText = "1");
             await p(() => this.countdownText = "GO!");

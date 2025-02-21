@@ -144,10 +144,10 @@
     </template>
 
     <template v-else-if="scene === 'countdown'">
-      <div id="game-loading">
-        <!-- todo -->
+      <div id="game-load" v-if="countdownText === ''">
+        Now Loading...
       </div>
-      <div id="countdown">{{countdownText}}</div>
+      <div id="countdown" v-else>{{countdownText}}</div>
     </template>
 
     <template v-if="scene === 'game'">
@@ -155,8 +155,8 @@
         <div id="retire-btn" @click="onClickRetire">
           🔙終わる
         </div>
-        <div id="sintyoku">
-          {{sintyoku}}
+        <div id="mondai-sintyoku">
+          {{mondaiSintyoku}}
         </div>
       </div>
       <div id="mondai">
