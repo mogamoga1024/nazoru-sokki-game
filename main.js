@@ -4,6 +4,8 @@ let prevScene = "";
 let gameConfig = {
     course: "", order: "", type: ""
 };
+let prevCourse = "";
+let prevType = "";
 
 let isPC = true;
 let otehonCanvas = null;
@@ -138,6 +140,8 @@ const app = {
         onClickPlay(course, order, type) {
             console.log(course, order, type);
             history.pushState(null, "", "");
+            prevCourse = gameConfig.course;
+            prevType = gameConfig.type;
             gameConfig = {course, order, type};
             this.startCountdown();
         },
@@ -358,7 +362,7 @@ const app = {
             link.click();
         },
 
-        async startCountdown(isContinue = false) {
+        async startCountdown() {
             this.scene = "countdown";
 
             const p = func => new Promise((resolve, reject) => {
@@ -385,7 +389,7 @@ const app = {
                 this.moon = moons[moonIndex];
             }, 100);
 
-            await this.initMondaiList(isContinue);
+            await this.initMondaiList();
 
             this.countdownText = "3";
             await p(() => this.countdownText = "2");
@@ -436,12 +440,12 @@ const app = {
             drawingCanvas = new DrawingCanvas(this.$refs.sokkiCanvas);
         },
 
-        async initMondaiList(isContinue = false) {
+        async initMondaiList() {
             const {course, order, type} = gameConfig;
 
             this.mondaiListIndex = 0;
 
-            if (isContinue && course === "基礎") {
+            if (prevCourse === course && prevType === type && course === "基礎") {
                 if (order === "ランダム") {
                     shuffle(mondaiList);
                 }
@@ -467,14 +471,13 @@ const app = {
             }
 
             // memo：デバグで問題をテキトーに作りたいときは、ここでtextListをいじる
-            // todo
-            textList = [
-                "あ",
-                "い",
-                "う",
-                "え",
-                "お"
-            ]
+            // textList = [
+            //     "あ",
+            //     "い",
+            //     "う",
+            //     "え",
+            //     "お"
+            // ]
 
             const promiseList = [];
             for (const text of textList) {
