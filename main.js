@@ -141,7 +141,6 @@ const app = {
         onClickPlay(course, order, type) {
             console.log(course, order, type);
             history.pushState(null, "", "");
-            prevGameConfig = {...gameConfig};
             gameConfig = {course, order, type};
             this.startCountdown();
         },
@@ -390,6 +389,7 @@ const app = {
             }, 100);
 
             await this.initMondaiList();
+            prevGameConfig = {...gameConfig};
 
             this.countdownText = "3";
             await p(() => this.countdownText = "2");
@@ -442,7 +442,7 @@ const app = {
 
         async initMondaiList() {
             const {course, order, type} = gameConfig;
-            const {prevCourse, prevOrder, prevType} = prevGameConfig;
+            const {course: prevCourse, order: prevOrder, type: prevType} = prevGameConfig;
 
             this.mondaiListIndex = 0;
 
@@ -451,7 +451,7 @@ const app = {
                     shuffle(mondaiList);
                 }
                 else if (prevOrder === "ランダム") {
-                    mondaiList.sort((a, b) => a.mondai[0].id - b.mondai[0].id);
+                    mondaiList.sort((a, b) => a.id - b.id);
                 }
                 return;
             }
@@ -478,7 +478,7 @@ const app = {
             //     "う",
             //     "え",
             //     "お"
-            // ]
+            // ];
 
             const promiseList = [];
             for (const text of textList) {
