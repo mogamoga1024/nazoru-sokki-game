@@ -2,6 +2,7 @@
 function loadSound(path, _option = null) {
     const option = {
         src: [path],
+        volume: 1,
         html5: true,
     };
     if (_option !== null) {
