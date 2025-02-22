@@ -67,9 +67,6 @@ const app = {
             } else {
                 this.canClickBgmBtn = true;
                 this.needBgm = false;
-                // https://github.com/goldfire/howler.js/issues/1526#issuecomment-1025686332
-                Howler.unload();
-                Howler.mute(false);
             }
         });
 
@@ -347,6 +344,8 @@ const app = {
             if (this.needBgm) {
                 if (bgm === null) {
                     this.canClickBgmBtn = false;
+                    // https://github.com/goldfire/howler.js/issues/1526#issuecomment-1025686332
+                    Howler.unload();
                     const volume = isPC ? 0.3 : 0.15;
                     loadSound("asset/bgm.mp3", {loop: true, volume}).then(sound => {
                         bgm = sound;
