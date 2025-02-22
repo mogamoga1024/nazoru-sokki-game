@@ -60,6 +60,19 @@ const app = {
 
         this.initSokkiTable();
 
+        document.addEventListener("visibilitychange", () => {
+            if (document.hidden) {
+                bgm?.unload();
+                bgm = null;
+            } else {
+                this.canClickBgmBtn = true;
+                this.needBgm = false;
+                // https://github.com/goldfire/howler.js/issues/1526#issuecomment-1025686332
+                Howler.unload();
+                Howler.mute(false);
+            }
+        });
+
         window.addEventListener("popstate", () => {
             // 進むボタンが押されたとき
             if (this.scene === "top") {
