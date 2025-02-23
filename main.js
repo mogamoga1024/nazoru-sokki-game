@@ -344,13 +344,20 @@ const app = {
             if (this.needBgm) {
                 if (bgm === null) {
                     this.canClickBgmBtn = false;
-                    // https://github.com/goldfire/howler.js/issues/1526#issuecomment-1025686332
-                    Howler.unload();
-                    const volume = isPC ? 0.3 : 0.15;
+                    const volume = isPC ? 0.3 : 0.18;
                     loadSound("asset/bgm.mp3", {loop: true, volume}).then(sound => {
                         bgm = sound;
-                        bgm.play();
-                        this.canClickBgmBtn = true;
+                        // https://github.com/goldfire/howler.js/issues/1753
+                        if (Howler.ctx.state === "suspended" || Howler.ctx.state === "interrupted") {
+                            Howler.ctx.resume().then(() => {
+                                bgm.play();
+                                this.canClickBgmBtn = true;
+                            });
+                        }
+                        else {
+                            bgm.play();
+                            this.canClickBgmBtn = true;
+                        }
                     });
                 }
                 else {
