@@ -559,21 +559,28 @@ const app = {
                 this.mondaiListIndex = 0;
             }
 
-            // 複数のmp3ファイルを一度にリクエストするのは負荷がかかる可能性があるため、Promise.allはしない
+            // 複数のmp3ファイルを一度にリクエストするのは負荷がかかる可能性があるため、全てをPromise.allはしない
             this.soundLoadSintyoku = "空".repeat(textList.length);
             let loadResult = "";
-            for (let i = 0; i < textList.length; i++) {
-                const text = textList[i];
-                const sound = await loadSound(`asset/読み上げ/${text}.mp3`);
-                const mondai = text2mondai(text, type !== "清音" || is全文debug);
-                mondaiList.push({id: i + 1, mondai, sound});
+            for (let i = 0; i < textList.length; i += 3) {
+                const batch = textList.slice(i, i + 3);
                 
-                loadResult += sound.isOK ? "可" : "不";
-                this.soundLoadSintyoku = loadResult + "空".repeat(textList.length - (i + 1));
+                const batchResults = await Promise.all(batch.map(async (text, index) => {
+                    const sound = await loadSound(`asset/読み上げ/${text}.mp3`);
+                    const mondai = text2mondai(text, type !== "清音" || is全文debug);
+                    return {id: i + index + 1, mondai, sound, isOK: sound.isOK};
+                }));
 
+                mondaiList.push(...batchResults);
+
+                // 進捗更新
+                loadResult += batchResults.map(res => res.isOK ? "可" : "不").join("");
+                this.soundLoadSintyoku = loadResult + "空".repeat(textList.length - (i + batchResults.length));
+
+                // `scene` のチェック
                 if (this.scene !== "countdown") {
-                    gameConfig = {course: "", order: "", type: ""};
-                    prevGameConfig = {course: "", order: "", type: ""};
+                    gameConfig = { course: "", order: "", type: "" };
+                    prevGameConfig = { course: "", order: "", type: "" };
                     throw new Error("問題生成中にsceneが変化した");
                 }
             }
