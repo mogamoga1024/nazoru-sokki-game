@@ -15,9 +15,11 @@ function loadSound(path, _option = null) {
     const sound = new Howl(option);
     return new Promise(resolve => {
         sound.once("load", () => {
+            sound.isOk = true;
             resolve(sound);
         });
         sound.once("loaderror", () => {
+            sound.isOk = false;
             resolve(sound);
         });
     });

@@ -163,8 +163,9 @@
     </template>
 
     <template v-else-if="scene === 'countdown'">
-      <div id="game-load" v-if="countdownText === ''">
-        Now Loading...{{moon}}
+      <div v-if="countdownText === ''">
+        <div id="moon">Now Loading...{{moon}}</div>
+        <div id="sound-load-sintyoku">{{soundLoadSintyoku}}</div>
       </div>
       <div id="countdown" v-else>{{countdownText}}</div>
     </template>

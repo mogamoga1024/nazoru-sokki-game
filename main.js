@@ -36,6 +36,7 @@ const app = {
             sokkiTable: [],
 
             moon: "🌑",
+            soundLoadSintyoku: "",
             countdownText: "3",
 
             mondaiListIndex: 0,
@@ -550,11 +551,17 @@ const app = {
             }
 
             // 複数のmp3ファイルを一度にリクエストするのは負荷がかかる可能性があるため、Promise.allはしない
+            this.soundLoadSintyoku = "空".repeat(textList.length);
+            let loadResult = "";
             for (let i = 0; i < textList.length; i++) {
                 const text = textList[i];
                 const sound = await loadSound(`asset/読み上げ/${text}.mp3`);
                 const mondai = text2mondai(text, type !== "清音" || is全文debug);
                 mondaiList.push({id: i + 1, mondai, sound});
+                
+                loadResult += sound.isOk ? "可" : "不";
+                this.soundLoadSintyoku = loadResult + "空".repeat(textList.length - (i + 1));
+
                 if (this.scene !== "countdown") {
                     gameConfig = {course: "", order: "", type: ""};
                     prevGameConfig = {course: "", order: "", type: ""};
