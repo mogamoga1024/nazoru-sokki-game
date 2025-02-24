@@ -430,8 +430,14 @@ const app = {
             const moons = ["🌑", "🌘", "🌗", "🌖", "🌕", "🌔", "🌓", "🌒"];
             let moonIndex = 0;
             this.moon = moons[moonIndex];
-            const moonTimerId = setInterval(() => {
-                if (this.scene !== "countdown" || this.countdownText != "") {
+            const moonTimerId = setInterval(async () => {
+                if (this.scene !== "countdown") {
+                    clearInterval(moonTimerId);
+                    gameConfig = {course: "", order: "", type: ""};
+                    prevGameConfig = {course: "", order: "", type: ""};
+                    throw new Error("問題生成中にsceneが変化した");
+                }
+                else if (this.countdownText !== "") {
                     clearInterval(moonTimerId);
                     return;
                 }
@@ -439,21 +445,15 @@ const app = {
                 this.moon = moons[moonIndex];
             }, 100);
 
-            try {
-                await this.initMondaiList();
+            await this.initMondaiList();
+            if (this.scene === "countdown") {
+                prevGameConfig = {...gameConfig};
+                this.countdownText = "3";
+                await p(() => this.countdownText = "2");
+                await p(() => this.countdownText = "1");
+                await p(() => this.countdownText = "GO!");
+                await p(() => this.startGame());
             }
-            catch (e) {
-                gameConfig = {course: "", order: "", type: ""};
-                prevGameConfig = {course: "", order: "", type: ""};
-                return;
-            }
-            prevGameConfig = {...gameConfig};
-
-            this.countdownText = "3";
-            await p(() => this.countdownText = "2");
-            await p(() => this.countdownText = "1");
-            await p(() => this.countdownText = "GO!");
-            await p(() => this.startGame());
         },
 
         async startGame() {
@@ -545,14 +545,7 @@ const app = {
 
             const promiseList = [];
             for (const text of textList) {
-                promiseList.push(new Promise(async (resolve, reject) => {
-                    if (this.scene !== "countdown") {
-                        reject(new Error("countdown中にsceneが変化した"));
-                    }
-                    else {
-                        resolve(await loadSound(`asset/読み上げ/${text}.mp3`));
-                    }
-                }));
+                promiseList.push(loadSound(`asset/読み上げ/${text}.mp3`));
             }
             const soundList = await Promise.all(promiseList);
 
