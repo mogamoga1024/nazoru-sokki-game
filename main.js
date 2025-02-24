@@ -439,7 +439,14 @@ const app = {
                 this.moon = moons[moonIndex];
             }, 100);
 
-            await this.initMondaiList();
+            try {
+                await this.initMondaiList();
+            }
+            catch (e) {
+                gameConfig = {course: "", order: "", type: ""};
+                prevGameConfig = {course: "", order: "", type: ""};
+                return;
+            }
             prevGameConfig = {...gameConfig};
 
             this.countdownText = "3";
@@ -538,7 +545,14 @@ const app = {
 
             const promiseList = [];
             for (const text of textList) {
-                promiseList.push(loadSound(`asset/読み上げ/${text}.mp3`));
+                promiseList.push(new Promise(async (resolve, reject) => {
+                    if (this.scene !== "countdown") {
+                        reject(new Error("countdown中にsceneが変化した"));
+                    }
+                    else {
+                        resolve(await loadSound(`asset/読み上げ/${text}.mp3`));
+                    }
+                }));
             }
             const soundList = await Promise.all(promiseList);
 
@@ -550,12 +564,6 @@ const app = {
 
             if (order === "ランダム") {
                 shuffle(mondaiList);
-            }
-
-            if (this.scene !== "countdown") {
-                gameConfig = {course: "", order: "", type: ""};
-                prevGameConfig = {course: "", order: "", type: ""};
-                throw new Error("countdown中にsceneが変化した");
             }
         },
 
