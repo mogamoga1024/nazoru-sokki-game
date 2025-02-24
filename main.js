@@ -438,12 +438,6 @@ const app = {
             let lastTime = performance.now();
             const updateMoon = () => {
                 const now = performance.now();
-
-                if (this.scene !== "countdown") {
-                    gameConfig = {course: "", order: "", type: ""};
-                    prevGameConfig = {course: "", order: "", type: ""};
-                    throw new Error("問題生成中にsceneが変化した");
-                }
                 if (this.countdownText !== "") {
                     return;
                 }
@@ -473,6 +467,7 @@ const app = {
                     mondai.sound.unload();
                     mondai.sound = null;
                 }
+                mondaiList = []; // 次のcreateMondaiList関数内でエラーが発生する可能性があるため必要
                 mondaiList = await this.createMondaiList();
             }
 
@@ -554,16 +549,17 @@ const app = {
                 this.mondaiListIndex = 0;
             }
 
-            const promiseList = [];
-            for (const text of textList) {
-                promiseList.push(loadSound(`asset/読み上げ/${text}.mp3`));
-            }
-            const soundList = await Promise.all(promiseList);
-
+            // 複数のmp3ファイルを一度にリクエストするのは負荷がかかる可能性があるため、Promise.allはしない
             for (let i = 0; i < textList.length; i++) {
-                const mondai = text2mondai(textList[i], type !== "清音" || is全文debug);
-                const sound = soundList[i];
+                const text = textList[i];
+                const sound = await loadSound(`asset/読み上げ/${text}.mp3`);
+                const mondai = text2mondai(text, type !== "清音" || is全文debug);
                 mondaiList.push({id: i + 1, mondai, sound});
+                if (this.scene !== "countdown") {
+                    gameConfig = {course: "", order: "", type: ""};
+                    prevGameConfig = {course: "", order: "", type: ""};
+                    throw new Error("問題生成中にsceneが変化した");
+                }
             }
 
             if (order === "ランダム") {
