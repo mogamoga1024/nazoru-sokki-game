@@ -558,11 +558,9 @@ const app = {
 
                 mondaiList.push(...batchResults);
 
-                // 進捗更新
                 loadResult += batchResults.map(res => res.isOK ? "可" : "不").join("");
                 this.soundLoadSintyoku = loadResult + "空".repeat(textList.length - (i + batchResults.length));
 
-                // `scene` のチェック
                 if (this.scene !== "countdown") {
                     gameConfig = {course: "", order: "", type: ""};
                     prevGameConfig = {course: "", order: "", type: ""};
