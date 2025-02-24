@@ -418,7 +418,7 @@ const app = {
             const p = func => new Promise((resolve, reject) => {
                 setTimeout(() => {
                     if (this.scene !== "countdown") {
-                        reject("countdown中にsceneが変化した");
+                        reject(new Error("countdown中にsceneが変化した"));
                         return;
                     }
                     func();
@@ -550,6 +550,12 @@ const app = {
 
             if (order === "ランダム") {
                 shuffle(mondaiList);
+            }
+
+            if (this.scene !== "countdown") {
+                gameConfig = {course: "", order: "", type: ""};
+                prevGameConfig = {course: "", order: "", type: ""};
+                throw new Error("countdown中にsceneが変化した");
             }
         },
 
