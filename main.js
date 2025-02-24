@@ -559,7 +559,7 @@ const app = {
                 const mondai = text2mondai(text, type !== "清音" || is全文debug);
                 mondaiList.push({id: i + 1, mondai, sound});
                 
-                loadResult += sound.isOk ? "可" : "不";
+                loadResult += sound.isOK ? "可" : "不";
                 this.soundLoadSintyoku = loadResult + "空".repeat(textList.length - (i + 1));
 
                 if (this.scene !== "countdown") {
