@@ -3,14 +3,10 @@ function loadSound(path, _option = null) {
     const option = {
         src: [path],
         volume: 1,
-        html5: true,
+        html5: false, // trueだとユーザー操作がどうのこうので音が鳴らない場合がある。例えユーザー操作があっても。
     };
     if (_option !== null) {
         Object.assign(option, _option);
-        if (option.volume < 1) {
-            // https://github.com/goldfire/howler.js/issues/1691
-            option.html5 = false;
-        }
     }
     const sound = new Howl(option);
     return new Promise(resolve => {
