@@ -416,36 +416,66 @@ const app = {
             this.scene = "countdown";
 
             const p = func => new Promise((resolve, reject) => {
-                setTimeout(() => {
+                const start = performance.now();
+                const checkTime = () => {
                     if (this.scene !== "countdown") {
                         reject(new Error("countdown中にsceneが変化した"));
-                        return;
                     }
-                    func();
-                    resolve();
-                }, 600);
+                    else if (performance.now() - start >= 600) {
+                        func();
+                        resolve();
+                    } else {
+                        requestAnimationFrame(checkTime);
+                    }
+                };
+                requestAnimationFrame(checkTime);
             });
 
             this.countdownText = "";
             const moons = ["🌑", "🌘", "🌗", "🌖", "🌕", "🌔", "🌓", "🌒"];
             let moonIndex = 0;
             this.moon = moons[moonIndex];
-            const moonTimerId = setInterval(async () => {
+            let lastTime = performance.now();
+            const updateMoon = () => {
+                const now = performance.now();
+
                 if (this.scene !== "countdown") {
-                    clearInterval(moonTimerId);
                     gameConfig = {course: "", order: "", type: ""};
                     prevGameConfig = {course: "", order: "", type: ""};
                     throw new Error("問題生成中にsceneが変化した");
                 }
-                else if (this.countdownText !== "") {
-                    clearInterval(moonTimerId);
+                if (this.countdownText !== "") {
                     return;
                 }
-                moonIndex = (moonIndex + 1) % moons.length;
-                this.moon = moons[moonIndex];
-            }, 100);
+                if (now - lastTime >= 100) {
+                    lastTime = now;
+                    moonIndex = (moonIndex + 1) % moons.length;
+                    this.moon = moons[moonIndex];
+                }
+                requestAnimationFrame(updateMoon);
+            };
+            requestAnimationFrame(updateMoon);
 
-            await this.initMondaiList();
+            const {course, order, type} = gameConfig;
+            const {course: prevCourse, order: prevOrder, type: prevType} = prevGameConfig;
+            this.mondaiListIndex = 0;
+            if (prevCourse === course && prevType === type && course === "基礎") {
+                if (order === "ランダム") {
+                    shuffle(mondaiList);
+                }
+                else if (prevOrder === "ランダム") {
+                    mondaiList.sort((a, b) => a.id - b.id);
+                }
+            }
+            else {
+                // 音声の開放
+                for (const mondai of mondaiList) {
+                    mondai.sound.unload();
+                    mondai.sound = null;
+                }
+                mondaiList = await this.createMondaiList();
+            }
+
             if (this.scene === "countdown") {
                 prevGameConfig = {...gameConfig};
                 this.countdownText = "3";
@@ -498,30 +528,11 @@ const app = {
             drawingCanvas = new DrawingCanvas(this.$refs.sokkiCanvas);
         },
 
-        async initMondaiList() {
+        async createMondaiList() {
             const {course, order, type} = gameConfig;
-            const {course: prevCourse, order: prevOrder, type: prevType} = prevGameConfig;
-
-            this.mondaiListIndex = 0;
-
-            if (prevCourse === course && prevType === type && course === "基礎") {
-                if (order === "ランダム") {
-                    shuffle(mondaiList);
-                }
-                else if (prevOrder === "ランダム") {
-                    mondaiList.sort((a, b) => a.id - b.id);
-                }
-                return;
-            }
-
-            // 音声の開放
-            for (const mondai of mondaiList) {
-                mondai.sound.unload();
-                mondai.sound = null;
-            }
 
             let textList = [];
-            mondaiList = [];
+            const mondaiList = [];
             if (course === "基礎") {
                 textList = 平仮名一覧(type);
             }
@@ -558,6 +569,8 @@ const app = {
             if (order === "ランダム") {
                 shuffle(mondaiList);
             }
+
+            return mondaiList;
         },
 
         initMondai() {
