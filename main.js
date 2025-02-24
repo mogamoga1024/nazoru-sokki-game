@@ -63,8 +63,7 @@ const app = {
 
         document.addEventListener("visibilitychange", () => {
             if (document.hidden) {
-                bgm?.unload();
-                bgm = null;
+                bgm?.stop();
             } else {
                 this.canClickBgmBtn = true;
                 this.needBgm = false;
@@ -362,7 +361,17 @@ const app = {
                     });
                 }
                 else {
-                    bgm.play();
+                    // https://github.com/goldfire/howler.js/issues/1753
+                    if (Howler.ctx.state === "suspended" || Howler.ctx.state === "interrupted") {
+                        this.canClickBgmBtn = false;
+                        Howler.ctx.resume().then(() => {
+                            bgm.play();
+                            this.canClickBgmBtn = true;
+                        });
+                    }
+                    else {
+                        bgm.play();
+                    }
                 }
             }
             else {
