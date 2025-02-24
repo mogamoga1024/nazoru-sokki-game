@@ -431,7 +431,7 @@ const app = {
             let moonIndex = 0;
             this.moon = moons[moonIndex];
             const moonTimerId = setInterval(() => {
-                if (this.countdownText != "") {
+                if (this.scene !== "countdown" || this.countdownText != "") {
                     clearInterval(moonTimerId);
                     return;
                 }
