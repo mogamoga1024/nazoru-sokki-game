@@ -20,3 +20,21 @@ function loadSound(path, _option = null) {
         });
     });
 }
+
+function soundPlay(sound, callback = () => {}) {
+    return new Promise(resolve => {
+        // https://github.com/goldfire/howler.js/issues/1753
+        if (Howler.ctx.state === "suspended" || Howler.ctx.state === "interrupted") {
+            Howler.ctx.resume().then(() => {
+                sound.play();
+                callback();
+                resolve();
+            });
+        }
+        else {
+            sound.play();
+            callback();
+            resolve();
+        }
+    });
+}

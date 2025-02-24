@@ -224,7 +224,7 @@ const app = {
 
             const isOK = sokki.test(this.hira);
             if (isOK || is全文debug) {
-                okSound.play();
+                soundPlay(okSound);
                 this.correctCount++;
                 renzokuMizzCount = 0;
                 this.message = "正解！😆";
@@ -276,7 +276,7 @@ const app = {
                 drawingCanvas.clear();
             }
             else {
-                ngSound.play();
+                soundPlay(ngSound);
                 this.missCount++;
                 renzokuMizzCount++;
                 this.message = "違う…😢";
@@ -347,31 +347,16 @@ const app = {
                     const volume = isPC ? 0.3 : 0.18;
                     loadSound("asset/bgm.mp3", {loop: true, volume}).then(sound => {
                         bgm = sound;
-                        // https://github.com/goldfire/howler.js/issues/1753
-                        if (Howler.ctx.state === "suspended" || Howler.ctx.state === "interrupted") {
-                            Howler.ctx.resume().then(() => {
-                                bgm.play();
-                                this.canClickBgmBtn = true;
-                            });
-                        }
-                        else {
-                            bgm.play();
+                        soundPlay(bgm, () => {
                             this.canClickBgmBtn = true;
-                        }
+                        });
                     });
                 }
                 else {
-                    // https://github.com/goldfire/howler.js/issues/1753
-                    if (Howler.ctx.state === "suspended" || Howler.ctx.state === "interrupted") {
-                        this.canClickBgmBtn = false;
-                        Howler.ctx.resume().then(() => {
-                            bgm.play();
-                            this.canClickBgmBtn = true;
-                        });
-                    }
-                    else {
-                        bgm.play();
-                    }
+                    this.canClickBgmBtn = false;
+                    soundPlay(bgm, () => {
+                        this.canClickBgmBtn = true;
+                    });
                 }
             }
             else {
@@ -607,7 +592,7 @@ const app = {
             }
 
             const sound = mondaiList[this.mondaiListIndex].sound;
-            sound.play();
+            soundPlay(sound);
         },
     }
 };
