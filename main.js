@@ -569,6 +569,8 @@ const app = {
                 }
             }
 
+            await new Promise(r => setTimeout(r, 200));
+
             if (order === "ランダム") {
                 shuffle(mondaiList);
             }
