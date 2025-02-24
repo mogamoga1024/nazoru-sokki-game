@@ -564,8 +564,8 @@ const app = {
 
                 // `scene` のチェック
                 if (this.scene !== "countdown") {
-                    gameConfig = { course: "", order: "", type: "" };
-                    prevGameConfig = { course: "", order: "", type: "" };
+                    gameConfig = {course: "", order: "", type: ""};
+                    prevGameConfig = {course: "", order: "", type: ""};
                     throw new Error("問題生成中にsceneが変化した");
                 }
             }
