@@ -14,18 +14,11 @@ function loadSound(path, _option = null) {
     }
     const sound = new Howl(option);
     return new Promise(resolve => {
-        let flg = false;
         sound.once("load", () => {
-            if (!flg) {
-                flg = true;
-                resolve(sound);
-            }
+            resolve(sound);
         });
         sound.once("loaderror", () => {
-            if (!flg) {
-                flg = true;
-                resolve(sound);
-            }
+            resolve(sound);
         });
     });
 }
