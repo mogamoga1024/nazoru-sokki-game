@@ -25,7 +25,7 @@ function loadSound(path, _option = null) {
     });
 }
 
-function soundPlay(sound, callback = () => {}) {
+function playSound(sound, callback = () => {}) {
     return new Promise(resolve => {
         // https://github.com/goldfire/howler.js/issues/1753
         if (Howler.ctx.state === "suspended" || Howler.ctx.state === "interrupted") {

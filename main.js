@@ -223,7 +223,7 @@ const app = {
 
             const isOK = sokki.test(this.hira);
             if (isOK || is全文debug) {
-                soundPlay(okSound);
+                playSound(okSound);
                 this.correctCount++;
                 renzokuMizzCount = 0;
                 this.message = "正解！😆";
@@ -275,7 +275,7 @@ const app = {
                 drawingCanvas.clear();
             }
             else {
-                soundPlay(ngSound);
+                playSound(ngSound);
                 this.missCount++;
                 renzokuMizzCount++;
                 this.message = "違う…😢";
@@ -346,14 +346,14 @@ const app = {
                     const volume = isPC ? 0.3 : 0.18;
                     loadSound("asset/bgm.mp3", {loop: true, volume}).then(sound => {
                         bgm = sound;
-                        soundPlay(bgm, () => {
+                        playSound(bgm, () => {
                             this.canClickBgmBtn = true;
                         });
                     });
                 }
                 else {
                     this.canClickBgmBtn = false;
-                    soundPlay(bgm, () => {
+                    playSound(bgm, () => {
                         this.canClickBgmBtn = true;
                     });
                 }
@@ -589,7 +589,7 @@ const app = {
             }
 
             const sound = this.mondaiList[this.mondaiListIndex].sound;
-            soundPlay(sound);
+            playSound(sound);
         },
     }
 };
