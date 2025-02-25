@@ -1,5 +1,5 @@
 
-function loadSound(path, _option = null) {
+function loadSound(path, _option = null, needTimeout = true) {
     const option = {
         src: [path],
         volume: 1,
@@ -10,11 +10,27 @@ function loadSound(path, _option = null) {
     }
     const sound = new Howl(option);
     return new Promise(resolve => {
+        let isCompleted = false;
+        let timer = 0;
+        if (needTimeout) {
+            timer = setTimeout(() => {
+                if (isCompleted) return;
+                isCompleted = true;
+                sound.isOK = false;
+                resolve(sound);
+            }, 1000 * 10);
+        }
         sound.once("load", () => {
+            if (isCompleted) return;
+            isCompleted = true;
+            clearTimeout(timer);
             sound.isOK = true;
             resolve(sound);
         });
         sound.once("loaderror", () => {
+            if (isCompleted) return;
+            isCompleted = true;
+            clearTimeout(timer);
             sound.isOK = false;
             resolve(sound);
         });

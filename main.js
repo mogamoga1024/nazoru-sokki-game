@@ -344,7 +344,7 @@ const app = {
                 if (bgm === null) {
                     this.canClickBgmBtn = false;
                     const volume = isPC ? 0.3 : 0.18;
-                    loadSound("asset/bgm.mp3", {loop: true, volume}).then(sound => {
+                    loadSound("asset/bgm.mp3", {loop: true, volume}, false).then(sound => {
                         bgm = sound;
                         soundPlay(bgm, () => {
                             this.canClickBgmBtn = true;
