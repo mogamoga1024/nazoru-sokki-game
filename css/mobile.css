@@ -53,12 +53,12 @@
   }
 
   #mondai {
-    margin-top: 1rem;
+    margin-top: 0.2rem;
   }
 
   #kaitou {
-    height: 180px;
-    line-height: 180px;
+    height: 170px;
+    line-height: 170px;
     font-size: 1.4rem;
   }
 
