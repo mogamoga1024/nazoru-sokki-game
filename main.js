@@ -14,8 +14,6 @@ let otehonCanvas = null;
 let drawingCanvas = null;
 let sokki = null;
 
-let mondaiList = [];
-
 const nextMondaiInterval = 400;
 
 let startTime = 0;
@@ -40,6 +38,7 @@ const app = {
             countdownText: "3",
 
             mondaiListIndex: 0,
+            mondaiList: [],
             mondai: [],
             kaitou: [],
             message: "書いてね🤔",
@@ -103,7 +102,7 @@ const app = {
     },
     computed: {
         mondaiSintyoku() {
-            return `${this.mondaiListIndex}/${mondaiList.length}`;
+            return `${this.mondaiListIndex}/${this.mondaiList.length}`;
         },
         score() {
             const bunbo1 = this.clearTime / 1000 / 60;
@@ -208,7 +207,7 @@ const app = {
 
         canvasDrawEnd(x, y) {
             // 既にクリアしているなら何もしない
-            if (this.mondaiListIndex >= mondaiList.length) {
+            if (this.mondaiListIndex >= this.mondaiList.length) {
                 return;
             }
 
@@ -231,9 +230,9 @@ const app = {
                 this.kaitou.push(速記文字一覧[this.hira]);
                 if (this.mondai.length === this.kaitou.length) {
                     this.mondaiListIndex++;
-                    const isClear = this.mondaiListIndex >= mondaiList.length;
+                    const isClear = this.mondaiListIndex >= this.mondaiList.length;
                     if (isClear) {
-                        this.clearTime = performance.now() - startTime - nextMondaiInterval * (mondaiList.length - 1);
+                        this.clearTime = performance.now() - startTime - nextMondaiInterval * (this.mondaiList.length - 1);
                     }
                     setTimeout(() => {
                         if (isClear) {
@@ -450,20 +449,20 @@ const app = {
             this.mondaiListIndex = 0;
             if (prevCourse === course && prevType === type && course === "基礎") {
                 if (order === "ランダム") {
-                    shuffle(mondaiList);
+                    shuffle(this.mondaiList);
                 }
                 else if (prevOrder === "ランダム") {
-                    mondaiList.sort((a, b) => a.id - b.id);
+                    this.mondaiList.sort((a, b) => a.id - b.id);
                 }
             }
             else {
                 // 音声の開放
-                for (const mondai of mondaiList) {
+                for (const mondai of this.mondaiList) {
                     mondai.sound.unload();
                     mondai.sound = null;
                 }
-                mondaiList = []; // 次のcreateMondaiList関数内でエラーが発生する可能性があるため必要
-                mondaiList = await this.createMondaiList();
+                this.mondaiList = []; // 次のcreateMondaiList関数内でエラーが発生する可能性があるため必要
+                this.mondaiList = await this.createMondaiList();
             }
 
             if (this.scene === "countdown") {
@@ -580,7 +579,7 @@ const app = {
         initMondai() {
             this.message = "書いてね🤔";
             this.kaitou = [];
-            this.mondai = mondaiList[this.mondaiListIndex].mondai;
+            this.mondai = this.mondaiList[this.mondaiListIndex].mondai;
             this.hira = this.mondai[0];
 
             drawingCanvas.clear();
@@ -589,7 +588,7 @@ const app = {
                 otehonCanvas.draw(this.hira);
             }
 
-            const sound = mondaiList[this.mondaiListIndex].sound;
+            const sound = this.mondaiList[this.mondaiListIndex].sound;
             soundPlay(sound);
         },
     }
