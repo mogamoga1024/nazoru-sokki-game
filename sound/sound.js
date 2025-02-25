@@ -16,7 +16,7 @@ function loadSound(path, _option = null, needTimeout = true) {
             timer = setTimeout(() => {
                 if (isCompleted) return;
                 isCompleted = true;
-                sound.isOK = false;
+                sound.isOK = sound.state() === "loaded";
                 resolve(sound);
             }, 1000 * 10);
         }
