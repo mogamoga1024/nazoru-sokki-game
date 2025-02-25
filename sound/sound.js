@@ -4,7 +4,11 @@ function loadSound(path, _option = null) {
         const option = {
             src: [path],
             volume: 1,
-            html5: false, // trueだとユーザー操作がどうのこうので音が鳴らない場合がある。例えユーザー操作があっても。
+
+            // trueだとユーザー操作がどうのこうので音が鳴らない場合がある。例えユーザー操作があっても。
+            html5: false,
+            
+            // https://github.com/goldfire/howler.js/issues/293
             onload() {
                 sound.isOK = true;
                 resolve(sound);
