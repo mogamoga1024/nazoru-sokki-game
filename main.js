@@ -166,29 +166,29 @@ const app = {
             history.back();
         },
 
-        onMouseDown(e) {
+        onMouseDownCanvas(e) {
             // 左クリック以外描画不可
             if (e.buttons !== 1) {
                 return;
             }
             this.canvasDrawStart(e.offsetX, e.offsetY);
         },
-        onMouseUp(e) {
+        onMouseUpCanvas(e) {
             this.canvasDrawEnd(e.offsetX, e.offsetY);
         },
-        onMouseMove(e) {
+        onMouseMoveCanvas(e) {
             this.canvasDraw(e.offsetX, e.offsetY);
         },
 
-        onTouchStart(e) {
+        onTouchStartCanvas(e) {
             const {x, y} = this.getTouchXY(e);
             this.canvasDrawStart(x, y);
         },
-        onTouchEnd(e) {
+        onTouchEndCanvas(e) {
             const {x, y} = this.getTouchXY(e);
             this.canvasDrawEnd(x, y);
         },
-        onTouchMove(e) {
+        onTouchMoveCanvas(e) {
             const {x, y} = this.getTouchXY(e);
             this.canvasDraw(x, y);
         },

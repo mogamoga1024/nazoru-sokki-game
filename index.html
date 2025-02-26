@@ -219,14 +219,14 @@
         <canvas
           id="sokki-canvas"
           ref="sokkiCanvas"
-          @mousedown="onMouseDown"
-          @mouseover="onMouseDown"
-          @mouseup="onMouseUp"
-          @mouseout="onMouseUp"
-          @mousemove="onMouseMove"
-          @touchstart="onTouchStart"
-          @touchend="onTouchEnd"
-          @touchmove="onTouchMove"
+          @mousedown="onMouseDownCanvas"
+          @mouseover="onMouseDownCanvas"
+          @mouseup="onMouseUpCanvas"
+          @mouseout="onMouseUpCanvas"
+          @mousemove="onMouseMoveCanvas"
+          @touchstart="onTouchStartCanvas"
+          @touchend="onTouchEndCanvas"
+          @touchmove="onTouchMoveCanvas"
           >
         </canvas>
       </div>
